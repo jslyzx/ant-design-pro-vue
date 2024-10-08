@@ -39,6 +39,7 @@
 
 <script>
   import { verifyDistract } from '@/api/distract'
+  import { Modal } from 'ant-design-vue'
   export default {
     data() {
       return {
@@ -98,7 +99,11 @@
           }
           params.append('distract', JSON.stringify(distract))
           verifyDistract(params).then(res => {
-            that.$message.success(res.msg);
+            // that.$message.success(res.msg);
+            Modal.success({
+              title: '提示',
+              content: res.msg
+            });
             that.visible = false;
             that.confirmLoading = false;
             that.$emit('ok')

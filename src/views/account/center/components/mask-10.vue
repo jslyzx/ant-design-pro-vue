@@ -38,7 +38,6 @@
               <p class="tip">必填项如数据缺失无法提交，请一律用"/"来填写!（ICON患者，必须填写实际检测值。基线访视辅助检查可使用入组前6个月内的检查结果，但要求从检查日期到入组日期之间未发生急性加重，否则需要在基线数据收集时重新辅助检查）</p>
               <div class="title">1.血常规
                 <a style="float: right;font-size:12px;margin-right: 12px;" @click="showOcr = !showOcr">OCR</a>
-                <!-- <a-icon type="zoom-in" style="float: right;margin-top: 12px;margin-right: 12px;color: #ccc;" @click="changeOcr" /> -->
               </div>
               <a-form-item label="血常规报告上传 :" :labelCol="labelColHor" :wrapperCol="wrapperHor" style="margin-top: 10px;" v-if="showOcr">
                 <div class="clearfix" style="margin-top: 10px;">
@@ -49,28 +48,25 @@
                     </div>
                   </a-upload>
                   <a-button style="position: absolute;top: 74px;left: 120px;font-size: 12px;padding: 0 5px;height: 30px;" @click="_import(fileList1,1)" v-if="fileList1.length === 1 && showOcr">OCR识别</a-button>
-                  <!-- <a-modal :visible="previewVisible1" :footer="null" @cancel="handleCancel1">
-                    <img alt="example" style="width: 100%" :src="previewImage1" />
-                  </a-modal> -->
                 </div>
               </a-form-item>
               <a-form-item label="检查时间" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-date-picker placeholder="请选择" v-decorator="['f5', { initialValue: initValue('f5', 'time')}]" :disabledDate="disabledDate" style="width: 240px;"></a-date-picker>
               </a-form-item>
               <a-form-item label="(1) 血红蛋白:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                <a-input style="width: 240px;" v-decorator="['b1', {...inputRequired, initialValue: initValue('b1')}]" addonAfter="g/L" autocomplete="off"></a-input>
+                <a-input style="width: 240px;" v-decorator="['b1', {...inputRequired, initialValue: initValue('b1')}]" addonAfter="g/L" autocomplete="off" @blur="handleb1"></a-input>
               </a-form-item>
               <a-form-item label="(2) 白细胞:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                <a-input style="width: 240px;" v-decorator="['b2', {...inputRequired, initialValue: initValue('b2')}]" addonAfter="10^9/L" autocomplete="off"></a-input>
+                <a-input style="width: 240px;" v-decorator="['b2', {...inputRequired, initialValue: initValue('b2')}]" addonAfter="10^9/L" autocomplete="off" @blur="handleb2"></a-input>
               </a-form-item>
               <a-form-item label="(3) 红细胞:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                <a-input style="width: 240px;" v-decorator="['b3', {...inputRequired, initialValue: initValue('b3')}]" addonAfter="10^12/L" autocomplete="off"></a-input>
+                <a-input style="width: 240px;" v-decorator="['b3', {...inputRequired, initialValue: initValue('b3')}]" addonAfter="10^12/L" autocomplete="off" @blur="handleb3"></a-input>
               </a-form-item>
               <a-form-item label="(4) 血小板:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                <a-input style="width: 240px;" v-decorator="['b4', {...inputRequired, initialValue: initValue('b4')}]" addonAfter="10^9/L" autocomplete="off"></a-input>
+                <a-input style="width: 240px;" v-decorator="['b4', {...inputRequired, initialValue: initValue('b4')}]" addonAfter="10^9/L" autocomplete="off" @blur="handleb4"></a-input>
               </a-form-item>
               <a-form-item label="(5) 中性粒细胞绝对值:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                <a-input style="width: 240px;" v-decorator="['b5', {...inputRequired, initialValue: initValue('b5')}]" addonAfter="10^9/L" autocomplete="off"></a-input>
+                <a-input style="width: 240px;" v-decorator="['b5', {...inputRequired, initialValue: initValue('b5')}]" addonAfter="10^9/L" autocomplete="off" @blur="handleb5"></a-input>
               </a-form-item>
               <a-form-item label="(6) 嗜酸细胞绝对值:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-input style="width: 240px;" v-decorator="['b6', {...inputRequired, initialValue: initValue('b6')}]" addonAfter="10^9/L" autocomplete="off"></a-input>
@@ -94,10 +90,10 @@
                 <a-date-picker placeholder="请选择" v-decorator="['f6', { initialValue: initValue('f6', 'time')}]" :disabledDate="disabledDate" style="width: 240px;"></a-date-picker>
               </a-form-item>
               <a-form-item label="(1) 血糖:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                <a-input style="width: 240px;" v-decorator="['c1', {...inputRequired, initialValue: initValue('c1')}]" addonAfter="mmol/L" autocomplete="off"></a-input>
+                <a-input style="width: 240px;" v-decorator="['c1', {...inputRequired, initialValue: initValue('c1')}]" addonAfter="mmol/L" autocomplete="off" @blur="handlec1"></a-input>
               </a-form-item>
               <a-form-item label="(2) 白蛋白:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                <a-input style="width: 240px;" v-decorator="['c4', {...inputRequired, initialValue: initValue('c4')}]" addonAfter="g/L" autocomplete="off"></a-input>
+                <a-input style="width: 240px;" v-decorator="['c4', {...inputRequired, initialValue: initValue('c4')}]" addonAfter="g/L" autocomplete="off" @blur="handlec4"></a-input>
               </a-form-item>
               <a-form-item label="(3) 谷丙转氨酶:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-input style="width: 240px;" v-decorator="['c2', { initialValue: initValue('c2')}]" addonAfter="IU/L" autocomplete="off"></a-input>
@@ -179,6 +175,7 @@ import { getPatientBasis, saveBasis, getBasisForm, getOcrResult, recoverSubmit, 
 import { MyIcon } from '@/components/_util/util'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import ContactForm from '@/views/account/ContactForm'
+import { Modal } from 'ant-design-vue'
 export default {
   name: 'mask10',
   components: {
@@ -300,6 +297,62 @@ export default {
         return "";
       }
     },
+    handleb1(e) {
+      if (e.target.value && (e.target.value < 50 || e.target.value > 200)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认血红蛋白数值是否正确'
+        });
+      }
+    },
+    handleb2(e) {
+      if (e.target.value && (e.target.value < 2 || e.target.value > 20)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认白细胞数值是否正确'
+        });
+      }
+    },
+    handleb3(e) {
+      if (e.target.value && (e.target.value < 2 || e.target.value > 10)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认红细胞数值是否正确'
+        });
+      }
+    },
+    handleb4(e) {
+      if (e.target.value && (e.target.value < 50 || e.target.value > 600)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认血小板数值是否正确'
+        });
+      }
+    },
+    handleb5(e) {
+      if (e.target.value && (e.target.value < 0.5 || e.target.value > 20)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认中性粒细胞数值是否正确'
+        });
+      }
+    },
+    handlec1(e) {
+      if (e.target.value && (e.target.value < 2 || e.target.value > 20)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认血糖数值是否正确'
+        });
+      }
+    },
+    handlec4(e) {
+      if (e.target.value && (e.target.value < 20 || e.target.value > 55)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认白蛋白数值是否正确'
+        });
+      }
+    },
     disabledDate(current) {
       let date = this.getBirthdayByIdNO(this.patient.card)
       return current && current > moment().endOf('day') || moment(date).endOf('day') > current;
@@ -351,7 +404,11 @@ export default {
               console.log(res)
               that.spinning = false
               that.getFormData()
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)
@@ -469,7 +526,11 @@ export default {
           console.log(res)
           that.spinning = false
           that.getFormData()
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+            title: '提示',
+            content: res.msg
+          });
         })
         .catch(error => {
           that.spinning = false
@@ -539,7 +600,11 @@ export default {
       getOcrResult(params)
         .then(res => {
           that.spinning = false
-          that.$message.success(res.data.info)
+          // that.$message.success(res.data.info)
+          Modal.success({
+            title: '提示',
+            content: res.data.info
+          });
           // console.log(res.data);
           that.qtsyjc = _.extend(that.qtsyjc || {}, that.dealAnswers(res.data))
           that.form.setFieldsValue(that.qtsyjc)
@@ -547,7 +612,11 @@ export default {
         .catch(error => {
           // console.log(error)
           that.spinning = false
-          that.$message.error(res.msg)
+          // that.$message.error(res.msg)
+          Modal.error({
+            title: '提示',
+            content: res.msg
+          });
         })
     },
     withdraw() {
@@ -561,7 +630,11 @@ export default {
           recoverSubmit(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)
@@ -599,7 +672,11 @@ export default {
           exportFormData(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               that.qtsyjc = _.extend(that.qtsyjc || {}, that.dealAnswers(res.data.data.qtsyjc))
             }).catch(error => {
               that.spinning = false

@@ -242,6 +242,9 @@ import { mapActions } from 'vuex'
 import { getPatientBasis, saveBasis, getBasisForm, recoverSubmit, computeScore } from '@/api/basis'
 import { MyIcon } from '@/components/_util/util'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
+import { Modal } from 'ant-design-vue'
+
+
 export default {
   name: 'iconTask',
   components: {
@@ -420,7 +423,11 @@ export default {
               console.log(res)
               that.spinning = false
               that.getFormData()
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', this.patientBasisId)
               getPatientBasis(params)
@@ -568,7 +575,11 @@ export default {
           console.log(res)
           that.spinning = false
           that.getFormData()
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+                title: '提示',
+                content: res.msg
+              });
         })
         .catch(error => {
           that.spinning = false
@@ -607,7 +618,11 @@ export default {
           recoverSubmit(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)

@@ -110,6 +110,7 @@ import $ from 'jquery'
 import moment from 'moment'
 import { MyIcon } from '@/components/_util/util'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
+import { Modal } from 'ant-design-vue'
 
 export default {
   name: 'BasisQuestion',
@@ -340,7 +341,11 @@ export default {
           saveQuestion(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               that.getFormData()
               params = new URLSearchParams()
               params.append('patientBasisId', this.patientBasisId)
@@ -443,7 +448,11 @@ export default {
         .then(res => {
           that.spinning = false
           that.getFormData()
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+            title: '提示',
+            content: res.msg
+          });
           params = new URLSearchParams()
           params.append('patientBasisId', this.patientBasisId)
           getPatientBasis(params)

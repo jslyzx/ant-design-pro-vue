@@ -473,6 +473,7 @@
 </div>
 </template>
 <script>
+import { Modal } from 'ant-design-vue'
 export default{
 	props: {
 	    maskId: {
@@ -611,7 +612,11 @@ export default{
         let yearDiff = timeDiff / (1000 * 3600 * 24 * 365.25); // 考虑闰年
         // 判断年数是否大于 10 年
         if (yearDiff < 10) {
-          this.$message.warning('是否为儿童确诊支扩');
+          // this.$message.warning('是否为儿童确诊支扩');
+          Modal.warning({
+            title: '提示',
+            content: '是否为儿童确诊支扩'
+          });
         }
       },
   		changeSelect(e, t) {

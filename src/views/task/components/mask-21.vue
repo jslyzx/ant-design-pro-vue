@@ -424,6 +424,8 @@ import { getPatientBasis, saveBasis, getBasisForm, computeScore, recoverSubmit }
 import { MyIcon } from '@/components/_util/util'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import ContactForm from '@/views/account/ContactForm'
+import { Modal } from 'ant-design-vue'
+
 export default {
   name: 'task21',
   components: {
@@ -618,7 +620,11 @@ export default {
           saveBasis(params)
             .then(res => {
               console.log(res)
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               that.spinning = false
               that.getFormData()
               params = new URLSearchParams()
@@ -717,7 +723,11 @@ export default {
       saveBasis(params)
         .then(res => {
           console.log(res)
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+                title: '提示',
+                content: res.msg
+              });
           that.spinning = false
           that.getFormData()
           params = new URLSearchParams()
@@ -766,7 +776,11 @@ export default {
           recoverSubmit(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)

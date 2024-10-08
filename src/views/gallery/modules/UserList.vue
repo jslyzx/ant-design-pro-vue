@@ -24,6 +24,8 @@
 import { getPatientList } from '@/api/patient'
 import moment from 'moment'
 import _ from 'lodash'
+import { Modal } from 'ant-design-vue'
+
 const columns = [
   {
     title: '入组编号',
@@ -81,6 +83,10 @@ export default {
     checkuUser() {
       if (JSON.stringify(this.userData) == '{}') {
         this.$message.error('您还未选择患者！')
+        Modal.error({
+          title: '提示',
+          content: '您还未选择患者！'
+        });
         return
       }
       this.$emit('listen', this.userData);

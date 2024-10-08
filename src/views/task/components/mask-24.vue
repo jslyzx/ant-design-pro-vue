@@ -56,19 +56,19 @@
                   <a-date-picker placeholder="请选择" v-decorator="['t1', {...dateRequire, initialValue: initValue('t1', 'time')}]" :disabledDate="disabledDate" style="width: 240px;"></a-date-picker>
                 </a-form-item> -->
                 <a-form-item label="(1) 血红蛋白:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                  <a-input style="width: 240px;" v-decorator="['b1', {...inputRequired, initialValue: initValue('b1')}]" addonAfter="g/L" autocomplete="off"></a-input>
+                  <a-input style="width: 240px;" v-decorator="['b1', {...inputRequired, initialValue: initValue('b1')}]" addonAfter="g/L" autocomplete="off" @blur="handleb1"></a-input>
                 </a-form-item>
                 <a-form-item label="(2) 白细胞:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                  <a-input style="width: 240px;" v-decorator="['b2', {...inputRequired, initialValue: initValue('b2')}]" addonAfter="10^9/L" autocomplete="off"></a-input>
+                  <a-input style="width: 240px;" v-decorator="['b2', {...inputRequired, initialValue: initValue('b2')}]" addonAfter="10^9/L" autocomplete="off" @blur="handleb2"></a-input>
                 </a-form-item>
                 <a-form-item label="(3) 红细胞:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                  <a-input style="width: 240px;" v-decorator="['b3', {...inputRequired, initialValue: initValue('b3')}]" addonAfter="10^12/L" autocomplete="off"></a-input>
+                  <a-input style="width: 240px;" v-decorator="['b3', {...inputRequired, initialValue: initValue('b3')}]" addonAfter="10^12/L" autocomplete="off" @blur="handleb3"></a-input>
                 </a-form-item>
                 <a-form-item label="(4) 血小板:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                  <a-input style="width: 240px;" v-decorator="['b4', {...inputRequired, initialValue: initValue('b4')}]" addonAfter="10^9/L" autocomplete="off"></a-input>
+                  <a-input style="width: 240px;" v-decorator="['b4', {...inputRequired, initialValue: initValue('b4')}]" addonAfter="10^9/L" autocomplete="off" @blur="handleb4"></a-input>
                 </a-form-item>
                 <a-form-item label="(5) 中性粒细胞绝对值:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                  <a-input style="width: 240px;" v-decorator="['b5', {...inputRequired, initialValue: initValue('b5')}]" addonAfter="10^9/L" autocomplete="off"></a-input>
+                  <a-input style="width: 240px;" v-decorator="['b5', {...inputRequired, initialValue: initValue('b5')}]" addonAfter="10^9/L" autocomplete="off" @blur="handleb5"></a-input>
                 </a-form-item>
                 <a-form-item label="(6) 嗜酸细胞绝对值:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                   <a-input style="width: 240px;" v-decorator="['b6', {...inputRequired, initialValue: initValue('b6')}]" addonAfter="10^9/L" autocomplete="off"></a-input>
@@ -86,10 +86,10 @@
                   </div>
                 </a-form-item>
                 <a-form-item label="(1) 血糖:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                  <a-input style="width: 240px;" v-decorator="['c1', {...inputRequired, initialValue: initValue('c1')}]" addonAfter="mmol/L" autocomplete="off"></a-input>
+                  <a-input style="width: 240px;" v-decorator="['c1', {...inputRequired, initialValue: initValue('c1')}]" addonAfter="mmol/L" autocomplete="off" @blur="handlec1"></a-input>
                 </a-form-item>
                 <a-form-item label="(2) 白蛋白:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                  <a-input style="width: 240px;" v-decorator="['c4', {...inputRequired, initialValue: initValue('c4')}]" addonAfter="g/L" autocomplete="off"></a-input>
+                  <a-input style="width: 240px;" v-decorator="['c4', {...inputRequired, initialValue: initValue('c4')}]" addonAfter="g/L" autocomplete="off" @blur="handlec4"></a-input>
                 </a-form-item>
                 <a-form-item label="(3) 谷丙转氨酶:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                   <a-input style="width: 240px;" v-decorator="['c2', { initialValue: initValue('c2')}]" addonAfter="IU/L" autocomplete="off"></a-input>
@@ -172,6 +172,8 @@ import { getPatientBasis, saveBasis, getBasisForm, getOcrResult, recoverSubmit }
 import { MyIcon } from '@/components/_util/util'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import ContactForm from '@/views/account/ContactForm'
+import { Modal } from 'ant-design-vue'
+
 export default {
   name: 'task24',
   components: {
@@ -371,7 +373,11 @@ export default {
           saveBasis(params)
             .then(res => {
               console.log(res)
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               that.spinning = false
               that.getFormData()
               params = new URLSearchParams()
@@ -472,7 +478,11 @@ export default {
       saveBasis(params)
         .then(res => {
           console.log(res)
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+                title: '提示',
+                content: res.msg
+              });
           that.spinning = false
           that.getFormData()
           params = new URLSearchParams()
@@ -512,6 +522,62 @@ export default {
         })
       }
     },
+    handleb1(e) {
+      if (e.target.value && (e.target.value < 50 || e.target.value > 200)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认血红蛋白数值是否正确'
+        });
+      }
+    },
+    handleb2(e) {
+      if (e.target.value && (e.target.value < 2 || e.target.value > 20)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认白细胞数值是否正确'
+        });
+      }
+    },
+    handleb3(e) {
+      if (e.target.value && (e.target.value < 2 || e.target.value > 10)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认红细胞数值是否正确'
+        });
+      }
+    },
+    handleb4(e) {
+      if (e.target.value && (e.target.value < 50 || e.target.value > 600)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认血小板数值是否正确'
+        });
+      }
+    },
+    handleb5(e) {
+      if (e.target.value && (e.target.value < 0.5 || e.target.value > 20)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认中性粒细胞数值是否正确'
+        });
+      }
+    },
+    handlec1(e) {
+      if (e.target.value && (e.target.value < 2 || e.target.value > 20)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认血糖数值是否正确'
+        });
+      }
+    },
+    handlec4(e) {
+      if (e.target.value && (e.target.value < 20 || e.target.value > 55)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认白蛋白数值是否正确'
+        });
+      }
+    },
     handleCancel2() {
       this.previewVisible2 = false;
     },
@@ -541,7 +607,11 @@ export default {
       getOcrResult(params)
         .then(res => {
           that.spinning = false
-          that.$message.success(res.data.info)
+          // that.$message.success(res.data.info)
+          Modal.success({
+                title: '提示',
+                content: res.data.info
+              });
           // console.log(res.data);
           that.qtsyjc = _.extend(that.qtsyjc || {}, that.dealAnswers(res.data))
           that.form.setFieldsValue(that.qtsyjc)
@@ -549,7 +619,11 @@ export default {
         .catch(error => {
           // console.log(error)
           that.spinning = false
-          that.$message.error(res.msg)
+          // that.$message.error(res.msg)
+          Modal.error({
+                title: '提示',
+                content: res.msg
+              });
         })
     },
     withdraw() {
@@ -563,7 +637,11 @@ export default {
           recoverSubmit(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)

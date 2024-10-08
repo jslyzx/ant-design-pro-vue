@@ -43,6 +43,8 @@
 import { saveDoctor, getRoleDataList, selectCenterDataList, getDoctorDetail } from '@/api/center'
 import moment from 'moment'
 import _ from 'lodash'
+import { Modal } from 'ant-design-vue'
+
 export default {
   data() {
     return {
@@ -148,7 +150,11 @@ export default {
         saveDoctor(params).then(res => {
           that.visible = false
           that.confirmLoading = false
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+                title: '提示',
+                content: res.msg
+              });
           that.$emit('ok', values)
         });
       });

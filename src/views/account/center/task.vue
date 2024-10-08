@@ -342,7 +342,8 @@ import _ from 'lodash'
 import $ from 'jquery'
 import moment from 'moment'
 import AddTable from "./model/table"
-import { MyIcon } from '@/components/_util/util';
+import { MyIcon } from '@/components/_util/util'
+import { Modal } from 'ant-design-vue'
 export default {
   name: 'taskDetail',
   components: {
@@ -724,10 +725,14 @@ export default {
       params.append('allergy', JSON.stringify(allergy))
       saveVisitTask(params)
       .then(res => {
-        that.$message.success('保存成功', function(){
-          var href = location.href.replace(/\?markId=[\d]+/,'')
+        Modal.success({
+          title: '提示',
+          content: '保存成功',
+          onOk() {
+            var href = location.href.replace(/\?markId=[\d]+/,'')
           location.href = href + '?markId=' + that.basisMaskId
-        })
+          }
+        });
       })
       .catch(error => {
         console.log(error)

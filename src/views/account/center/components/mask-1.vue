@@ -115,11 +115,11 @@
                 <a-input style="width: 240px;" v-decorator="['a45', {...inputRequired, initialValue: initValue('a45')}]" autocomplete="off"></a-input>
               </a-form-item>
               <div class="title">2.既往病史</div>
-              <a-form-item label="(1) 过去两年的住院急性加重次数" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                <a-input addonAfter="次" style="width: 240px;" v-decorator="['b1', {...inputRequired, initialValue: initValue('b1')}]" autocomplete="off"></a-input>
+              <a-form-item label="(1) 过去两年因急性加重而导致住院的次数" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                <a-input addonAfter="次" style="width: 240px;" v-decorator="['b1', { rules: [{ required: true, validator: checkTime1, trigger: 'change' }], initialValue: initValue('b1')}]" autocomplete="off"></a-input>
               </a-form-item>
-              <a-form-item label="(2) 过去一年的住院急性加重次数" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                <a-input addonAfter="次" style="width: 240px;" v-decorator="['b2', {...inputRequired, initialValue: initValue('b2')}]" autocomplete="off"></a-input>
+              <a-form-item label="(2) 过去一年因急性加重而导致住院的次数" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                <a-input addonAfter="次" style="width: 240px;" v-decorator="['b2', { rules: [{ required: true, validator: checkTime2, trigger: 'change' }], initialValue: initValue('b2')}]" autocomplete="off"></a-input>
               </a-form-item>
               <a-form-item label="(3) 过去一年的急性加重次数" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-input addonAfter="次" style="width: 240px;" v-decorator="['b3', {...inputRequired, initialValue: initValue('b3')}]" autocomplete="off"></a-input>
@@ -187,13 +187,13 @@
                 </a-radio-group>
               </a-form-item>
               <div v-if="controlb70">
-                <a-form-item label="1.心脑血管系统" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                <a-form-item label="1.心血管疾病" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                   <a-radio-group v-decorator="['b7', {...require2, initialValue: initValue('b7')}]" @change="changeRadio($event, 'controlb7')">
                     <a-radio value="1">有</a-radio>
                     <a-radio value="-1">无</a-radio>
                   </a-radio-group>
                 </a-form-item>
-                <a-form-item class="no-border" label="心脑血管系统疾病类型" :labelCol="labelColHor" :wrapperCol="wrapperHor" v-if="controlb7">
+                <a-form-item class="no-border" label="心血管疾病类型" :labelCol="labelColHor" :wrapperCol="wrapperHor" v-if="controlb7">
                   <a-checkbox-group v-decorator="['b71', {...selectRequired, initialValue: initValue('b71', 'array')}]" class="control-m-line">
                     <a-checkbox value="1">心梗</a-checkbox>
                     <a-checkbox value="2">心绞痛</a-checkbox>
@@ -203,15 +203,33 @@
                     <a-checkbox value="6">心脏瓣膜病</a-checkbox>
                     <a-checkbox value="7">肺动脉高压</a-checkbox>
                     <a-checkbox value="8">高血压病</a-checkbox>
-                    <a-checkbox value="9">中风或短暂性缺血发作</a-checkbox>
-                    <a-checkbox value="10">外周血管疾病</a-checkbox>
                     <a-checkbox value="11" :checked="controlb72" @change="changeSelect($event, 'controlb72')">其他</a-checkbox>
                   </a-checkbox-group>
                 </a-form-item>
-                <a-form-item class="no-border" label="其他心脑血管疾病" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" v-if="controlb7 && controlb72">
+                <a-form-item class="no-border" label="其他心血管疾病" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" v-if="controlb7 && controlb72">
                   <a-input style="width: 240px;" v-decorator="['b72', {...inputRequired, initialValue: initValue('b72')}]" autocomplete="off"></a-input>
                 </a-form-item>
-                <a-form-item label="2.消化系统疾病" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                <a-form-item label="2.神经系统疾病" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                  <a-radio-group v-decorator="['b711', {...require2, initialValue: initValue('b711')}]" @change="changeRadio($event, 'controlb711')">
+                    <a-radio value="1">有</a-radio>
+                    <a-radio value="-1">无</a-radio>
+                  </a-radio-group>
+                </a-form-item>
+                <a-form-item class="no-border" label="神经系统疾病类型" :labelCol="labelColHor" :wrapperCol="wrapperHor" v-if="controlb711">
+                  <a-checkbox-group v-decorator="['b7111', {...selectRequired, initialValue: initValue('b7111', 'array')}]" class="control-m-line">
+                    <a-checkbox value="1">脑梗死</a-checkbox>
+                    <a-checkbox value="2">短暂性缺血发作</a-checkbox>
+                    <a-checkbox value="3">脑出血性</a-checkbox>
+                    <a-checkbox value="4">帕金森</a-checkbox>
+                    <a-checkbox value="5">脑膜炎</a-checkbox>
+                    <a-checkbox value="6">重症肌无力</a-checkbox>
+                    <a-checkbox value="7" :checked="controlb7112" @change="changeSelect($event, 'controlb7112')">其他</a-checkbox>
+                  </a-checkbox-group>
+                </a-form-item>
+                <a-form-item class="no-border" label="其他神经系统疾病" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" v-if="controlb711 && controlb7112">
+                  <a-input style="width: 240px;" v-decorator="['b7112', {...inputRequired, initialValue: initValue('b7112')}]" autocomplete="off"></a-input>
+                </a-form-item>
+                <a-form-item label="3.消化系统疾病" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                   <a-radio-group v-decorator="['b8', {...require2, initialValue:  initValue('b8')}]" @change="changeRadio($event, 'controlb8')">
                     <a-radio value="1">有</a-radio>
                     <a-radio value="-1">无</a-radio>
@@ -229,7 +247,7 @@
                 <a-form-item class="no-border" label="其他消化系统疾病" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" v-if="controlb8 && controlb82">
                   <a-input style="width: 240px;" v-decorator="['b82', {...inputRequired, initialValue: initValue('b82')}]" autocomplete="off"></a-input>
                 </a-form-item>
-                <a-form-item label="3.内分泌系统" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                <a-form-item label="4.内分泌系统" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                   <a-radio-group v-decorator="['b9', {...require2, initialValue:  initValue('b9')}]" @change="changeRadio($event, 'controlb9')">
                     <a-radio value="1">有</a-radio>
                     <a-radio value="-1">无</a-radio>
@@ -249,7 +267,7 @@
                 <a-form-item label="其他内分泌系统疾病" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" v-if="controlb9 && controlb917">
                   <a-input style="width: 240px;" v-decorator="['b92', {...inputRequired, initialValue: initValue('b92')}]" autocomplete="off"></a-input>
                 </a-form-item>
-                <a-form-item label="4.血液系统疾病" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                <a-form-item label="5.血液系统疾病" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                   <a-radio-group v-decorator="['b10', {...require2, initialValue:  initValue('b10')}]" @change="changeRadio($event, 'controlb10')">
                     <a-radio value="1">有</a-radio>
                     <a-radio value="-1">无</a-radio>
@@ -266,7 +284,7 @@
                 <a-form-item label="其他血液系统疾病类型" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" v-if="controlb1014">
                   <a-input style="width: 240px;" v-decorator="['b102', {...inputRequired, initialValue: initValue('b102')}]" autocomplete="off"></a-input>
                 </a-form-item>
-                <a-form-item label="5.泌尿系统疾病" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                <a-form-item label="6.泌尿系统疾病" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                   <a-radio-group v-decorator="['b11', {...require2, initialValue:  initValue('b11')}]" @change="changeRadio($event, 'controlb11')">
                     <a-radio value="1">有</a-radio>
                     <a-radio value="-1">无</a-radio>
@@ -282,7 +300,7 @@
                 <a-form-item class="no-border" label="其他泌尿系统疾病类型:" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" v-if="controlb11 && controlb1113">
                   <a-input style="width: 240px;" v-decorator="['b112', {...inputRequired, initialValue: initValue('b112')}]" autocomplete="off"></a-input>
                 </a-form-item>
-                <a-form-item label="6.风湿系统疾病" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                <a-form-item label="7.风湿系统疾病" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                   <a-radio-group v-decorator="['b12', {...require2, initialValue:  initValue('b12')}]" @change="changeRadio($event, 'controlb12')">
                     <a-radio value="1">有</a-radio>
                     <a-radio value="-1">无</a-radio>
@@ -301,13 +319,13 @@
                 <a-form-item class="no-border" label="其他风湿系统疾病类型:" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" v-if="controlb12 && controlb122">
                   <a-input style="width: 240px;" v-decorator="['b122', {...inputRequired, initialValue: initValue('b122')}]" autocomplete="off"></a-input>
                 </a-form-item>
-                <a-form-item label="7.是否有HIV" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                <a-form-item label="8.是否有HIV" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                   <a-radio-group v-decorator="['b13', {...require1, initialValue:  initValue('b13')}]">
                     <a-radio value="1">是</a-radio>
                     <a-radio value="-1">否</a-radio>
                   </a-radio-group>
                 </a-form-item>
-                <a-form-item label="8.是否有恶性肿瘤" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                <a-form-item label="9.是否有恶性肿瘤" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                   <a-radio-group v-decorator="['b14', {...require1, initialValue: initValue('b14')}]" @change="changeRadio($event, 'controlb14')">
                     <a-radio value="1">是</a-radio>
                     <a-radio value="-1">否</a-radio>
@@ -350,7 +368,7 @@
                 <a-form-item class="no-border" label="其他肿瘤部位:" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" v-if="controlb14 && controlb144">
                   <a-input style="width: 240px;" v-decorator="['b144', {...inputRequired, initialValue: initValue('b144')}]" autocomplete="off"></a-input>
                 </a-form-item>
-                <a-form-item label="9.免疫缺陷" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                <a-form-item label="10.免疫缺陷" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                   <a-radio-group v-decorator="['b15', {...require2, initialValue:  initValue('b15')}]" @change="changeRadio($event, 'controlb15')">
                     <a-radio value="1">有</a-radio>
                     <a-radio value="-1">无</a-radio>
@@ -442,8 +460,12 @@
                   <a-radio value="3">无吸烟</a-radio>
                 </a-radio-group>
               </a-form-item>
+              <a-form-item label="吸烟数量" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controlb191">
+                <a-input addonAfter="年" addonBefore="吸烟" style="width: 240px;" v-decorator="['b192', {...inputRequired, initialValue: initValue('b192')}]" autocomplete="off" @blur="getIndex"></a-input>
+                <a-input addonAfter="包" addonBefore="每天" style="width: 240px;margin-left: 20px;" v-decorator="['b193', {...inputRequired, initialValue: initValue('b193')}]" autocomplete="off" @blur="getIndex"></a-input>
+              </a-form-item>
               <a-form-item label="吸烟指数" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controlb191">
-                <a-input addonAfter="包*年" style="width: 240px;" v-decorator="['b191', {...inputRequired, initialValue: initValue('b191')}]" autocomplete="off"></a-input>
+                <a-input addonAfter="包*年" style="width: 240px;" :readOnly="true" v-decorator="['b191', { initialValue: initValue('b191')}]" autocomplete="off"></a-input>
               </a-form-item>
               <a-form-item label="(11) 职业粉尘接触及生物燃料接触史" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-radio-group v-decorator="['b22', {...require2, initialValue: initValue('b22')}]">
@@ -519,6 +541,7 @@ import { MyIcon } from '@/components/_util/util'
 import 'url-search-params-polyfill'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import ContactForm from '@/views/account/ContactForm'
+import { Modal } from 'ant-design-vue'
 export default {
   name: 'mask1',
   components: {
@@ -614,6 +637,8 @@ export default {
       controlb67: false,
       controlb68: false,
       controlb7: false,
+      controlb711: false,
+      controlb7112: false,
       controlb72: false,
       controlb8: false,
       controlb9: false,
@@ -695,6 +720,36 @@ export default {
   methods: {
     ...mapActions(['CloseSidebar']),
     moment,
+    checkTime1(rule, value, callback) {
+      if (!value) {
+        return callback('请填写！');
+      }
+      value = parseInt(value)
+      if (!Number.isInteger(value)) {
+        return callback('请输入数字！');
+      } else {
+        if (value < this.form.getFieldValue('b2')) {
+          return callback('过去两年因急性加重而导致住院的次数不能小于过去一年因急性加重而导致住院的次数');
+        } else {
+          return callback();
+        }
+      }
+    },
+    checkTime2(rule, value, callback) {
+      if (!value) {
+        return callback('请填写！');
+      }
+      value = parseInt(value)
+      if (!Number.isInteger(value)) {
+        return callback('请输入数字！');
+      } else {
+        if (value > this.form.getFieldValue('b1')) {
+          return callback('过去一年因急性加重而导致住院的次数不能大于过去两年因急性加重而导致住院的次数');
+        } else {
+          return callback();
+        }
+      }
+    },
     getFormData() {
       this.spinning = true
       var that = this
@@ -790,7 +845,11 @@ export default {
       let yearDiff = timeDiff / (1000 * 3600 * 24 * 365.25); // 考虑闰年
       // 判断年数是否大于 10 年
       if (yearDiff < 10) {
-        this.$message.warning('是否为儿童确诊支扩');
+        // this.$message.warning('是否为儿童确诊支扩');
+        Modal.warning({
+          title: '提示',
+          content: '是否为儿童确诊支扩'
+        });
       }
     },
     handleChange(valus) {
@@ -869,10 +928,19 @@ export default {
         if (answer.b7 === 1) {
           that.controlb7 = true
         }
+        if (answer.b711 === 1) {
+          that.controlb711 = true
+        }
         if (answer.b71) {
           splitArr = answer.b71.split(',')
           if (splitArr.indexOf('11') > -1) {
             that.controlb72 = true
+          }
+        }
+        if (answer.b7111) {
+          splitArr = answer.b7111.split(',')
+          if (splitArr.indexOf('7') > -1) {
+            that.controlb7112 = true
           }
         }
         if (answer.b8 === 1) {
@@ -984,7 +1052,9 @@ export default {
       let that = this
       if (t === 'controlb70' && e.target.value === '1') {
         this.controlb7 = false
+        this.controlb711 = false
         this.controlb72 = false
+        this.controlb7112 = false
         this.controlb8 = false
         this.controlb82 = false
         this.controlb9 = false
@@ -1040,13 +1110,32 @@ export default {
         this.$router.replace('/list/basis/' + this.patientBasisId + '/' + e.key)
       }
     },
+    getIndex() {
+      var re = this.form.getFieldsValue()
+      // if(re.b191 && re.b192) {}
+      console.log(re.b192, re.b192)
+      if(re.b192 && re.b193) {
+        const a = re.b192 * re.b193
+        this.form.setFieldsValue({ b191: a })
+        if(a > 200) {
+          Modal.warning({
+            title: '提示',
+            content: '请确认吸烟指数'
+          });
+        }
+      }
+    },
     handleSubmit(e) {
       var _this = this
       e.preventDefault()
       const { form: { validateFieldsAndScroll } } = this
       validateFieldsAndScroll((errors, values) => {
         if (parseInt(this.form.getFieldValue('b2')) > parseInt(this.form.getFieldValue('b3'))) {
-          this.$message.warning('过去一年的急性加重次数必须大于等于过去一年的住院急性加重次数');
+          // this.$message.warning('过去一年的急性加重次数必须大于等于过去一年的住院急性加重次数');
+          Modal.warning({
+            title: '提示',
+            content: '过去一年的急性加重次数必须大于等于过去一年的住院急性加重次数'
+          });
           return false
         }
         if (!errors) {
@@ -1067,6 +1156,7 @@ export default {
             'b65': typeof re['b65'] !== 'undefined' ? re['b65'].format('YYYY-MM') : '',
             'b66': typeof re['b66'] !== 'undefined' ? re['b66'].format('YYYY-MM') : '',
             'b71': typeof re['b71'] !== 'undefined' ? re['b71'].join(',') : '',
+            'b7111': typeof re['b7111'] !== 'undefined' ? re['b7111'].join(',') : '',
             'b81': typeof re['b81'] !== 'undefined' ? re['b81'].join(',') : '',
             'b91': typeof re['b91'] !== 'undefined' ? re['b91'].join(',') : '',
             'b101': typeof re['b101'] !== 'undefined' ? re['b101'].join(',') : '',
@@ -1093,7 +1183,11 @@ export default {
               console.log(res)
               that.spinning = false
               that.getFormData()
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)
@@ -1133,6 +1227,7 @@ export default {
         'b65': typeof re['b65'] !== 'undefined' ? re['b65'].format('YYYY-MM') : '',
         'b66': typeof re['b66'] !== 'undefined' ? re['b66'].format('YYYY-MM') : '',
         'b71': typeof re['b71'] !== 'undefined' ? re['b71'].join(',') : '',
+        'b7111': typeof re['b7111'] !== 'undefined' ? re['b7111'].join(',') : '',
         'b81': typeof re['b81'] !== 'undefined' ? re['b81'].join(',') : '',
         'b91': typeof re['b91'] !== 'undefined' ? re['b91'].join(',') : '',
         'b101': typeof re['b101'] !== 'undefined' ? re['b101'].join(',') : '',
@@ -1160,7 +1255,11 @@ export default {
           console.log(res)
           that.spinning = false
           that.getFormData()
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+            title: '提示',
+            content: res.msg
+          });
           params = new URLSearchParams()
           params.append('patientBasisId', that.patientBasisId)
           getPatientBasis(params)
@@ -1189,7 +1288,11 @@ export default {
           recoverSubmit(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)
@@ -1220,7 +1323,11 @@ export default {
           exportFormData(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               that.zkbszl = _.extend(that.zkbszl || {}, that.dealAnswers(res.data.data.zkbszl))
             }).catch(error => {
               that.spinning = false

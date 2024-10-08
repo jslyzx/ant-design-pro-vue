@@ -38,7 +38,7 @@
               <a-form-item label="(2) 急性加重结束日期" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-date-picker placeholder="请选择" style="width: 240px;" :disabledDate="disabledDate" v-decorator="['t4', {...dateRequire, initialValue: initValue('t4', 'time')}]"></a-date-picker>
               </a-form-item>
-              <a-form-item label="(3) 急性加重的症状(多选):" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+              <a-form-item label="(3) 急性加重期发生恶化的症状（≥3项）:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-checkbox-group v-decorator="['t1', {...selectRequired, initialValue: initValue('t1', 'array')}]" class="control-m-line">
                   <a-checkbox value="1">咳嗽</a-checkbox>
                   <a-checkbox value="2">咳痰</a-checkbox>
@@ -396,6 +396,8 @@ import { getPatientBasis, saveBasis, getBasisForm, getMedicineAllergyList, recov
 import { MyIcon } from '@/components/_util/util'
 import AddTable from "@/views/account/center/model/table"
 import { ACCESS_TOKEN } from '@/store/mutation-types'
+import { Modal } from 'ant-design-vue'
+
 export default {
   name: 'iconJxjzq',
   components: {
@@ -653,7 +655,11 @@ export default {
               console.log(res)
               that.spinning = false
               that.getFormData()
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', this.patientBasisId)
               getPatientBasis(params)
@@ -832,7 +838,11 @@ export default {
           console.log(res)
           that.spinning = false
           that.getFormData()
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+            title: '提示',
+            content: res.msg
+          });
           params = new URLSearchParams()
           params.append('patientBasisId', this.patientBasisId)
           getPatientBasis(params)
@@ -876,7 +886,11 @@ export default {
           recoverSubmit(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)

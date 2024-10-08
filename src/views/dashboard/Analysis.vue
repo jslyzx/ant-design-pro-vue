@@ -213,6 +213,7 @@ import { Pie, ChartCard, MiniArea, MiniBar, MiniProgress, RankList, Bar, NumberI
 import { mixinDevice } from '@/utils/mixin';
 import { getAllNumbers, getMyWork, getPatientsAndBasiss, getProvinceCompare, manualList,uploadFlie,fileList } from '@/api/home';
 import { MyIcon } from '@/components/_util/util';
+import { Modal } from 'ant-design-vue'
 
 export default {
   name: 'Analysis',
@@ -348,18 +349,30 @@ export default {
           params.append('url', url)
           params.append('fileName', fileNames)
           uploadFlie(params).then(res => {
-            this.$message.success('文件上传成功');
+            // this.$message.success('文件上传成功');
+            Modal.success({
+              title: '提示',
+              content: '文件上传成功'
+            });
             this.fileName = info.file.response.originalFileName
             this.showFile = false
             this.showList = true
             this.file = "text-align: left; padding: 10px 0 10px 25px;"
           })
           .catch(()=>{
-            this.$message.error('文件上传失败');
+            // this.$message.error('文件上传失败');
+            Modal.error({
+              title: '提示',
+              content: '文件上传失败'
+            });
           }) 
           
         }else{
-          this.$message.error('对不起，系统仅支持pdf格式的文件');
+          // this.$message.error('对不起，系统仅支持pdf格式的文件');
+          Modal.error({
+            title: '提示',
+            content: '对不起，系统仅支持pdf格式的文件'
+          });
           return
         }
         

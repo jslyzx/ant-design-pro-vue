@@ -301,6 +301,8 @@ import { getPatientList } from '@/api/patient'
 import { ChartCard, MiniProgress, MiniArea } from '@/components'
 import { MyIcon } from '@/components/_util/util'
 import ContactForm from '@/views/account/ContactForm'
+import { Modal } from 'ant-design-vue'
+
 import {
   addVasit,
   outGroup,
@@ -664,7 +666,11 @@ export default {
         outGroup(params).then(res => {
           that.visible = false
           that.confirmLoading = false
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+                title: '提示',
+                content: res.msg
+              });
           that.$refs.table.refresh()
         });
       });
@@ -682,8 +688,16 @@ export default {
             .then(res => {
               if (res.code === -1) {
                 that.$message.error(res.msg)
+                Modal.error({
+                  title: '提示',
+                  content: res.msg
+                });
               } else {
-                that.$message.success(res.msg)
+                // that.$message.success(res.msg)
+                Modal.success({
+                  title: '提示',
+                  content: res.msg
+                });
                 that.$refs.table.refresh()
                 that.scoreData = res.data
                 that.detailVisible = true

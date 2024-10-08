@@ -717,11 +717,14 @@ export default {
       params.append('url', this.imgUrl)
       saveReport(params)
       .then(res => {
-        console.log(res)
-        that.$message.success(res.msg, function(){
-          var href = location.href.replace(/\?markId=[\d]+/,'')
-          location.href = href + '?markId=' + that.basisMaskId
-        })
+        Modal.success({
+          title: '提示',
+          content: res.msg,
+          onOk() {
+            var href = location.href.replace(/\?markId=[\d]+/,'')
+            location.href = href + '?markId=' + that.basisMaskId
+          }
+        });
       })
       .catch(error => {
         console.log(error)

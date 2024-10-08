@@ -72,6 +72,7 @@ import { getPatientDataList, deletePatient } from '@/api/patient'
 import CreateForm from '@/views/list/modules/CreateForm'
 import $ from 'jquery'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
+import { Modal } from 'ant-design-vue'
 
 const visitMap = {
   0: {
@@ -261,7 +262,11 @@ export default {
           }
           deletePatient(params).then(res => {
             if (res.code == 0) {
-              that.$message.success('删除成功')
+              // that.$message.success('删除成功')
+              Modal.success({
+                title: '提示',
+                content: '删除成功'
+              });
               that.$refs.table.refresh()
             }
           })
@@ -283,7 +288,7 @@ export default {
       this.dateArr = time;
       this.queryParam.createDateStart = moment(time[0]).format('YYYY-MM-DD')
       this.queryParam.createDateEnd = moment(time[1]).format('YYYY-MM-DD')
-    },
+    }
   }
 };
 </script>

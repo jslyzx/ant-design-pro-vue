@@ -50,7 +50,7 @@
                   <a-radio value="-1">否</a-radio>
                 </a-radio-group>
               </a-form-item>
-              <a-form-item label="(3) 患者是否进行有规律的物理治疗:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+              <a-form-item label="(3) 患者是否进行规律的气道廓清治疗:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-radio-group v-decorator="['b3', {...require1, initialValue: initValue('b3')}]" @change="changeRadio($event, 'controlb3')">
                   <a-radio value="1">是</a-radio>
                   <a-radio value="-1">否</a-radio>
@@ -58,13 +58,16 @@
               </a-form-item>
               <a-form-item label="治疗方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" v-if="controlb3">
                 <a-checkbox-group v-decorator="['b31', {...selectRequired, initialValue: initValue('b31', 'array')}]">
-                  <a-checkbox value="1" :disabled="detect('b31', '5')">手动拍击背部排痰</a-checkbox>
-                  <a-checkbox value="2" :disabled="detect('b31', '5')">体位引流</a-checkbox>
-                  <a-checkbox value="3" :disabled="detect('b31', '5')">规律锻炼身体</a-checkbox>
-                  <a-checkbox value="4" :disabled="detect('b31', '5')">借助排痰仪器</a-checkbox>
-                  <a-checkbox value="6" :disabled="detect('b31', '5')">主动循环呼吸</a-checkbox>
-                  <a-checkbox value="5" @change="handleNone($event, 'b31', '5')">无</a-checkbox>
+                  <a-checkbox value="1">手动拍击背部排痰</a-checkbox>
+                  <a-checkbox value="2">体位引流</a-checkbox>
+                  <a-checkbox value="3">规律锻炼身体</a-checkbox>
+                  <a-checkbox value="4">借助排痰仪器</a-checkbox>
+                  <a-checkbox value="6">主动循环呼吸</a-checkbox>
+                  <a-checkbox value="5" @change="changeSelect($event, 'controlb31')">其他</a-checkbox>
                 </a-checkbox-group>
+              </a-form-item>
+              <a-form-item label="其他治疗方式:" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" v-if="controlb3 && controlb31">
+                <a-input style="width: 240px;" v-decorator="['b311', {...inputRequired, initialValue: initValue('b311')}]" autocomplete="off"></a-input>
               </a-form-item>
               <a-form-item label="(4) 有规律的呼吸疾病药物治疗:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-radio-group v-decorator="['b4', {...require1, initialValue: initValue('b4')}]" @change="changeRadio($event, 'controlb4')">
@@ -74,7 +77,7 @@
               </a-form-item>
               <div v-if="controlb4">
                 <a-form-item label="4-1 规律抗生素治疗:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                  <a-checkbox-group v-decorator="['b41', {...selectRequired, initialValue: initValue('b41', 'array')}]">
+                  <a-checkbox-group v-decorator="['b41', {...selectRequired, initialValue: initValue('b41', 'array')}]" @change="checkb4">
                     <a-checkbox value="0" @change="handleNone($event, 'b41', '0', ['controlb411', 'controlb412'])">无</a-checkbox>
                     <a-checkbox value="1" :disabled="detect('b41', '0')" :checked="controlb411" @change="changeSelect($event, 'controlb411')">口服</a-checkbox>
                     <a-checkbox value="2" :disabled="detect('b41', '0')" :checked="controlb412" @change="changeSelect($event, 'controlb412')">吸入/雾化</a-checkbox>
@@ -147,12 +150,12 @@
                     <a-checkbox value="0" @change="handleNone($event, 'b48', '0', ['controlb48'])">无</a-checkbox>
                     <a-checkbox value="1" :disabled="detect('b48', '0')">LAMA</a-checkbox>
                     <a-checkbox value="2" :disabled="detect('b48', '0')">LABA</a-checkbox>
+                    <a-checkbox value="12" :disabled="detect('b48', '0')">ICS</a-checkbox>
                     <a-checkbox value="3" :disabled="detect('b48', '0')">LABA/LAMA</a-checkbox>
                     <a-checkbox value="4" :disabled="detect('b48', '0')">ICS/LABA/LAMA</a-checkbox>
                     <a-checkbox value="5" :disabled="detect('b48', '0')">ICS/LABA</a-checkbox>
                     <a-checkbox value="6" :disabled="detect('b48', '0')">SABA</a-checkbox>
                     <a-checkbox value="7" :disabled="detect('b48', '0')">SAMA</a-checkbox>
-                    <a-checkbox value="8" :disabled="detect('b48', '0')">白三烯受体拮抗剂</a-checkbox>
                     <a-checkbox value="9" :disabled="detect('b48', '0')">口服茶碱</a-checkbox>
                     <a-checkbox value="10" :disabled="detect('b48', '0')">雾化吸入支气管舒张剂</a-checkbox>
                     <a-checkbox value="11" :disabled="detect('b48', '0')" @change="changeSelect($event, 'controlb48')">其他</a-checkbox>
@@ -232,11 +235,14 @@
                 <a-form-item label="时间::" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" v-if="controlb7 && controlb72">
                   <a-date-picker placeholder="请选择" style="width: 240px;" v-decorator="['b721', {...dateRequire, initialValue: initValue('b721', 'time')}]" :disabledDate="disabledDate"></a-date-picker>
                 </a-form-item>
-                <a-form-item label="过去1年，患者是否曾接受流感疫苗:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                  <a-radio-group v-decorator="['b10', {...require1, initialValue: initValue('b10')}]">
+                <a-form-item label="患者是否曾接受流感疫苗:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                  <a-radio-group v-decorator="['b10', {...require1, initialValue: initValue('b10')}]" @change="changeRadio($event, 'controlb10')">
                     <a-radio value="1">是</a-radio>
                     <a-radio value="-1">否</a-radio>
                   </a-radio-group>
+                </a-form-item>
+                <a-form-item label="时间::" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" v-if="controlb7 && controlb10">
+                  <a-date-picker placeholder="请选择" style="width: 240px;" v-decorator="['b101', {...dateRequire, initialValue: initValue('b101', 'time')}]" :disabledDate="disabledDate"></a-date-picker>
                 </a-form-item>
               </div>
               <a-form-item label="(8) 患者是否曾接受免疫调节治疗:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
@@ -260,11 +266,23 @@
                 </a-form-item>
               </div>
               <a-form-item label="(10) 患者是否接受肺康复治疗:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                <a-radio-group v-decorator="['b11', {...require1, initialValue: initValue('b11')}]">
+                <a-radio-group v-decorator="['b11', {...require1, initialValue: initValue('b11')}]" @change="changeRadio($event, 'controlb11')">
                   <a-radio value="1">是</a-radio>
                   <a-radio value="-1">否</a-radio>
                 </a-radio-group>
               </a-form-item>
+              <div v-if="controlb11">
+                <a-form-item label="肺康复项目:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                  <a-checkbox-group v-decorator="['b111', {...selectRequired, initialValue: initValue('b111', 'array')}]">
+                    <a-checkbox value="1">运动锻炼</a-checkbox>
+                    <a-checkbox value="2">吸气肌锻炼</a-checkbox>
+                    <a-checkbox value="3" :checked="controlb12" @change="changeSelect($event, 'controlb12')">其他</a-checkbox>
+                  </a-checkbox-group>
+                </a-form-item>
+                <a-form-item label="其他肺康复项目::" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" v-if="controlb11 && controlb12">
+                  <a-input style="width: 240px;" v-decorator="['b112', {...inputRequired, initialValue: initValue('b112')}]" autocomplete="off"></a-input>
+                </a-form-item>
+              </div>
             </div>
           </a-form>
         </a-col>
@@ -281,6 +299,7 @@ import { getPatientBasis, saveBasis, getBasisForm, recoverSubmit, exportFormData
 import { MyIcon } from '@/components/_util/util'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import ContactForm from '@/views/account/ContactForm'
+import { Modal } from 'ant-design-vue'
 export default {
   name: 'mask4',
   components: {
@@ -378,7 +397,11 @@ export default {
       controlb48: false,
       controlb7: false,
       controlb71: false,
-      controlb72: false
+      controlb72: false,
+      controlb10: false,
+      controlb31: false,
+      controlb11: false,
+      controlb12: false
     }
   },
   created() {
@@ -433,7 +456,11 @@ export default {
           var re = this.form.getFieldsValue()
           var that = this
           if(re.b4 === '1' && re.b41.indexOf('0') > -1 && re.b43.indexOf('0') > -1 && re.b48.indexOf('0') > -1 ) {
-            that.$message.error('有规律的呼吸疾病药物治疗不可同时勾选三项无')
+            // that.$message.error('有规律的呼吸疾病药物治疗不可同时勾选三项无')
+            Modal.error({
+              title: '提示',
+              content: '有规律的呼吸疾病药物治疗不可同时勾选三项无'
+            });
             return false
           }
           re = {
@@ -447,10 +474,12 @@ export default {
             'b44': typeof re['b44'] !== 'undefined' ? re['b44'].join(',') : '',
             'b52': typeof re['b52'] !== 'undefined' ? re['b52'].join(',') : '',
             'b81': typeof re['b81'] !== 'undefined' ? re['b81'].join(',') : '',
+            'b111': typeof re['b111'] !== 'undefined' ? re['b111'].join(',') : '',
             'b42': typeof re['b42'] !== 'undefined' ? re['b42'].join(',') : '',
             'b48': typeof re['b48'] !== 'undefined' ? re['b48'].join(',') : '',
             'b711': typeof re['b711'] !== 'undefined' ? re['b711'].format('YYYY-MM-DD') : '',
-            'b721': typeof re['b721'] !== 'undefined' ? re['b721'].format('YYYY-MM-DD') : ''
+            'b721': typeof re['b721'] !== 'undefined' ? re['b721'].format('YYYY-MM-DD') : '',
+            'b101': typeof re['b101'] !== 'undefined' ? re['b101'].format('YYYY-MM-DD') : ''
           }
           var that = this
           console.log(re)
@@ -469,7 +498,11 @@ export default {
               console.log(res)
               that.spinning = false
               that.getFormData()
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', this.patientBasisId)
               getPatientBasis(params)
@@ -520,6 +553,9 @@ export default {
         if (answer.b8 === 1) {
           this.controlb8 = true
         }
+        if (answer.b11 === 1) {
+          this.controlb11 = true
+        }
         if (answer.b52) {
           splitArr = answer.b52.split(',')
           if (splitArr.indexOf('3') > -1) {
@@ -533,6 +569,12 @@ export default {
           }
           if (splitArr.indexOf('2') > -1) {
             this.controlb412 = true
+          }
+        }
+        if (answer.b31) {
+          splitArr = answer.b31.split(',')
+          if (splitArr.indexOf('5') > -1) {
+            this.controlb31 = true
           }
         }
         if (answer.b414) {
@@ -580,10 +622,19 @@ export default {
         if (answer.b72 === 1) {
           this.controlb72 = true
         }
+        if (answer.b10 === 1) {
+          this.controlb10 = true
+        }
         if (answer.b81) {
           splitArr = answer.b81.split(',')
           if (splitArr.indexOf('5') > -1) {
             this.controlb81 = true
+          }
+        }
+        if (answer.b111) {
+          splitArr = answer.b111.split(',')
+          if (splitArr.indexOf('3') > -1) {
+            this.controlb12 = true
           }
         }
         if (answer.b42) {
@@ -630,10 +681,12 @@ export default {
         'b44': typeof re['b44'] !== 'undefined' ? re['b44'].join(',') : '',
         'b52': typeof re['b52'] !== 'undefined' ? re['b52'].join(',') : '',
         'b81': typeof re['b81'] !== 'undefined' ? re['b81'].join(',') : '',
+        'b111': typeof re['b111'] !== 'undefined' ? re['b111'].join(',') : '',
         'b42': typeof re['b42'] !== 'undefined' ? re['b42'].join(',') : '',
         'b48': typeof re['b48'] !== 'undefined' ? re['b48'].join(',') : '',
         'b711': typeof re['b711'] !== 'undefined' ? re['b711'].format('YYYY-MM-DD') : '',
-        'b721': typeof re['b721'] !== 'undefined' ? re['b721'].format('YYYY-MM-DD') : ''
+        'b721': typeof re['b721'] !== 'undefined' ? re['b721'].format('YYYY-MM-DD') : '',
+        'b101': typeof re['b101'] !== 'undefined' ? re['b101'].format('YYYY-MM-DD') : ''
       }
       var that = this
       console.log(re)
@@ -651,7 +704,11 @@ export default {
         .then(res => {
           that.spinning = false
           that.getFormData()
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+            title: '提示',
+            content: res.msg
+          });
         })
         .catch(error => {
           that.spinning = false
@@ -689,7 +746,11 @@ export default {
           recoverSubmit(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)
@@ -720,7 +781,11 @@ export default {
           exportFormData(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               that.hxxt = _.extend(that.hxxt || {}, that.dealAnswers(res.data.data.hxxt))
             }).catch(error => {
               that.spinning = false
@@ -747,6 +812,10 @@ export default {
       } else {
         return false
       }
+    },
+    checkb4() {
+      var re = this.form.getFieldsValue()
+      console.log(re)
     }
   }
 }

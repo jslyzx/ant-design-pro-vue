@@ -158,6 +158,8 @@ import {
 } from '@/api/basis'
 import moment from 'moment'
 import _ from 'lodash'
+import { Modal } from 'ant-design-vue'
+
 export default {
   data() {
     return {
@@ -374,15 +376,6 @@ export default {
         var submitPatientPendingId = this.patientPendingId || ''
         var submitWxPatientId = this.wxPatientId || ''
         this.form.validateFieldsAndScroll((errors, fieldsValue) => {
-          // if (
-          //   this.form.getFieldValue('birthDate') &&
-          //   new Date().getFullYear() - this.form.getFieldValue('birthDate')._d.getFullYear() < 18 &&
-          //   this.form.getFieldValue('isIcon') == 1
-          // ) {
-          //   this.$message.warning('患者不满18岁，不符合ICON患者条件')
-          //   this.confirmLoading = false
-          //   return false
-          // }
           const that = this
           if (errors) {
             this.confirmLoading = false
@@ -416,15 +409,29 @@ export default {
             updateDataEcho(submitPatientPendingId, submitWxPatientId, params).then((res) => {
               that.visible = false
               that.confirmLoading = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               that.$emit('ok', values)
             })
           } else {
             addOrUpdate(params).then((res) => {
               that.visible = false
               that.confirmLoading = false
-              that.$message.success(res.msg)
-              that.$emit('ok', values)
+              if(res.code === 0) {
+                Modal.success({
+                  title: '提示',
+                  content: res.msg
+                });
+                that.$emit('ok', values)
+              } else {
+                Modal.error({
+                  title: '提示',
+                  content: res.msg
+                });
+              }
             })
           }
         })
@@ -598,7 +605,11 @@ export default {
             case 2:
               callback(res.msg)
               this.form.setFieldsValue({card: ''})
-              this.$message.warning(res.msg)
+              // this.$message.warning(res.msg)
+              Modal.warning({
+                title: '提示',
+                content: res.msg
+              });
               break
             case 3:
               let birthDate = new Date(num.substr(6, 8).replace(/(.{4})(.{2})/, '$1-$2-')).getTime()
@@ -615,7 +626,11 @@ export default {
               } else {
                 callback('该患者已存在，请在列表内搜索！')
                 this.form.setFieldsValue({card: ''})
-                this.$message.warning('该患者已存在，请在列表内搜索！')
+                // this.$message.warning('该患者已存在，请在列表内搜索！')
+                Modal.warning({
+                  title: '提示',
+                  content: '该患者已存在，请在列表内搜索！'
+                });
               }
               break
             default:

@@ -44,6 +44,8 @@
   import { wxPatientReview, wxBind } from '@/api/distract'
   import CaseInfo from './CaseInfo'
   import CreateForm from '../../list/modules/CreateForm';
+  import { Modal } from 'ant-design-vue'
+
   export default {
     components: {
       CaseInfo,
@@ -88,7 +90,11 @@
       },
       handleSubmit() {
         if (JSON.stringify(this.patient) == '{}') {
-          this.$message.error('患者病例信息为空无法绑定！');
+          // this.$message.error('患者病例信息为空无法绑定！');
+          Modal.error({
+                title: '提示',
+                content: '患者病例信息为空无法绑定！'
+              });
           return
         }
         this.confirmLoading = true
@@ -98,7 +104,11 @@
         wxBind(params).then(res => {
           this.visible = false
           this.confirmLoading = false
-          this.$message.success(res.msg)
+          // this.$message.success(res.msg)
+          Modal.success({
+                title: '提示',
+                content: res.msg
+              });
           this.$emit('ok')
         })
       },

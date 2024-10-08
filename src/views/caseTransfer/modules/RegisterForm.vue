@@ -29,6 +29,7 @@
   import { getPatientDetailByCard } from '@/api/patient'
   import { addDistract } from '@/api/distract'
   import UserDetail from './UserDetailTop';
+  import { Modal } from 'ant-design-vue'
   export default {
     components: {
       UserDetail
@@ -98,7 +99,11 @@
           const params = new FormData()
           params.append('distract', JSON.stringify(distract))
           addDistract(params).then(res => {
-            this.$message.success(res.msg);
+            // this.$message.success(res.msg);
+            Modal.success({
+              title: '提示',
+              content: res.msg
+            });
             this.visible = false
             this.confirmLoading = false
             this.$emit('ok')

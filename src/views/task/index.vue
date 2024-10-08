@@ -117,6 +117,7 @@ import { getVisitTask, ignoreBNTask } from '@/api/task'
 import { STable } from '@/components'
 import CreateForm from './components/taskCreateForm'
 import UserDetail from '../list/modules/UserDetail'
+import { Modal } from 'ant-design-vue'
 import $ from 'jquery'
 const visitMap = {
   '已提交': {
@@ -352,12 +353,12 @@ export default {
     },
     ignore(record) {
       var that = this
-      // if (record.executeStatus == 0) {
-      //   this.$message.warning('只能忽略未执行的任务！');
-      //   return false;
-      // }
       if (record.submitStatus == 2) {
-        this.$message.warning('只能忽略未忽略的任务！');
+        // this.$message.warning('只能忽略未忽略的任务！');
+        Modal.warning({
+          title: '提示',
+          content: '只能忽略未忽略的任务！'
+        });
         return false;
       }
       if (record.type != 2) {
@@ -372,7 +373,11 @@ export default {
           params.append('patientBasisId', record.patientBasisId)
           ignoreBNTask(params)
             .then(res => {
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               that.$refs.table.refresh()
             });
         }
@@ -391,7 +396,11 @@ export default {
         ignoreBNTask(params).then(res => {
           that.visible = false
           that.confirmLoading = false
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+            title: '提示',
+            content: res.msg
+          });
           that.$refs.table.refresh()
         });
       });

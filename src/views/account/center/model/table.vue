@@ -73,6 +73,7 @@
 <script>
 import { getOcrResult } from '@/api/basis'
 import _ from 'lodash'
+import { Modal } from 'ant-design-vue'
 
 const columns = [{
     title: '微生物名称',
@@ -169,7 +170,11 @@ export default {
       if (this.vitamin){
         this.visible = true
       }else{
-        this.$message.warn('请输入其他菌种名称')
+        // this.$message.warn('请输入其他菌种名称')
+        Modal.warn({
+          title: '提示',
+          content: '请输入其他菌种名称'
+        });
       }
     },
     handleCancel() {
@@ -272,9 +277,17 @@ export default {
           console.log(res.data)
           this.confirmLoading = false
           if (res.data.microbeName !== this.vitamin) {
-            this.$message.warn('请上传' + this.vitamin || '其他菌种' + '的图片')
+            // this.$message.warn('请上传' + this.vitamin || '其他菌种' + '的图片')
+            Modal.warn({
+              title: '提示',
+              content: '请上传' + this.vitamin || '其他菌种' + '的图片'
+            });
           } else {
-            this.$message.success(res.data.info)
+            // this.$message.success(res.data.info)
+            Modal.success({
+              title: '提示',
+              content: res.data.info
+            });
             this.data.splice(0, this.data.length)
             _.each(res.data.maList, function(v, k) {
               that.data.push({ keyW: k, ...v })

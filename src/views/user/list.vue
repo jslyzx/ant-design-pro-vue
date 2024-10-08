@@ -70,6 +70,8 @@ import { getDoctorDataList } from '@/api/center'
 import { resetPwd } from '@/api/patient'
 import { STable } from '@/components'
 import UserDetail from './UserDetail'
+import { Modal } from 'ant-design-vue'
+
 export default {
   components: {
     STable,
@@ -190,7 +192,11 @@ export default {
           params.append('doctorId', record.doctorId)
           resetPwd(params)
             .then(res => {
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
             }).catch(error => {
               console.log(error)
             })

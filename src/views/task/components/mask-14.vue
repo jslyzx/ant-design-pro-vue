@@ -116,10 +116,10 @@
                 <a-input style="width: 240px;" v-decorator="['a45', {...inputRequired, initialValue: initValue('a45')}]" autocomplete="off"></a-input>
               </a-form-item>
               <div class="title">2.既往病史</div>
-              <a-form-item label="(1) 过去两年的住院急性加重次数" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+              <a-form-item label="(1) 过去两年因急性加重而导致住院的次数" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-input addonAfter="次" style="width: 240px;" v-decorator="['b2', {...inputRequired, initialValue: initValue('b2')}]" autocomplete="off"></a-input>
               </a-form-item>
-              <a-form-item label="(2) 过去一年的住院急性加重次数" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+              <a-form-item label="(2) 过去一年因急性加重而导致住院的次数" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-input addonAfter="次" style="width: 240px;" v-decorator="['b3', {...inputRequired, initialValue: initValue('b3')}]" autocomplete="off"></a-input>
               </a-form-item>
               <a-form-item label="(3) 过去一年的急性加重次数" :labelCol="labelColHor" :wrapperCol="wrapperHor">
@@ -506,6 +506,8 @@ import { getPatientBasis, saveBasis, getBasisForm, recoverSubmit, exportFormData
 import { MyIcon } from '@/components/_util/util'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import ContactForm from '@/views/account/ContactForm'
+import { Modal } from 'ant-design-vue'
+
 export default {
   name: 'task14',
   components: {
@@ -753,7 +755,11 @@ export default {
       let yearDiff = timeDiff / (1000 * 3600 * 24 * 365.25); // 考虑闰年
       // 判断年数是否大于 10 年
       if (yearDiff < 10) {
-        this.$message.warning('是否为儿童确诊支扩');
+        // this.$message.warning('是否为儿童确诊支扩');
+        Modal.warning({
+          title: '提示',
+          content: '是否为儿童确诊支扩'
+        });
       }
     },
     dealAnswers(answer) {
@@ -1033,7 +1039,11 @@ export default {
             .then(res => {
               that.spinning = false
               that.getFormData()
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)
@@ -1100,7 +1110,11 @@ export default {
           console.log(res)
           that.spinning = false
           that.getFormData()
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+                title: '提示',
+                content: res.msg
+              });
           params = new URLSearchParams()
           params.append('patientBasisId', that.patientBasisId)
           getPatientBasis(params)
@@ -1133,7 +1147,11 @@ export default {
           recoverSubmit(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)
@@ -1164,7 +1182,11 @@ export default {
           exportFormData(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               that.zkbszl = _.extend(that.zkbszl || {}, that.dealAnswers(res.data.data.zkbszl))
             }).catch(error => {
               that.spinning = false

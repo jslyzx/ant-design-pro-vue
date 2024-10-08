@@ -11,6 +11,12 @@
         <a-form-item label="计划患者数" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="['planNum', requiredRule]" />
         </a-form-item>
+        <a-form-item label="状态" :labelCol="labelCol" :wrapperCol="wrapperCol">
+          <a-radio-group v-decorator="['status', requiredRule]">
+            <a-radio value="1">入组</a-radio>
+            <a-radio value="0">退组</a-radio>
+          </a-radio-group>
+        </a-form-item>
         <a-form-item label="所在地" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-row :gutter="8">
             <a-col :span="12">
@@ -34,6 +40,7 @@ import { getProvinceAndCity } from '@/api/basis'
 import { saveCenter } from '@/api/center'
 import moment from 'moment'
 import _ from 'lodash'
+import { Modal } from 'ant-design-vue'
 export default {
   data() {
     return {
@@ -89,6 +96,7 @@ export default {
         this.form.setFieldsValue({
           code: value.code,
           name: value.name,
+          status: value.status,
           residence: value.residence,
           address: value.addressDetail,
           planNum: value.planNum
@@ -116,7 +124,11 @@ export default {
         saveCenter(params).then(res => {
           that.visible = false
           that.confirmLoading = false
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+            title: '提示',
+            content: res.msg
+          });
           that.$emit('ok', values)
         });
       });

@@ -519,6 +519,7 @@ import { getOcrResult } from '@/api/basis'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import ContactForm from '@/views/account/ContactForm'
 import _ from 'lodash'
+import { Modal } from 'ant-design-vue'
 export default {
   name: 'mask8',
   components: {
@@ -737,7 +738,11 @@ export default {
               console.log(res)
               that.spinning = false
               that.getFormData()
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)
@@ -931,7 +936,11 @@ export default {
           console.log(res)
           that.spinning = false
           that.getFormData()
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+            title: '提示',
+            content: res.msg
+          });
           params = new URLSearchParams()
           params.append('patientBasisId', that.patientBasisId)
           getPatientBasis(params)
@@ -1011,7 +1020,11 @@ export default {
         .then(res => {
           console.log(res.data)
           that.spinning = false
-          that.$message.success(res.data.info)
+          // that.$message.success(res.data.info)
+          Modal.success({
+            title: '提示',
+            content: res.data.info
+          });
           // debugger
           that.fgnxgjc = _.extend(that.fgnxgjc || {}, that.dealAnswers(res.data))
           // that.form.setFieldsValue(that.fgnxgjc)
@@ -1030,7 +1043,11 @@ export default {
         .then(res => {
           console.log(res.data)
           that.spinning = false
-          that.$message.success(res.data.info)
+          // that.$message.success(res.data.info)
+          Modal.success({
+            title: '提示',
+            content: res.data.info
+          });
           that.fgnxgjc = _.extend(that.fgnxgjc || {}, that.dealAnswers(res.data))
           // that.form.setFieldsValue(that.fgnxgjc)
         })
@@ -1049,7 +1066,11 @@ export default {
           recoverSubmit(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)
@@ -1083,7 +1104,11 @@ export default {
           exportFormData(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               that.fgnxgjc = _.extend(that.fgnxgjc || {}, that.dealAnswers(res.data.data.fgnxgjc))
             }).catch(error => {
               that.spinning = false
@@ -1096,10 +1121,18 @@ export default {
       let v = parseFloat(e.target.value)
       if(!Number.isNaN(v)) {
         if(low && v < low) {
-          this.$message.info(`请确认${name}的值`)
+          // this.$message.info(`请确认${name}的值`)
+          Modal.info({
+            title: '提示',
+            content: `请确认${name}的值`
+          });
         }
         if(high && v > high) {
-          this.$message.info(`请确认${name}的值`)
+          // this.$message.info(`请确认${name}的值`)
+          Modal.info({
+            title: '提示',
+            content: `请确认${name}的值`
+          });
         }
       }
     }

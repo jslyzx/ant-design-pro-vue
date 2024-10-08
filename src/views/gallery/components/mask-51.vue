@@ -82,6 +82,7 @@ import $ from 'jquery'
 import moment from 'moment'
 import { MyIcon } from '@/components/_util/util'
 import { getReportTypeMark, saveReport, getReportFormData } from '@/api/report'
+import { Modal } from 'ant-design-vue'
 
 export default {
   name: 'Exec51',
@@ -232,7 +233,11 @@ export default {
     },
     save() {
       if (!this.fileList.length) {
-        this.$message.warning('请上传检查报告')
+        // this.$message.warning('请上传检查报告')
+        Modal.warning({
+          title: '提示',
+          content: '请上传检查报告'
+        });
         return false
       }
       var re = this.form.getFieldsValue()
@@ -256,7 +261,11 @@ export default {
         .then(res => {
           that.getFormData()
           that.spinning = false
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+            title: '提示',
+            content: res.msg
+          });
         })
         .catch(error => {
           that.spinning = false
@@ -271,7 +280,11 @@ export default {
         if (!errors) {
           console.log('values', values)
           if (!this.fileList.length) {
-            this.$message.warning('请上传检查报告')
+            // this.$message.warning('请上传检查报告')
+            Modal.warning({
+              title: '提示',
+              content: '请上传检查报告'
+            });
             return false
           }
           var re = this.form.getFieldsValue()
@@ -295,7 +308,11 @@ export default {
             .then(res => {
               that.getFormData()
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('reportCollectBaseId', this.reportCollectBaseId)
               getReportTypeMark(params)

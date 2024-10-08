@@ -15,6 +15,8 @@
 import { getPatientDataList } from '@/api/patient'
 import { createNfs } from '@/api/basis'
 import moment from 'moment'
+import { Modal } from 'ant-design-vue'
+
 const columns = [{
     title: '患者编号',
     dataIndex: 'code'
@@ -100,7 +102,11 @@ export default {
     },
     handleSubmit() {
       if (!this.patientId) {
-        this.$message.error('请选择患者')
+        // this.$message.error('请选择患者')
+        Modal.error({
+                title: '提示',
+                content: '请选择患者'
+              });
         return
       }
       this.confirmLoading = true
@@ -110,12 +116,20 @@ export default {
         if(res.code == 0) {
           this.$emit('ok')
           this.visible = false
-          this.$message.success(res.msg);
+          // this.$message.success(res.msg);
+          Modal.success({
+                title: '提示',
+                content: res.msg
+              });
           this.confirmLoading = false
         } else {
           this.$emit('ok')
           this.visible = false
-          this.$message.warning(res.msg);
+          // this.$message.warning(res.msg);
+          Modal.warning({
+                title: '提示',
+                content: res.msg
+              });
           this.confirmLoading = false
         }
       })

@@ -22,7 +22,7 @@
 </template>
 <script>
 import { ocrResult } from '@/api/report';
-
+import { Modal } from 'ant-design-vue'
 export default {
   props:{
     basisMaskId:{
@@ -73,11 +73,19 @@ export default {
           ocrResult(Params).then(res => {
             that.$emit('OCRload', res)
             that.spinning=false;
-            that.$message.success(`识别成功`);
+            // that.$message.success(`识别成功`);
+            Modal.success({
+              title: '提示',
+              content: '识别成功'
+            });
           });
         }
       } else if (status === 'error') {
-        this.$message.error(`${info.file.name} file upload failed.`);
+        // this.$message.error(`${info.file.name} file upload failed.`);
+        Modal.error({
+          title: '提示',
+          content: `${info.file.name} file upload failed.`
+        });
       }
     }
   }

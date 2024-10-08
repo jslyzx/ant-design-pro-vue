@@ -207,10 +207,10 @@
               </a-form-item>
               <div class="title">4.支扩类型</div>
               <a-form-item label="支扩类型" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="no-border">
-                <a-radio-group v-decorator="['a20', {...selectRequired, initialValue: initValue('a20')}]" @change="computeBhalla">
-                  <a-radio value="2">柱状</a-radio>
-                  <a-radio value="3">静脉曲张型(混合型)</a-radio>
-                  <a-radio value="1">囊状</a-radio>
+                <a-radio-group v-decorator="['a20', {...selectRequired, initialValue: initValue('a20')}]" disabled @change="computeBhalla">
+                  <a-radio value="1">柱状</a-radio>
+                  <a-radio value="2">静脉曲张型(混合型)</a-radio>
+                  <a-radio value="3">囊状</a-radio>
                 </a-radio-group>
               </a-form-item>
             </div>
@@ -230,6 +230,8 @@ import { MyIcon } from '@/components/_util/util'
 import { getOcrResult } from '@/api/basis'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import ContactForm from '@/views/account/ContactForm'
+import { Modal } from 'ant-design-vue'
+
 export default {
   name: 'mask5',
   components: {
@@ -405,7 +407,11 @@ export default {
               console.log(res)
               that.spinning = false
               that.getFormData()
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', this.patientBasisId)
               getPatientBasis(params)
@@ -496,7 +502,11 @@ export default {
           console.log(res)
           that.spinning = false
           that.getFormData()
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+            title: '提示',
+            content: res.msg
+          });
           params = new URLSearchParams()
           params.append('patientBasisId', this.patientBasisId)
           getPatientBasis(params)
@@ -564,15 +574,15 @@ export default {
             
             if(_.some(arr, function(v){ return v === 3 || v === '3' })) {
               that.form.setFieldsValue({
-                a20: '1'
+                a20: '3'
               })
             } else if(_.some(arr, function(v){ return v === 2 || v === '2' })) {
               that.form.setFieldsValue({
-                a20: '3'
+                a20: '2'
               })
             } else {
               that.form.setFieldsValue({
-                a20: '2'
+                a20: '1'
               })
             }
           })
@@ -652,7 +662,11 @@ export default {
         .then(res => {
           console.log(res.data)
           this.spinning = false
-          this.$message.success(res.data.info)
+          // this.$message.success(res.data.info)
+          Modal.success({
+            title: '提示',
+            content: res.data.info
+          });
           this.xbyxx = _.extend(this.xbyxx || {}, this.dealAnswers(res.data))
           that.form.setFieldsValue(that.xbyxx)
         })
@@ -671,7 +685,11 @@ export default {
           recoverSubmit(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)
@@ -709,7 +727,11 @@ export default {
           exportFormData(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               that.xbyxx = _.extend(that.xbyxx || {}, that.dealAnswers(res.data.data.xbyxx))
               if (res.data.data && res.data.data.annexListXbyxx) {
                 that.fileList = _.map(res.data.data.annexListXbyxx, function(v) {

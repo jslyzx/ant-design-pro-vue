@@ -39,7 +39,7 @@
               <p class="tip">必填项如数据缺失无法提交，请一律用"/"来填写!</p>
               <div class="title">1.体格检查</div>
               <a-form-item label="(1) 经皮血氧饱和度SpO2:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                <a-input @blur="handleSpO2" v-decorator="['a5', {...inputRequired, initialValue: initValue('a5')}]" style="width: 240px;" addonAfter="%" autocomplete="off"></a-input>
+                <a-input-number @blur="handleSpO2" v-decorator="['a5', {...inputRequired, initialValue: initValue('a5')}]" style="width: 240px;" addonAfter="%" autocomplete="off" :max="100" :formatter="value => `${value}%`" :parser="value => value.replace('%', '')"></a-input-number>
               </a-form-item>
               <a-form-item label="(2) 身高:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-input @blur="handleHeight" v-decorator="['a6', {...inputRequired, initialValue: initValue('a6')}]" style="width: 240px;" addonAfter="cm" @change="changeHeight($event)" autocomplete="off"></a-input>
@@ -103,6 +103,7 @@ import { getPatientBasis, saveBasis, getBasisForm, computeScore, recoverSubmit, 
 import { MyIcon } from '@/components/_util/util'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import ContactForm from '@/views/account/ContactForm'
+import { Modal } from 'ant-design-vue'
 export default {
   name: 'mask2',
   components: {
@@ -206,18 +207,28 @@ export default {
       this[t] = e.target.checked
     },
     handleSpO2(e) {
-      if (e.target.value && e.target.value < 50) {
-        this.$message.warning('请确认经皮血氧饱和度SpO2数值是否正确');
+      if (e.target.value && e.target.value.replace('%', '') < 50) {
+        // this.$message.warning('请确认经皮血氧饱和度SpO2数值是否正确');
+        Modal.warning({
+          title: '提示',
+          content: '请确认经皮血氧饱和度SpO2数值是否正确'
+        });
       }
     },
     handleHeight(e) {
-      if (e.target.value && e.target.value < 130) {
-        this.$message.warning('请确认身高数值是否正确');
+      if (e.target.value && (e.target.value < 140 || e.target.value > 195)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认身高数值是否正确'
+        });
       }
     },
     handleWeight(e) {
-      if (e.target.value && e.target.value < 30) {
-        this.$message.warning('请确认体重数值是否正确');
+      if (e.target.value && (e.target.value < 30 || e.target.value > 100)) {
+        Modal.warning({
+          title: '提示',
+          content: '请确认体重数值是否正确'
+        });
       }
     },
     changeRadio(e, t) {
@@ -285,7 +296,11 @@ export default {
               console.log(res)
               that.spinning = false
               that.getFormData()
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)
@@ -359,7 +374,11 @@ export default {
           console.log(res)
           that.spinning = false
           that.getFormData()
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+            title: '提示',
+            content: res.msg
+          });
           params = new URLSearchParams()
           params.append('patientBasisId', that.patientBasisId)
           getPatientBasis(params)
@@ -428,7 +447,11 @@ export default {
           recoverSubmit(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)
@@ -459,7 +482,11 @@ export default {
           exportFormData(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               that.tgjc = _.extend(that.tgjc || {}, that.dealAnswers(res.data.data.tgjc))
             }).catch(error => {
               that.spinning = false

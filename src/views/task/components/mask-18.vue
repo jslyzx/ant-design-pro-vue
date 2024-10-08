@@ -153,12 +153,12 @@
                       <a-checkbox value="0" @change="handleNone($event, 'b48', '0', ['controlb48'])">无</a-checkbox>
                       <a-checkbox value="1" :disabled="detect('b48', '0')">LAMA</a-checkbox>
                       <a-checkbox value="2" :disabled="detect('b48', '0')">LABA</a-checkbox>
+                      <a-checkbox value="12" :disabled="detect('b48', '0')">ICS</a-checkbox>
                       <a-checkbox value="3" :disabled="detect('b48', '0')">LABA/LAMA</a-checkbox>
                       <a-checkbox value="4" :disabled="detect('b48', '0')">ICS/LABA/LAMA</a-checkbox>
                       <a-checkbox value="5" :disabled="detect('b48', '0')">ICS/LABA</a-checkbox>
                       <a-checkbox value="6" :disabled="detect('b48', '0')">SABA</a-checkbox>
                       <a-checkbox value="7" :disabled="detect('b48', '0')">SAMA</a-checkbox>
-                      <a-checkbox value="8" :disabled="detect('b48', '0')">白三烯受体拮抗剂</a-checkbox>
                       <a-checkbox value="9" :disabled="detect('b48', '0')">口服茶碱</a-checkbox>
                       <a-checkbox value="10" :disabled="detect('b48', '0')">雾化吸入支气管舒张剂</a-checkbox>
                       <a-checkbox value="11" :disabled="detect('b48', '0')" @change="changeSelect($event, 'controlb48')">其他</a-checkbox>
@@ -265,6 +265,8 @@ import { getPatientBasis, saveBasis, getBasisForm, recoverSubmit, exportFormData
 import { MyIcon } from '@/components/_util/util'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import ContactForm from '@/views/account/ContactForm'
+import { Modal } from 'ant-design-vue'
+
 export default {
   name: 'mask4',
   components: {
@@ -434,7 +436,11 @@ export default {
           var re = this.form.getFieldsValue()
           var that = this
           if(re.b4 === '1' && re.b41.indexOf('0') > -1 && re.b43.indexOf('0') > -1 && re.b48.indexOf('0') > -1 ) {
-            that.$message.error('有规律的呼吸疾病药物治疗不可同时勾选三项无')
+            // that.$message.error('有规律的呼吸疾病药物治疗不可同时勾选三项无')
+            Modal.error({
+                title: '提示',
+                content: '有规律的呼吸疾病药物治疗不可同时勾选三项无'
+              });
             return false
           }
           re = {
@@ -468,7 +474,11 @@ export default {
           saveBasis(params)
             .then(res => {
               console.log(res)
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               that.spinning = false
               that.getFormData()
               params = new URLSearchParams()
@@ -633,19 +643,13 @@ export default {
       saveBasis(params)
         .then(res => {
           console.log(res)
-          that.$message.success(res.msg)
+          // that.$message.success(res.msg)
+          Modal.success({
+                title: '提示',
+                content: res.msg
+              });
           that.spinning = false
           that.getFormData()
-          //   params = new URLSearchParams()
-          //   params.append('patientBasisId', that.patientBasisId)
-          //   getPatientBasis(params)
-          //     .then(res => {
-          //       that.orgTree = res.data.list
-          //       that.executeStatus = _.find(res.data.list, function(v) { return v.basisMarkId === that.maskId }).executeStatus
-          //     })
-          //     .catch(error => {
-          //       console.log(error)
-          //     })
         })
         .catch(error => {
           that.spinning = false
@@ -664,7 +668,11 @@ export default {
           recoverSubmit(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               params = new URLSearchParams()
               params.append('patientBasisId', that.patientBasisId)
               getPatientBasis(params)
@@ -714,7 +722,11 @@ export default {
           exportFormData(params)
             .then(res => {
               that.spinning = false
-              that.$message.success(res.msg)
+              // that.$message.success(res.msg)
+              Modal.success({
+                title: '提示',
+                content: res.msg
+              });
               that.hxxt = _.extend(that.hxxt || {}, that.dealAnswers(res.data.data.hxxt))
             }).catch(error => {
               that.spinning = false
