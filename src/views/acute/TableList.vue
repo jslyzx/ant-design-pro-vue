@@ -194,7 +194,7 @@ export default {
   },
   created() {
     this.scroll = {
-      y: (window.screen.height - 368) + "px"
+      y: (window.screen.height - 396) + "px"
     }
   },
   mounted() {

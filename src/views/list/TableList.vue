@@ -79,7 +79,7 @@
           </a-row>
         </a-form>
       </div>
-      <s-table ref="table" size="small" :scroll="{ x: 1600 }" rowKey="tId" :columns="columns" :data="loadData" :alert="options.alert" :rowSelection="options.rowSelection" showPagination="auto">
+      <s-table ref="table" size="small" :scroll="scroll" rowKey="tId" :columns="columns" :data="loadData" :alert="options.alert" :rowSelection="options.rowSelection" showPagination="auto">
         <span slot="name" slot-scope="text, record" @click="showUser(record)">
           <p class="userName">{{modifyName(text)}}</p>
         </span>
@@ -565,7 +565,8 @@ export default {
   created() {
     this.setSidebar(true)
     this.scroll = {
-      y: (window.screen.height - 368) + "px"
+      x: '1600px',
+      y: (window.screen.height - 396) + "px"
     }
   },
   computed: {

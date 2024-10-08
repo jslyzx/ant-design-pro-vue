@@ -46,7 +46,7 @@
         </a-row>
       </a-form>
     </div>
-    <s-table ref="table" size="small" :scroll="{ x: 1000 }" rowKey="patientBasisId" :columns="columns" :data="loadData" :alert="options.alert" :rowSelection="options.rowSelection" showPagination="auto">
+    <s-table ref="table" size="small" :scroll="scroll" rowKey="patientBasisId" :columns="columns" :data="loadData" :alert="options.alert" :rowSelection="options.rowSelection" showPagination="auto">
       <template slot="name" slot-scope="text, record">
         <a @click="showUser(record)">{{modifyName(text)}}</a>
       </template>
@@ -207,7 +207,8 @@ export default {
   },
   created() {
     this.scroll = {
-      y: (window.screen.height - 368) + "px"
+      x: '1000px',
+      y: (window.screen.height - 398) + "px"
     }
   },
   mounted() {

@@ -280,7 +280,7 @@ export default {
   },
   created() {
     this.scroll = {
-      y: (window.screen.height - 368) + "px"
+      y: (window.screen.height - 398) + "px"
     }
   },
   filters: {
