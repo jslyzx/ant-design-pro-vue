@@ -622,9 +622,6 @@ export default {
     handleEdit(record) {
       this.$router.push('/list/basis/' + record.basisList[0].patientBasisId)
     },
-    handleOk() {
-      this.$refs.table.refresh();
-    },
     onSelectChange(selectedRowKeys, selectedRows) {
       this.selectedRowKeys = selectedRowKeys;
       this.selectedRows = selectedRows;
@@ -669,9 +666,9 @@ export default {
           that.confirmLoading = false
           // that.$message.success(res.msg)
           Modal.success({
-                title: '提示',
-                content: res.msg
-              });
+            title: '提示',
+            content: res.msg
+          });
           that.$refs.table.refresh()
         });
       });

@@ -156,3 +156,10 @@ export function getIconJxNumList(params) {
   })
 }
 
+export function getCenterMonthDate(params) {
+  return axios({
+    url: '/patientReport/getCenterMonthDate',
+    method: 'post',
+    params: params
+  })
+}

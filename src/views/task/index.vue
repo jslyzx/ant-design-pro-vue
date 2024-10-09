@@ -93,6 +93,9 @@
         <a @click="implement(record)">执行</a>
         <a-divider type="vertical" />
         <a @click="ignore(record)">忽略</a>
+        <a-divider type="vertical" />
+        <!-- TODO 增加判断条件 -->
+        <a @click="handleSubmit(record)">提交</a>
       </template>
     </s-table>
     <create-form ref="createModal" @ok="handleOk" />
@@ -109,15 +112,24 @@
         </a-form-item>
       </a-form>
     </a-modal>
+    <contact-form ref="contactModal" @ok="handleOk" />
   </a-card>
 </template>
 <script>
 import moment from 'moment'
 import { getVisitTask, ignoreBNTask } from '@/api/task'
+import {
+  addVasit,
+  outGroup,
+  getJxDataList,
+  submitCheck,
+  exportAllData
+} from '@/api/basis'
 import { STable } from '@/components'
 import CreateForm from './components/taskCreateForm'
 import UserDetail from '../list/modules/UserDetail'
 import { Modal } from 'ant-design-vue'
+import ContactForm from '@/views/account/ContactForm'
 import $ from 'jquery'
 const visitMap = {
   '已提交': {
@@ -139,7 +151,8 @@ export default {
   components: {
     STable,
     CreateForm,
-    UserDetail
+    UserDetail,
+    ContactForm
   },
   data() {
     return {
@@ -199,13 +212,12 @@ export default {
           title: '任务名称',
           dataIndex: 'typeName',
           customRender: typeName => typeName + '任务',
-          width: 120
+          width: 140
         },
         {
           title: '患者姓名',
           dataIndex: 'patientName',
           scopedSlots: { customRender: 'patientName' },
-          align: 'center',
           width: 100
         },
         {
@@ -246,7 +258,7 @@ export default {
         },
         {
           title: '操作',
-          width: 100,
+          width: 160,
           scopedSlots: { customRender: 'operation' }
         }
       ],
@@ -275,11 +287,13 @@ export default {
           selectedRowKeys: this.selectedRowKeys,
           onChange: this.onSelectChange
         }
-      }
+      },
+      patientBasisId: ''
     };
   },
   created() {
     this.scroll = {
+      x: '1000px',
       y: (window.screen.height - 398) + "px"
     }
   },
@@ -404,6 +418,46 @@ export default {
           that.$refs.table.refresh()
         });
       });
+    },
+    handleSubmit(record) {
+      console.log(record)
+      this.patientBasisId = record.patientBasisId
+      this.$refs.contactModal.add()
+    },
+    handleOk(v) {
+      var that = this
+      this.$confirm({
+        title: '确认提交？',
+        onOk() {
+          var params = new URLSearchParams()
+          params.append('patientBasisId', that.patientBasisId)
+          params.append('submitName', v.submitName)
+          params.append('submitTelephone', v.submitTelephone)
+          // TODO更换提交接口
+          submitCheck(params)
+            .then(res => {
+              if (res.code === -1) {
+                that.$message.error(res.msg)
+                Modal.error({
+                  title: '提示',
+                  content: res.msg
+                });
+              } else {
+                // that.$message.success(res.msg)
+                Modal.success({
+                  title: '提示',
+                  content: res.msg
+                });
+                that.$refs.table.refresh()
+                that.scoreData = res.data
+                that.detailVisible = true
+              }
+
+            }).catch(error => {
+              console.log(error)
+            })
+        }
+      })
     }
   }
 };
