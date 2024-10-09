@@ -5,7 +5,6 @@
         <a-row :gutter="16">
           <a-col :md="3" :sm="24">
             <a-form-item>
-              <!-- <a-input v-model.trim="queryParam.keyWord" placeholder="搜索患者姓名、入组编号" /> -->
               <a-date-picker placeholder="请选择截止时间" :disabled-date="disabledDate" v-model="queryParam.date" style="width: 200px;" @change="changeTime"></a-date-picker>
             </a-form-item>
           </a-col>
@@ -20,7 +19,7 @@
         </a-row>
       </a-form>
     </div>
-    <s-table ref="table" size="small" rowKey="centerName" :scroll="scroll" :columns="columns" :data="loadData" :alert="options.alert" showPagination="auto" :locale="locale">
+    <s-table ref="table" size="small" rowKey="centerName" :scroll="scroll" :columns="columns" :data="loadData" :alert="options.alert" showPagination="auto" :locale="locale" :pageSizeOptions="pageSizeOptions" :pageSize="pageSize">
     </s-table>
   </a-card>
 </template>
@@ -29,15 +28,6 @@ import moment from 'moment'
 import { getCenterMonthDate } from '@/api/report'
 import { STable } from '@/components'
 import { Modal } from 'ant-design-vue'
-
-const visitMap = {
-  1: {
-    text: '有铜绿'
-  },
-  2: {
-    text: '无铜绿'
-  }
-};
 
 export default {
   name: 'monthlyData',
@@ -51,8 +41,6 @@ export default {
         padding: '10px',
         paddingBottom: '0px'
       },
-      // 高级搜索 展开/关闭
-      advanced: false,
       // 查询参数
       queryParam: {},
       loadData: parameter => {
@@ -65,6 +53,8 @@ export default {
         }
       },
       scroll: false,
+      pageSizeOptions: [50, 100, 200],
+      pageSize: 200,
       locale: {
         emptyText: '请选择截止时间进行查询'
       },
@@ -132,22 +122,6 @@ export default {
       y: (window.screen.height - 398) + "px"
     }
   },
-  filters: {
-    visitFilter(type) {
-      return visitMap[type].text;
-    }
-  },
-  mounted() {
-    var that = this
-    $(document).on('click', function(e) {
-      if (e.target.className === 'toggleAdvanced') {
-        return
-      }
-      if ($(e.target).closest(".tableSearch").length == 0 && $(e.target).closest(".ant-calendar").length == 0 && $(e.target).closest('.ant-calendar-year-panel-table').length === 0 && $(e.target).closest('.ant-calendar-month-panel-table').length === 0) {
-        that.advanced = false
-      }
-    })
-  },
   methods: {
     disabledDate(current) {
       return current && (current > moment().endOf('day') || current.get('year') < 1930)
@@ -155,11 +129,6 @@ export default {
     onSelectChange(selectedRowKeys, selectedRows) {
       this.selectedRowKeys = selectedRowKeys;
       this.selectedRows = selectedRows;
-    },
-    clearForm() {
-      this.queryParam = {}
-      this.createArr = []
-      this.submitArr = []
     },
     tableSearch(type) {
       this.queryParam.isUser = type
@@ -169,11 +138,6 @@ export default {
     refreshTable() {
       this.$refs.table.refresh()
     },
-    changeCreate(time) {
-      this.createArr = time;
-      this.queryParam.createDateStart = moment(time[0]).format('YYYY-MM-DD')
-      this.queryParam.createDateEnd = moment(time[1]).format('YYYY-MM-DD')
-    },
     changeSubmit(time) {
       this.submitArr = time;
       this.queryParam.submitDateStart = moment(time[0]).format('YYYY-MM-DD')
@@ -181,7 +145,7 @@ export default {
     },
     _export() {
       if(this.queryParam.dateStr) {
-        window.open(this.baseUrl + 'patientReport/export')
+        window.open('http://172.16.2.109:9997/patientReport/exportCenterDate')
       } else {
         Modal.warning({
           title: '提示',

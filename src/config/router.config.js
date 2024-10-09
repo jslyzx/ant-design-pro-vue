@@ -105,6 +105,12 @@ export const asyncRouterMap = [{
             name: 'report',
             component: () => import('@/views/report/index'),
             meta: { title: '数据统计', keepAlive: true, icon: baogao, isBack: false, permission: ['center', 'group'] }
+          },
+          {
+            path: '/reportApply/monthlyData',
+            name: 'monthlyData',
+            component: () => import('@/views/reportApply/monthlyData'),
+            meta: { title: '月度统计', keepAlive: true, icon: blzysh, isBack: false, permission: ['center', 'group'] }
           }, {
             path: '/reportApply/index',
             name: 'reportApply',
@@ -158,12 +164,6 @@ export const asyncRouterMap = [{
             name: 'iconData',
             component: () => import('@/views/reportApply/iconData'),
             meta: { title: 'ICON数据统计', keepAlive: true, icon: blzysh, isBack: false, permission: ['center', 'group'] }
-          },
-          {
-            path: '/reportApply/monthlyData',
-            name: 'monthlyData',
-            component: () => import('@/views/reportApply/monthlyData'),
-            meta: { title: '月度统计', keepAlive: true, icon: blzysh, isBack: false, permission: ['center', 'group'] }
           }
         ]
       },
