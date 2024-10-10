@@ -21,6 +21,9 @@
     </div>
     <s-table ref="table" size="small" rowKey="centerName" :scroll="scroll" :columns="columns" :data="loadData" :alert="options.alert" showPagination="auto" :locale="locale" :pageSizeOptions="pageSizeOptions" :pageSize="pageSize">
     </s-table>
+    <a-modal v-model="visible" title="提示" :footer="null" :bodyStyle="bodyStyle">
+      <p>请选择截止时间进行导出！</p>
+    </a-modal>
   </a-card>
 </template>
 <script>
@@ -36,6 +39,7 @@ export default {
   },
   data() {
     return {
+      visible: false,
       baseUrl: process.env.VUE_APP_API_BASE_URL,
       bodyStyle: {
         padding: '10px',
@@ -113,7 +117,11 @@ export default {
         dataIndex: 'type8Num'
       }],
       createArr: [],
-      submitArr: []
+      submitArr: [],
+      bodyStyle: {
+        fontSize: '30px',
+        color: 'red'
+      }
     }
   },
   created() {
@@ -144,13 +152,11 @@ export default {
       this.queryParam.submitDateEnd = moment(time[1]).format('YYYY-MM-DD')
     },
     _export() {
+      const h = this.$createElement
       if(this.queryParam.dateStr) {
-        window.open('http://172.16.2.109:9997/patientReport/exportCenterDate')
+        window.open(this.baseUrl + 'patientReport/exportCenterDate')
       } else {
-        Modal.warning({
-          title: '提示',
-          content: '请选择截止时间再导出'
-        });
+        this.visible = true
       }
     },
     changeTime(time) {

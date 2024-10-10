@@ -38,468 +38,484 @@
               <p class="tip">必填项如数据缺失无法提交，请一律用"/"来填写!（ICON患者，必须填写实际检测值。基线访视辅助检查可使用入组前6个月内的检查结果，但要求从检查日期到入组日期之间未发生急性加重，否则需要在基线数据收集时重新辅助检查）</p>
               <div class="title">1.肺功能相关检查
                 <a style="float: right;font-size:12px;margin-right: 12px;" @click="showOcr = !showOcr">OCR</a>
-                <!-- <a-icon type="zoom-in" style="float: right;margin-top: 12px;margin-right: 12px;color: #ccc;" @click="changeOcr" /> -->
               </div>
-              <a-form-item label="检查日期" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                <a-date-picker placeholder="请选择" v-decorator="['t1', {initialValue: initValue('t1', 'time')}]" :disabledDate="disabledDate" style="width: 240px;"></a-date-picker>
-              </a-form-item> 
-              <a-form-item label="报告上传 :" :labelCol="labelColHor" :wrapperCol="wrapperHor" v-if="showOcr">
-                <div class="clearfix" style="margin-top: 10px;">
-                  <a-upload :action="uploadUrl" class="images1" v-viewer listType="picture-card" :fileList="fileList1" @preview="handlePreview1" @change="handleChange1">
-                    <div v-if="fileList1.length < 1">
-                      <a-icon type="plus" />
-                      <div class="ant-upload-text">Upload</div>
-                    </div>
-                  </a-upload>
-                  <a-button style="position: absolute;top: 84px;left: 120px;font-size: 12px;padding: 0 5px;height: 30px;" @click="_importF" v-if="fileList1.length === 1 && showOcr">OCR识别</a-button>
-                  <!-- <a-modal :visible="previewVisible1" :footer="null" @cancel="handleCancel1">
-                      <img alt="example" style="width: 100%" :src="previewImage1" />
-                    </a-modal> -->
-                </div>
-              </a-form-item>
-              <a-form-item label="简易肺功能仪:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
-                <a-radio-group v-decorator="['g1', {initialValue: initValue('g1')}]">
-                  <a-radio value="1">是</a-radio>
-                  <a-radio value="0">否</a-radio>
-                </a-radio-group>
-              </a-form-item>
-              <a-form-item label="肺功能测试名称" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-row type="flex">
-                  <a-col :span="12">实际值</a-col>
-                  <a-col :span="12">实/预%</a-col>
-                </a-row>
-              </a-form-item>
-              <a-form-item label="FVC::" :labelCol="labelXs" :wrapperCol="wrapperMx" class="requireIcon">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['a21', {...inputRequired, initialValue: initValue('a21')}]" addonAfter="L" autocomplete="off" @change="notice($event, 'FVC', 0.5, 6)"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['a22', {...inputRequired, initialValue: initValue('a22')}]" addonAfter="%" autocomplete="off" @change="notice($event, 'FVC%', 20, 150)"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="FEV1::" :labelCol="labelXs" :wrapperCol="wrapperMx" class="requireIcon">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['a31', {...inputRequired, initialValue: initValue('a31')}]" addonAfter="L" autocomplete="off" @change="notice($event, 'FEV1', 0.2, 5)"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['a32', {...inputRequired, initialValue: initValue('a32')}]" addonAfter="%" autocomplete="off" @change="notice($event, 'FEV1%', 20, 150)"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="FEV1%FVC::" :labelCol="labelXs" :wrapperCol="wrapperMx" class="requireIcon">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['a41', {...inputRequired, initialValue: initValue('a41')}]" addonAfter="%" autocomplete="off" @change="notice($event, 'FEV1%FVC', undefined, 100)"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="FEV1%VC MAX::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['a51', {initialValue: initValue('a51')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['a52', {initialValue: initValue('a52')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="FEV3::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['a61', {initialValue: initValue('a61')}]" addonAfter="L" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['a62', {initialValue: initValue('a62')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="FEV3%FVC::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b21', {initialValue: initValue('b21')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b22', {initialValue: initValue('b22')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="PEF::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b31', {initialValue: initValue('b31')}]" addonAfter="L/s" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b32', {initialValue: initValue('b32')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="MEF 75::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b41', {initialValue: initValue('b41')}]" addonAfter="L/s" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b42', {initialValue: initValue('b42')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="MEF 50::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b51', {initialValue: initValue('b51')}]" addonAfter="L/s" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b52', {initialValue: initValue('b52')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="MEF 25::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b61', {initialValue: initValue('b61')}]" addonAfter="L/s" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b62', {initialValue: initValue('b62')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="MMEF::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b71', {initialValue: initValue('b71')}]" addonAfter="L/s" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b72', {initialValue: initValue('b72')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="MVV::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b81', {initialValue: initValue('b81')}]" addonAfter="L/min" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b82', {initialValue: initValue('b82')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="FEV 1*30::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b91', {initialValue: initValue('b91')}]" addonAfter="L/min" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b92', {initialValue: initValue('b92')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="RV::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <!-- <a-input v-decorator="['t1', {initialValue: '1'}]" style="display: none;"></a-input> -->
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b101', {initialValue: initValue('b101')}]" addonAfter="L" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b102', {initialValue: initValue('b102')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="TLC::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b111', {initialValue: initValue('b111')}]" addonAfter="L" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b112', {initialValue: initValue('b112')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="RV%TLC::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b121', {initialValue: initValue('b121')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b122', {initialValue: initValue('b122')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="ITGV::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b131', {initialValue: initValue('b131')}]" addonAfter="L" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b132', {initialValue: initValue('b132')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="IC::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b141', {initialValue: initValue('b141')}]" addonAfter="L" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b142', {initialValue: initValue('b142')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="ERV::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b151', {initialValue: initValue('b151')}]" addonAfter="L" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b152', {initialValue: initValue('b152')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="DLCO SB::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b161', {initialValue: initValue('b161')}]" addonAfter="ml/min/mmHg" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b162', {initialValue: initValue('b162')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="DLCO/VA::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b171', {initialValue: initValue('b171')}]" addonAfter="ml/min/mmHg" autocomplete="off"></a-input>
-                </a-form-item>
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b172', {initialValue: initValue('b172')}]" addonAfter="%" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="DLCO SB::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b163', {initialValue: initValue('b163')}]" addonAfter="mmol/min/kPa" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="DLCO/VA::" :labelCol="labelXs" :wrapperCol="wrapperMx">
-                <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
-                  <a-input style="width: 240px;" v-decorator="['b173', {initialValue: initValue('b173')}]" addonAfter="mmol/min/kPa/L" autocomplete="off"></a-input>
-                </a-form-item>
-              </a-form-item>
-              <a-form-item label="(2) 是否做过其他舒张试验:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
-                <a-radio-group v-decorator="['c', {...require1, initialValue: initValue('c')}]" @change="changeRadio($event, 'controlc')">
+              <a-form-item label="是否做过肺功能测试:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                <a-radio-group v-decorator="['a1', {...require1, initialValue: initValue('a1')}]" @change="changeRadio($event, 'controla1')">
                   <a-radio value="1">是</a-radio>
                   <a-radio value="-1">否</a-radio>
                 </a-radio-group>
               </a-form-item>
-              <div v-if="controlc">
+              <div v-if="controla1">
+                <a-form-item label="检查日期" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                  <a-date-picker placeholder="请选择" v-decorator="['t1', {initialValue: initValue('t1', 'time')}]" :disabledDate="disabledDate" style="width: 240px;"></a-date-picker>
+                </a-form-item> 
                 <a-form-item label="报告上传 :" :labelCol="labelColHor" :wrapperCol="wrapperHor" v-if="showOcr">
                   <div class="clearfix" style="margin-top: 10px;">
-                    <a-upload :action="uploadUrl" class="images2" v-viewer listType="picture-card" :fileList="fileList2" @preview="handlePreview2" @change="handleChange2">
-                      <div v-if="fileList2.length < 1">
+                    <a-upload :action="uploadUrl" class="images1" v-viewer listType="picture-card" :fileList="fileList1" @preview="handlePreview1" @change="handleChange1">
+                      <div v-if="fileList1.length < 1">
                         <a-icon type="plus" />
                         <div class="ant-upload-text">Upload</div>
                       </div>
                     </a-upload>
-                    <a-button style="position: absolute;top: 84px;left: 120px;font-size: 12px;padding: 0 5px;height: 30px;" @click="_importS" v-if="fileList2.length === 1 && showOcr">OCR识别</a-button>
-                    <!-- <a-modal :visible="previewVisible2" :footer="null" @cancel="handleCancel2">
-                      <img alt="example" style="width: 100%" :src="previewImage2" />
-                    </a-modal> -->
+                    <a-button style="position: absolute;top: 84px;left: 120px;font-size: 12px;padding: 0 5px;height: 30px;" @click="_importF" v-if="fileList1.length === 1 && showOcr">OCR识别</a-button>
+                    <!-- <a-modal :visible="previewVisible1" :footer="null" @cancel="handleCancel1">
+                        <img alt="example" style="width: 100%" :src="previewImage1" />
+                      </a-modal> -->
                   </div>
                 </a-form-item>
-                <a-form-item label="舒张试验名称" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                <a-form-item label="简易肺功能仪:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
+                  <a-radio-group v-decorator="['g1', {initialValue: initValue('g1')}]">
+                    <a-radio value="1">是</a-radio>
+                    <a-radio value="0">否</a-radio>
+                  </a-radio-group>
+                </a-form-item>
+                <a-form-item label="肺功能测试名称" :labelCol="labelXs" :wrapperCol="wrapperMx">
                   <a-row type="flex">
-                    <a-col :span="6">前次</a-col>
-                    <a-col :span="6">前/预</a-col>
-                    <a-col :span="6">后次</a-col>
-                    <a-col :span="6">后/预</a-col>
+                    <a-col :span="12">实际值</a-col>
+                    <a-col :span="12">实/预%</a-col>
                   </a-row>
                 </a-form-item>
-                <a-form-item label="VC MAX::" :labelCol="labelNew" :wrapperCol="wrapperNew">
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c11', { initialValue: initValue('c11')}]" addonAfter="L" autocomplete="off"></a-input>
+                <a-form-item label="FVC::" :labelCol="labelXs" :wrapperCol="wrapperMx" class="requireIcon">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['a21', {...inputRequired, initialValue: initValue('a21')}]" addonAfter="L" autocomplete="off" @change="notice($event, 'FVC', 0.5, 6)"></a-input>
                   </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d11', { initialValue: initValue('d11')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c12', { initialValue: initValue('c12')}]" addonAfter="L" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d12', { initialValue: initValue('d12')}]" addonAfter="%" autocomplete="off"></a-input>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['a22', {...inputRequired, initialValue: initValue('a22')}]" addonAfter="%" autocomplete="off" @change="notice($event, 'FVC%', 20, 150)"></a-input>
                   </a-form-item>
                 </a-form-item>
-                <a-form-item label="FVC::" :labelCol="labelNew" :wrapperCol="wrapperNew">
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c21', { initialValue: initValue('c21')}]" addonAfter="L" autocomplete="off"></a-input>
+                <a-form-item label="FEV1::" :labelCol="labelXs" :wrapperCol="wrapperMx" class="requireIcon">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['a31', {...inputRequired, initialValue: initValue('a31')}]" addonAfter="L" autocomplete="off" @change="notice($event, 'FEV1', 0.2, 5)"></a-input>
                   </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d21', { initialValue: initValue('d21')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c22', { initialValue: initValue('c22')}]" addonAfter="L" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d22', { initialValue: initValue('d22')}]" addonAfter="%" autocomplete="off"></a-input>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['a32', {...inputRequired, initialValue: initValue('a32')}]" addonAfter="%" autocomplete="off" @change="notice($event, 'FEV1%', 20, 150)"></a-input>
                   </a-form-item>
                 </a-form-item>
-                <a-form-item label="FEV1::" :labelCol="labelNew" :wrapperCol="wrapperNew">
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c31', { initialValue: initValue('c31')}]" addonAfter="L" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d31', { initialValue: initValue('d31')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c32', { initialValue: initValue('c32')}]" addonAfter="L" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d32', { initialValue: initValue('d32')}]" addonAfter="%" autocomplete="off"></a-input>
+                <a-form-item label="FEV1%FVC::" :labelCol="labelXs" :wrapperCol="wrapperMx" class="requireIcon">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['a41', {...inputRequired, initialValue: initValue('a41')}]" addonAfter="%" autocomplete="off" @change="notice($event, 'FEV1%FVC', undefined, 100)"></a-input>
                   </a-form-item>
                 </a-form-item>
-                <a-form-item label="FEV1%FVC::" :labelCol="labelNew" :wrapperCol="wrapperNew">
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c41', { initialValue: initValue('c41')}]" addonAfter="%" autocomplete="off"></a-input>
+                <a-form-item label="FEV1%VC MAX::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['a51', {initialValue: initValue('a51')}]" addonAfter="%" autocomplete="off"></a-input>
                   </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d41', { initialValue: initValue('d41')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c42', { initialValue: initValue('c42')}]" addonAfter="L" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d42', { initialValue: initValue('d42')}]" addonAfter="%" autocomplete="off"></a-input>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['a52', {initialValue: initValue('a52')}]" addonAfter="%" autocomplete="off"></a-input>
                   </a-form-item>
                 </a-form-item>
-                <a-form-item label="FEV1%VC MAX::" :labelCol="labelNew" :wrapperCol="wrapperNew">
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c51', { initialValue: initValue('c51')}]" addonAfter="%" autocomplete="off"></a-input>
+                <a-form-item label="FEV3::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['a61', {initialValue: initValue('a61')}]" addonAfter="L" autocomplete="off"></a-input>
                   </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d51', { initialValue: initValue('d51')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c52', { initialValue: initValue('c52')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d52', { initialValue: initValue('d52')}]" addonAfter="%" autocomplete="off"></a-input>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['a62', {initialValue: initValue('a62')}]" addonAfter="%" autocomplete="off"></a-input>
                   </a-form-item>
                 </a-form-item>
-                <a-form-item label="FEV3::" :labelCol="labelNew" :wrapperCol="wrapperNew">
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c61', { initialValue: initValue('c61')}]" addonAfter="L" autocomplete="off"></a-input>
+                <a-form-item label="FEV3%FVC::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b21', {initialValue: initValue('b21')}]" addonAfter="%" autocomplete="off"></a-input>
                   </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d61', { initialValue: initValue('d61')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c62', { initialValue: initValue('c62')}]" addonAfter="L" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d62', { initialValue: initValue('d62')}]" addonAfter="%" autocomplete="off"></a-input>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b22', {initialValue: initValue('b22')}]" addonAfter="%" autocomplete="off"></a-input>
                   </a-form-item>
                 </a-form-item>
-                <a-form-item label="FEV3%FVC::" :labelCol="labelNew" :wrapperCol="wrapperNew">
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c71', { initialValue: initValue('c71')}]" addonAfter="%" autocomplete="off"></a-input>
+                <a-form-item label="PEF::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b31', {initialValue: initValue('b31')}]" addonAfter="L/s" autocomplete="off"></a-input>
                   </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d71', { initialValue: initValue('d71')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c72', { initialValue: initValue('c72')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d72', { initialValue: initValue('d72')}]" addonAfter="%" autocomplete="off"></a-input>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b32', {initialValue: initValue('b32')}]" addonAfter="%" autocomplete="off"></a-input>
                   </a-form-item>
                 </a-form-item>
-                <a-form-item label="PEF::" :labelCol="labelNew" :wrapperCol="wrapperNew">
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c81', { initialValue: initValue('c81')}]" addonAfter="L/s" autocomplete="off"></a-input>
+                <a-form-item label="MEF 75::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b41', {initialValue: initValue('b41')}]" addonAfter="L/s" autocomplete="off"></a-input>
                   </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d81', { initialValue: initValue('d81')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c82', { initialValue: initValue('c82')}]" addonAfter="L/s" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d82', { initialValue: initValue('d82')}]" addonAfter="%" autocomplete="off"></a-input>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b42', {initialValue: initValue('b42')}]" addonAfter="%" autocomplete="off"></a-input>
                   </a-form-item>
                 </a-form-item>
-                <a-form-item label="MEF 75::" :labelCol="labelNew" :wrapperCol="wrapperNew">
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c91', { initialValue: initValue('c91')}]" addonAfter="L/s" autocomplete="off"></a-input>
+                <a-form-item label="MEF 50::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b51', {initialValue: initValue('b51')}]" addonAfter="L/s" autocomplete="off"></a-input>
                   </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d91', { initialValue: initValue('d91')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c92', { initialValue: initValue('c92')}]" addonAfter="L/s" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d92', { initialValue: initValue('d92')}]" addonAfter="%" autocomplete="off"></a-input>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b52', {initialValue: initValue('b52')}]" addonAfter="%" autocomplete="off"></a-input>
                   </a-form-item>
                 </a-form-item>
-                <a-form-item label="MEF 50::" :labelCol="labelNew" :wrapperCol="wrapperNew">
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c101', { initialValue: initValue('c101')}]" addonAfter="L/s" autocomplete="off"></a-input>
+                <a-form-item label="MEF 25::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b61', {initialValue: initValue('b61')}]" addonAfter="L/s" autocomplete="off"></a-input>
                   </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d101', { initialValue: initValue('d101')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c102', { initialValue: initValue('c102')}]" addonAfter="L/s" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d102', { initialValue: initValue('d102')}]" addonAfter="%" autocomplete="off"></a-input>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b62', {initialValue: initValue('b62')}]" addonAfter="%" autocomplete="off"></a-input>
                   </a-form-item>
                 </a-form-item>
-                <a-form-item label="MEF 25::" :labelCol="labelNew" :wrapperCol="wrapperNew">
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c111', { initialValue: initValue('c111')}]" addonAfter="L/s" autocomplete="off"></a-input>
+                <a-form-item label="MMEF::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b71', {initialValue: initValue('b71')}]" addonAfter="L/s" autocomplete="off"></a-input>
                   </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d111', { initialValue: initValue('d111')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c112', { initialValue: initValue('c112')}]" addonAfter="L/s" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d112', { initialValue: initValue('d112')}]" addonAfter="%" autocomplete="off"></a-input>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b72', {initialValue: initValue('b72')}]" addonAfter="%" autocomplete="off"></a-input>
                   </a-form-item>
                 </a-form-item>
-                <a-form-item label="MEF 75/25::" :labelCol="labelNew" :wrapperCol="wrapperNew">
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c121', { initialValue: initValue('c121')}]" addonAfter="L/s" autocomplete="off"></a-input>
+                <a-form-item label="MVV::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b81', {initialValue: initValue('b81')}]" addonAfter="L/min" autocomplete="off"></a-input>
                   </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d121', { initialValue: initValue('d121')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c122', { initialValue: initValue('c122')}]" addonAfter="L/s" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d122', { initialValue: initValue('d122')}]" addonAfter="%" autocomplete="off"></a-input>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b82', {initialValue: initValue('b82')}]" addonAfter="%" autocomplete="off"></a-input>
                   </a-form-item>
                 </a-form-item>
-                <a-form-item label="V%FVC::" :labelCol="labelNew" :wrapperCol="wrapperNew">
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c131', { initialValue: initValue('c131')}]" addonAfter="%" autocomplete="off"></a-input>
+                <a-form-item label="FEV 1*30::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b91', {initialValue: initValue('b91')}]" addonAfter="L/min" autocomplete="off"></a-input>
                   </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d131', { initialValue: initValue('d131')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c132', { initialValue: initValue('c132')}]" addonAfter="%" autocomplete="off"></a-input>
-                  </a-form-item>
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['d132', { initialValue: initValue('d132')}]" addonAfter="%" autocomplete="off"></a-input>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b92', {initialValue: initValue('b92')}]" addonAfter="%" autocomplete="off"></a-input>
                   </a-form-item>
                 </a-form-item>
-                <a-form-item label="MVV::" :labelCol="labelNew" :wrapperCol="wrapperNew">
-                  <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
-                    <a-input style="width: 240px;" v-decorator="['c141', { initialValue: initValue('c141')}]" addonAfter="L/min" autocomplete="off"></a-input>
+                <a-form-item label="RV::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <!-- <a-input v-decorator="['t1', {initialValue: '1'}]" style="display: none;"></a-input> -->
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b101', {initialValue: initValue('b101')}]" addonAfter="L" autocomplete="off"></a-input>
                   </a-form-item>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b102', {initialValue: initValue('b102')}]" addonAfter="%" autocomplete="off"></a-input>
+                  </a-form-item>
+                </a-form-item>
+                <a-form-item label="TLC::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b111', {initialValue: initValue('b111')}]" addonAfter="L" autocomplete="off"></a-input>
+                  </a-form-item>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b112', {initialValue: initValue('b112')}]" addonAfter="%" autocomplete="off"></a-input>
+                  </a-form-item>
+                </a-form-item>
+                <a-form-item label="RV%TLC::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b121', {initialValue: initValue('b121')}]" addonAfter="%" autocomplete="off"></a-input>
+                  </a-form-item>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b122', {initialValue: initValue('b122')}]" addonAfter="%" autocomplete="off"></a-input>
+                  </a-form-item>
+                </a-form-item>
+                <a-form-item label="ITGV::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b131', {initialValue: initValue('b131')}]" addonAfter="L" autocomplete="off"></a-input>
+                  </a-form-item>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b132', {initialValue: initValue('b132')}]" addonAfter="%" autocomplete="off"></a-input>
+                  </a-form-item>
+                </a-form-item>
+                <a-form-item label="IC::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b141', {initialValue: initValue('b141')}]" addonAfter="L" autocomplete="off"></a-input>
+                  </a-form-item>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b142', {initialValue: initValue('b142')}]" addonAfter="%" autocomplete="off"></a-input>
+                  </a-form-item>
+                </a-form-item>
+                <a-form-item label="ERV::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b151', {initialValue: initValue('b151')}]" addonAfter="L" autocomplete="off"></a-input>
+                  </a-form-item>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b152', {initialValue: initValue('b152')}]" addonAfter="%" autocomplete="off"></a-input>
+                  </a-form-item>
+                </a-form-item>
+                <a-form-item label="DLCO SB::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b161', {initialValue: initValue('b161')}]" addonAfter="ml/min/mmHg" autocomplete="off"></a-input>
+                  </a-form-item>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b162', {initialValue: initValue('b162')}]" addonAfter="%" autocomplete="off"></a-input>
+                  </a-form-item>
+                </a-form-item>
+                <a-form-item label="DLCO/VA::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b171', {initialValue: initValue('b171')}]" addonAfter="ml/min/mmHg" autocomplete="off"></a-input>
+                  </a-form-item>
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b172', {initialValue: initValue('b172')}]" addonAfter="%" autocomplete="off"></a-input>
+                  </a-form-item>
+                </a-form-item>
+                <a-form-item label="DLCO SB::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b163', {initialValue: initValue('b163')}]" addonAfter="mmol/min/kPa" autocomplete="off"></a-input>
+                  </a-form-item>
+                </a-form-item>
+                <a-form-item label="DLCO/VA::" :labelCol="labelXs" :wrapperCol="wrapperMx">
+                  <a-form-item :labelCol="labelXs" :wrapperCol="wrapperMx" :style="{ display: 'inline-block', width: '50%',border: 'none' }">
+                    <a-input style="width: 240px;" v-decorator="['b173', {initialValue: initValue('b173')}]" addonAfter="mmol/min/kPa/L" autocomplete="off"></a-input>
+                  </a-form-item>
+                </a-form-item>
+                <a-form-item label="(2) 是否做过其他舒张试验:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
+                  <a-radio-group v-decorator="['c', {...require1, initialValue: initValue('c')}]" @change="changeRadio($event, 'controlc')">
+                    <a-radio value="1">是</a-radio>
+                    <a-radio value="-1">否</a-radio>
+                  </a-radio-group>
+                </a-form-item>
+                <div v-if="controlc">
+                  <a-form-item label="报告上传 :" :labelCol="labelColHor" :wrapperCol="wrapperHor" v-if="showOcr">
+                    <div class="clearfix" style="margin-top: 10px;">
+                      <a-upload :action="uploadUrl" class="images2" v-viewer listType="picture-card" :fileList="fileList2" @preview="handlePreview2" @change="handleChange2">
+                        <div v-if="fileList2.length < 1">
+                          <a-icon type="plus" />
+                          <div class="ant-upload-text">Upload</div>
+                        </div>
+                      </a-upload>
+                      <a-button style="position: absolute;top: 84px;left: 120px;font-size: 12px;padding: 0 5px;height: 30px;" @click="_importS" v-if="fileList2.length === 1 && showOcr">OCR识别</a-button>
+                      <!-- <a-modal :visible="previewVisible2" :footer="null" @cancel="handleCancel2">
+                        <img alt="example" style="width: 100%" :src="previewImage2" />
+                      </a-modal> -->
+                    </div>
+                  </a-form-item>
+                  <a-form-item label="舒张试验名称" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                    <a-row type="flex">
+                      <a-col :span="6">前次</a-col>
+                      <a-col :span="6">前/预</a-col>
+                      <a-col :span="6">后次</a-col>
+                      <a-col :span="6">后/预</a-col>
+                    </a-row>
+                  </a-form-item>
+                  <a-form-item label="VC MAX::" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c11', { initialValue: initValue('c11')}]" addonAfter="L" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d11', { initialValue: initValue('d11')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c12', { initialValue: initValue('c12')}]" addonAfter="L" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d12', { initialValue: initValue('d12')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                  </a-form-item>
+                  <a-form-item label="FVC::" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c21', { initialValue: initValue('c21')}]" addonAfter="L" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d21', { initialValue: initValue('d21')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c22', { initialValue: initValue('c22')}]" addonAfter="L" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d22', { initialValue: initValue('d22')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                  </a-form-item>
+                  <a-form-item label="FEV1::" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c31', { initialValue: initValue('c31')}]" addonAfter="L" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d31', { initialValue: initValue('d31')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c32', { initialValue: initValue('c32')}]" addonAfter="L" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d32', { initialValue: initValue('d32')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                  </a-form-item>
+                  <a-form-item label="FEV1%FVC::" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c41', { initialValue: initValue('c41')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d41', { initialValue: initValue('d41')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c42', { initialValue: initValue('c42')}]" addonAfter="L" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d42', { initialValue: initValue('d42')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                  </a-form-item>
+                  <a-form-item label="FEV1%VC MAX::" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c51', { initialValue: initValue('c51')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d51', { initialValue: initValue('d51')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c52', { initialValue: initValue('c52')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d52', { initialValue: initValue('d52')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                  </a-form-item>
+                  <a-form-item label="FEV3::" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c61', { initialValue: initValue('c61')}]" addonAfter="L" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d61', { initialValue: initValue('d61')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c62', { initialValue: initValue('c62')}]" addonAfter="L" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d62', { initialValue: initValue('d62')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                  </a-form-item>
+                  <a-form-item label="FEV3%FVC::" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c71', { initialValue: initValue('c71')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d71', { initialValue: initValue('d71')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c72', { initialValue: initValue('c72')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d72', { initialValue: initValue('d72')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                  </a-form-item>
+                  <a-form-item label="PEF::" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c81', { initialValue: initValue('c81')}]" addonAfter="L/s" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d81', { initialValue: initValue('d81')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c82', { initialValue: initValue('c82')}]" addonAfter="L/s" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d82', { initialValue: initValue('d82')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                  </a-form-item>
+                  <a-form-item label="MEF 75::" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c91', { initialValue: initValue('c91')}]" addonAfter="L/s" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d91', { initialValue: initValue('d91')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c92', { initialValue: initValue('c92')}]" addonAfter="L/s" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d92', { initialValue: initValue('d92')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                  </a-form-item>
+                  <a-form-item label="MEF 50::" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c101', { initialValue: initValue('c101')}]" addonAfter="L/s" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d101', { initialValue: initValue('d101')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c102', { initialValue: initValue('c102')}]" addonAfter="L/s" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d102', { initialValue: initValue('d102')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                  </a-form-item>
+                  <a-form-item label="MEF 25::" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c111', { initialValue: initValue('c111')}]" addonAfter="L/s" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d111', { initialValue: initValue('d111')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c112', { initialValue: initValue('c112')}]" addonAfter="L/s" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d112', { initialValue: initValue('d112')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                  </a-form-item>
+                  <a-form-item label="MEF 75/25::" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c121', { initialValue: initValue('c121')}]" addonAfter="L/s" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d121', { initialValue: initValue('d121')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c122', { initialValue: initValue('c122')}]" addonAfter="L/s" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d122', { initialValue: initValue('d122')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                  </a-form-item>
+                  <a-form-item label="V%FVC::" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c131', { initialValue: initValue('c131')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d131', { initialValue: initValue('d131')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c132', { initialValue: initValue('c132')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['d132', { initialValue: initValue('d132')}]" addonAfter="%" autocomplete="off"></a-input>
+                    </a-form-item>
+                  </a-form-item>
+                  <a-form-item label="MVV::" :labelCol="labelNew" :wrapperCol="wrapperNew">
+                    <a-form-item :labelCol="labelNew" :wrapperCol="wrapperNew" :style="{ display: 'inline-block', width: '25%', border: 'none' }">
+                      <a-input style="width: 240px;" v-decorator="['c141', { initialValue: initValue('c141')}]" addonAfter="L/min" autocomplete="off"></a-input>
+                    </a-form-item>
+                  </a-form-item>
+                </div>
+                <a-form-item label="(3) 肺功能结论:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
+                  <a-radio-group v-decorator="['d', {...require1, initialValue: initValue('d')}]" @change="changeRadio($event, 'controld')">
+                    <a-radio value="1">通气功能正常</a-radio>
+                    <a-radio value="-1">通气功能减退</a-radio>
+                  </a-radio-group>
+                </a-form-item>
+                <a-form-item label="通气功能减退类型:" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" class="border-dotted" v-if="controld">
+                  <a-radio-group v-decorator="['e12', {...require1, initialValue: initValue('e12')}]">
+                    <a-radio value="1">阻塞性</a-radio>
+                    <a-radio value="2">限制性</a-radio>
+                    <a-radio value="3">混合型</a-radio>
+                  </a-radio-group>
+                </a-form-item>
+                <a-form-item label="(4) 呼出气一氧化氮(FeNO):" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
+                  <a-input addonAfter="ppb" style="width: 240px;" v-decorator="['d1', {initialValue: initValue('d1')}]" autocomplete="off"></a-input>
+                </a-form-item>
+                <a-form-item label="(5) 6分钟步行试验总距离:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
+                  <a-input addonAfter="m" style="width: 240px;" v-decorator="['e', { initialValue: initValue('e')}]" autocomplete="off"></a-input>
+                </a-form-item>
+                <a-form-item label="(6) 血气分析:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
+                </a-form-item>
+                <a-form-item label="检查日期" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                  <a-date-picker placeholder="请选择" v-decorator="['f5', {initialValue: initValue('f5', 'time')}]" :disabledDate="disabledDate" style="width: 240px;"></a-date-picker>
+                </a-form-item> 
+                <a-form-item label="PH:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="no-border">
+                  <a-input style="width: 240px;" v-decorator="['f', { initialValue: initValue('f')}]" autocomplete="off"></a-input>
+                </a-form-item>
+                <a-form-item label="氧分压:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="no-border">
+                  <a-input style="width: 240px;" v-decorator="['f1', { initialValue: initValue('f1')}]" addonAfter="mmHg" autocomplete="off"></a-input>
+                </a-form-item>
+                <a-form-item label="二氧化碳分压:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="no-border">
+                  <a-input style="width: 240px;" v-decorator="['f2', { initialValue: initValue('f2')}]" addonAfter="mmHg" autocomplete="off"></a-input>
+                </a-form-item>
+                <a-form-item label="肺动脉氧分压差:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="no-border">
+                  <a-input style="width: 240px;" v-decorator="['f3', {initialValue: initValue('f3')}]" autocomplete="off" addonAfter="mmHg"></a-input>
+                </a-form-item>
+                <a-form-item label="氧饱和度:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="no-border">
+                  <a-input style="width: 240px;" v-decorator="['f4', { initialValue: initValue('f4')}]" autocomplete="off" addonAfter="%"></a-input>
                 </a-form-item>
               </div>
-              <a-form-item label="(3) 肺功能结论:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
-                <a-radio-group v-decorator="['d', {...require1, initialValue: initValue('d')}]" @change="changeRadio($event, 'controld')">
-                  <a-radio value="1">通气功能正常</a-radio>
-                  <a-radio value="-1">通气功能减退</a-radio>
+              <a-form-item label="不做原因:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="chooseNo">
+                <a-radio-group v-decorator="['a11', {...selectRequired, initialValue: initValue('a11')}]" @change="changeRadio($event, 'controla112')">
+                  <a-radio value="1">疾病严重</a-radio>
+                  <a-radio value="2">其他</a-radio>
                 </a-radio-group>
               </a-form-item>
-              <a-form-item label="通气功能减退类型:" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" class="border-dotted" v-if="controld">
-                <a-radio-group v-decorator="['e12', {...require1, initialValue: initValue('e12')}]">
-                  <a-radio value="1">阻塞性</a-radio>
-                  <a-radio value="2">限制性</a-radio>
-                  <a-radio value="3">混合型</a-radio>
-                </a-radio-group>
-              </a-form-item>
-              <a-form-item label="(4) 呼出气一氧化氮(FeNO):" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
-                <a-input addonAfter="ppb" style="width: 240px;" v-decorator="['d1', {initialValue: initValue('d1')}]" autocomplete="off"></a-input>
-              </a-form-item>
-              <a-form-item label="(5) 6分钟步行试验总距离:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
-                <a-input addonAfter="m" style="width: 240px;" v-decorator="['e', { initialValue: initValue('e')}]" autocomplete="off"></a-input>
-              </a-form-item>
-              <a-form-item label="(6) 血气分析:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
-              </a-form-item>
-              <a-form-item label="检查日期" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                <a-date-picker placeholder="请选择" v-decorator="['f5', {initialValue: initValue('f5', 'time')}]" :disabledDate="disabledDate" style="width: 240px;"></a-date-picker>
-              </a-form-item> 
-              <a-form-item label="PH:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="no-border">
-                <a-input style="width: 240px;" v-decorator="['f', { initialValue: initValue('f')}]" autocomplete="off"></a-input>
-              </a-form-item>
-              <a-form-item label="氧分压:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="no-border">
-                <a-input style="width: 240px;" v-decorator="['f1', { initialValue: initValue('f1')}]" addonAfter="mmHg" autocomplete="off"></a-input>
-              </a-form-item>
-              <a-form-item label="二氧化碳分压:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="no-border">
-                <a-input style="width: 240px;" v-decorator="['f2', { initialValue: initValue('f2')}]" addonAfter="mmHg" autocomplete="off"></a-input>
-              </a-form-item>
-              <a-form-item label="肺动脉氧分压差:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="no-border">
-                <a-input style="width: 240px;" v-decorator="['f3', {initialValue: initValue('f3')}]" autocomplete="off" addonAfter="mmHg"></a-input>
-              </a-form-item>
-              <a-form-item label="氧饱和度:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="no-border">
-                <a-input style="width: 240px;" v-decorator="['f4', { initialValue: initValue('f4')}]" autocomplete="off" addonAfter="%"></a-input>
+              <a-form-item label="其他原因:" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" class="no-border" v-if="controla112">
+                <a-input style="width: 240px;" v-decorator="['a111', {...inputRequired, initialValue: initValue('a111')}]" autocomplete="off"></a-input>
               </a-form-item>
             </div>
           </a-form>
@@ -530,10 +546,6 @@ export default {
   data() {
     return {
       showOcr: false,
-      //   previewVisible1: false,
-      //   previewImage1: '',
-      //   previewVisible2: false,
-      //   previewImage2: '',
       uploadUrl: process.env.VUE_APP_API_UPLOAD_URL,
       viewPicUrl: process.env.VUE_APP_API_VIEW_PIC_URL,
       fileList1: [],
@@ -642,7 +654,10 @@ export default {
       executeStatus: false,
       isGroup: this.$ls.get(ACCESS_TOKEN).roleId === 1 || false,
       canEdit: false,
-      submitInfo: undefined
+      submitInfo: undefined,
+      controla1: false,
+      chooseNo: false,
+      controla112: false
     }
   },
   created() {
@@ -674,6 +689,20 @@ export default {
     changeRadio(e, t) {
       if (t === 'controld') {
         if (e.target.value === '-1') {
+          this[t] = true
+        } else {
+          this[t] = false
+        }
+      } else if(t === 'controla1') {
+        if (e.target.value === '1') {
+          this[t] = true
+          this.chooseNo = false
+        } else {
+          this[t] = false
+          this.chooseNo = true
+        }
+      } else if(t === 'controla112') {
+        if (e.target.value === '2') {
           this[t] = true
         } else {
           this[t] = false
@@ -778,6 +807,15 @@ export default {
     },
     dealAnswers(answer) {
       if (answer && !_.isEmpty(answer)) {
+        if(answer.a1 === 1) {
+          this.controla1 = true
+        }
+        if(answer.a1 === -1) {
+          this.chooseNo = true
+        }
+        if(answer.a11 === '2') {
+          this.controla112 = true
+        }
         if (answer.a21 === 1) {
           this.controla21 = true
         }
@@ -1418,7 +1456,7 @@ export default {
       line-height: 40px;
     }
 
-    padding: 20px 20px 40px;
+    padding: 20px 20px 50px;
 
     .ant-form-item {
       // padding-bottom: 10px;
