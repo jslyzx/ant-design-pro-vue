@@ -514,7 +514,7 @@
                   <a-radio value="2">其他</a-radio>
                 </a-radio-group>
               </a-form-item>
-              <a-form-item label="其他原因:" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" class="no-border" v-if="controla112">
+              <a-form-item label="其他原因:" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" class="no-border" v-if="chooseNo && controla112">
                 <a-input style="width: 240px;" v-decorator="['a111', {...inputRequired, initialValue: initValue('a111')}]" autocomplete="off"></a-input>
               </a-form-item>
             </div>
