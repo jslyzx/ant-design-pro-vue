@@ -56,7 +56,7 @@ const toolbarOptions = [
     'align': []
   }],
   ['clean'], // remove formatting button
-  ['link', 'image']
+  ['link', 'image', 'video']
 ]
 const handlers = {
   image: function image() {
