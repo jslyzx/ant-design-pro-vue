@@ -109,7 +109,6 @@ const handlers = {
         };
         xhr.send(formData)
       });
-      debugger
       this.container.appendChild(fileInput);
     }
     fileInput.click();

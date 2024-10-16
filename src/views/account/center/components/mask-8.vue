@@ -1063,7 +1063,6 @@ export default {
             title: '提示',
             content: res.data.info
           });
-          // debugger
           that.fgnxgjc = _.extend(that.fgnxgjc || {}, that.dealAnswers(res.data))
           // that.form.setFieldsValue(that.fgnxgjc)
         })
