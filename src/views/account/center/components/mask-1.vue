@@ -219,7 +219,7 @@
                   <a-checkbox-group v-decorator="['b7111', {...selectRequired, initialValue: initValue('b7111', 'array')}]" class="control-m-line">
                     <a-checkbox value="1">脑梗死</a-checkbox>
                     <a-checkbox value="2">短暂性缺血发作</a-checkbox>
-                    <a-checkbox value="3">脑出血性</a-checkbox>
+                    <a-checkbox value="3">脑出血</a-checkbox>
                     <a-checkbox value="4">帕金森</a-checkbox>
                     <a-checkbox value="5">脑膜炎</a-checkbox>
                     <a-checkbox value="6">重症肌无力</a-checkbox>
@@ -350,8 +350,6 @@
                       <a-checkbox value="2">肺</a-checkbox>
                       <a-checkbox value="3">乳腺</a-checkbox>
                       <a-checkbox value="4">胃肠道</a-checkbox>
-                      <!-- <a-checkbox value="5">小肠</a-checkbox>
-                      <a-checkbox value="6">结肠</a-checkbox> -->
                       <a-checkbox value="5">肝</a-checkbox>
                       <a-checkbox value="6">胰腺</a-checkbox>
                       <a-checkbox value="7">肾</a-checkbox>
@@ -460,13 +458,15 @@
                   <a-radio value="3">无吸烟</a-radio>
                 </a-radio-group>
               </a-form-item>
-              <a-form-item label="吸烟数量" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controlb191">
-                <a-input addonAfter="年" addonBefore="吸烟" style="width: 240px;" v-decorator="['b192', {...inputRequired, initialValue: initValue('b192')}]" autocomplete="off" @blur="getIndex"></a-input>
-                <a-input addonAfter="包" addonBefore="每天" style="width: 240px;margin-left: 20px;" v-decorator="['b193', {...inputRequired, initialValue: initValue('b193')}]" autocomplete="off" @blur="getIndex"></a-input>
-              </a-form-item>
-              <a-form-item label="吸烟指数" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controlb191">
-                <a-input addonAfter="包*年" style="width: 240px;" :readOnly="true" v-decorator="['b191', { initialValue: initValue('b191')}]" autocomplete="off"></a-input>
-              </a-form-item>
+              <div v-if="controlb191">
+                <a-form-item label="吸烟数量" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
+                  <a-input addonAfter="年" addonBefore="吸烟" style="width: 240px;" v-decorator="['b192', {...inputRequired, initialValue: initValue('b192')}]" autocomplete="off" @blur="getIndex"></a-input>
+                  <a-input addonAfter="包" addonBefore="每天" style="width: 240px;margin-left: 20px;" v-decorator="['b193', {...inputRequired, initialValue: initValue('b193')}]" autocomplete="off" @blur="getIndex"></a-input>
+                </a-form-item>
+                <a-form-item label="吸烟指数" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
+                  <a-input addonAfter="包*年" style="width: 240px;" :readOnly="true" v-decorator="['b191', { initialValue: initValue('b191')}]" autocomplete="off"></a-input>
+                </a-form-item>
+              </div>
               <a-form-item label="(11) 职业粉尘接触及生物燃料接触史" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-radio-group v-decorator="['b22', {...require2, initialValue: initValue('b22')}]">
                   <a-radio value="1">有</a-radio>
@@ -714,9 +714,6 @@ export default {
         console.log(error)
       })
   },
-  mounted() {
-    this.form.setFieldsValue({ b70: '-1' })
-  },
   methods: {
     ...mapActions(['CloseSidebar']),
     moment,
@@ -728,8 +725,13 @@ export default {
       if (!Number.isInteger(value)) {
         return callback('请输入数字！');
       } else {
-        if (value < this.form.getFieldValue('b2')) {
-          return callback('过去两年因急性加重而导致住院的次数不能小于过去一年因急性加重而导致住院的次数');
+        if(this.form.getFieldValue('b2') || this.form.getFieldValue('b2') === '0') {
+          if (value < this.form.getFieldValue('b2')) {
+            return callback('过去两年因急性加重而导致住院的次数不能小于过去一年因急性加重而导致住院的次数');
+          } else {
+            this.form.setFieldsValue({'b2': this.form.getFieldValue('b2') + ''})
+            return callback();
+          }
         } else {
           return callback();
         }
@@ -743,8 +745,13 @@ export default {
       if (!Number.isInteger(value)) {
         return callback('请输入数字！');
       } else {
-        if (value > this.form.getFieldValue('b1')) {
-          return callback('过去一年因急性加重而导致住院的次数不能大于过去两年因急性加重而导致住院的次数');
+        if(this.form.getFieldValue('b1') || this.form.getFieldValue('b1') === '0') {
+          if (value > this.form.getFieldValue('b1')) {
+            return callback('过去一年因急性加重而导致住院的次数不能大于过去两年因急性加重而导致住院的次数');
+          } else {
+            this.form.setFieldsValue({'b1': this.form.getFieldValue('b1') + ''})
+            return callback();
+          }
         } else {
           return callback();
         }
@@ -975,7 +982,7 @@ export default {
         }
         if (answer.b143) {
           splitArr = answer.b143.split(',')
-          if (splitArr.indexOf('16') > -1) {
+          if (splitArr.indexOf('14') > -1) {
             that.controlb144 = true
           }
         }
@@ -1081,6 +1088,7 @@ export default {
             b13: '-1',
             b14: '-1',
             b15: '-1',
+            b711: '-1',
             b161: ['1']
           })
         })
@@ -1101,6 +1109,7 @@ export default {
         this[t] = true
       } else {
         this[t] = false
+
       }
     },
     handleClick(e) {
@@ -1131,10 +1140,16 @@ export default {
       const { form: { validateFieldsAndScroll } } = this
       validateFieldsAndScroll((errors, values) => {
         if (parseInt(this.form.getFieldValue('b2')) > parseInt(this.form.getFieldValue('b3'))) {
-          // this.$message.warning('过去一年的急性加重次数必须大于等于过去一年的住院急性加重次数');
           Modal.warning({
             title: '提示',
             content: '过去一年的急性加重次数必须大于等于过去一年的住院急性加重次数'
+          });
+          return false
+        }
+        if (parseInt(this.form.getFieldValue('b2')) > parseInt(this.form.getFieldValue('b1'))) {
+          Modal.warning({
+            title: '提示',
+            content: '过去两年因急性加重而导致住院的次数必须大于等于过去一年因急性加重而导致住院的次数'
           });
           return false
         }
@@ -1211,6 +1226,20 @@ export default {
     },
     save() {
       var re = this.form.getFieldsValue()
+      if (parseInt(this.form.getFieldValue('b2')) > parseInt(this.form.getFieldValue('b3'))) {
+        Modal.warning({
+          title: '提示',
+          content: '过去一年的急性加重次数必须大于等于过去一年的住院急性加重次数'
+        });
+        return false
+      }
+      if (parseInt(this.form.getFieldValue('b2')) > parseInt(this.form.getFieldValue('b1'))) {
+        Modal.warning({
+          title: '提示',
+          content: '过去两年因急性加重而导致住院的次数必须大于等于过去一年因急性加重而导致住院的次数'
+        });
+        return false
+      }
       var that = this
       re = {
         ...re,

@@ -25,11 +25,11 @@
               <a-tabs defaultActiveKey="1">
                 <a-tab-pane tab="常用检索" key="1">
                   <div class="commonRetrieval">
-                    <p @click="tableSearch(1)">未执行任务</p>
-                    <p @click="tableSearch(2)">未执行随访</p>
-                    <p @click="tableSearch(3)">未执行访视</p>
-                    <p @click="tableSearch(4)">已执行随访</p>
-                    <p @click="tableSearch(5)">已执行访视</p>
+                    <p @click="tableSearch(1)">未执行半年随访</p>
+                    <p @click="tableSearch(2)">未执行年访视</p>
+                    <p @click="tableSearch(3)">已执行半年随访</p>
+                    <p @click="tableSearch(4)">已执行年访视</p>
+                    <p @click="tableSearch(5)">待提交访视</p>
                     <p @click="tableSearch(6)">全部任务</p>
                   </div>
                 </a-tab-pane>
@@ -94,8 +94,8 @@
         <a-divider type="vertical" />
         <a @click="ignore(record)">忽略</a>
         <a-divider type="vertical" />
-        <!-- TODO 增加判断条件 -->
-        <a @click="handleSubmit(record)">提交</a>
+        <a @click="handleSubmit(record)" v-if="record.executeStatus == 3">提交</a>
+        <span v-else style="color:rgba(0, 0, 0, 0.25)">提交</span>
       </template>
     </s-table>
     <create-form ref="createModal" @ok="handleOk" />

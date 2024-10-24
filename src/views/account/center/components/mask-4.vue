@@ -77,7 +77,7 @@
               </a-form-item>
               <div v-if="controlb4">
                 <a-form-item label="4-1 规律抗生素治疗:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                  <a-checkbox-group v-decorator="['b41', {...selectRequired, initialValue: initValue('b41', 'array')}]" @change="checkb4">
+                  <a-checkbox-group v-decorator="['b41', {...selectRequired, initialValue: initValue('b41', 'array')}]">
                     <a-checkbox value="0" @change="handleNone($event, 'b41', '0', ['controlb411', 'controlb412'])">无</a-checkbox>
                     <a-checkbox value="1" :disabled="detect('b41', '0')" :checked="controlb411" @change="changeSelect($event, 'controlb411')">口服</a-checkbox>
                     <a-checkbox value="2" :disabled="detect('b41', '0')" :checked="controlb412" @change="changeSelect($event, 'controlb412')">吸入/雾化</a-checkbox>
@@ -454,15 +454,21 @@ export default {
       validateFieldsAndScroll((errors, values) => {
         if (!errors) {
           var re = this.form.getFieldsValue()
-          var that = this
-          if(re.b4 === '1' && re.b41.indexOf('0') > -1 && re.b43.indexOf('0') > -1 && re.b48.indexOf('0') > -1 ) {
-            // that.$message.error('有规律的呼吸疾病药物治疗不可同时勾选三项无')
+          if(re.b4 === '1' && re.b41.indexOf('0') > -1 && re.b43.indexOf('0') > -1 && re.b48.indexOf('0') > -1 && re.b46 === '-1' && re.b47 === '') {
             Modal.error({
               title: '提示',
-              content: '有规律的呼吸疾病药物治疗不可同时勾选三项无'
+              content: '有规律的呼吸系统疾病治疗请至少选择一种治疗方式'
             });
-            return false
+            return
           }
+          if(re.b5 === '1' && re.b51 === '-1' && re.b52.indexOf('0') > -1) {
+            Modal.error({
+              title: '提示',
+              content: 'ABPA相关治疗请至少选择一种'
+            });
+            return
+          }
+          var that = this
           re = {
             ...re,
             'b31': typeof re['b31'] !== 'undefined' ? re['b31'].join(',') : '',
@@ -570,6 +576,9 @@ export default {
           if (splitArr.indexOf('2') > -1) {
             this.controlb412 = true
           }
+          if(splitArr.indexOf('0') > -1) {
+
+          }
         }
         if (answer.b31) {
           splitArr = answer.b31.split(',')
@@ -670,6 +679,20 @@ export default {
     },
     save() {
       var re = this.form.getFieldsValue()
+      if(re.b4 === '1' && re.b41.indexOf('0') > -1 && re.b43.indexOf('0') > -1 && re.b48.indexOf('0') > -1 && re.b46 === '-1' && re.b47 === '') {
+        Modal.error({
+          title: '提示',
+          content: '有规律的呼吸系统疾病治疗请至少选择一种治疗方式'
+        });
+        return
+      }
+      if(re.b5 === '1' && re.b51 === '-1' && re.b52.indexOf('0') > -1) {
+        Modal.error({
+          title: '提示',
+          content: 'ABPA相关治疗请至少选择一种'
+        });
+        return
+      }
       re = {
         ...re,
         'b31': typeof re['b31'] !== 'undefined' ? re['b31'].join(',') : '',
@@ -807,15 +830,17 @@ export default {
       }
     },
     detect(d, v) {
-      if(Array.isArray(this.form.getFieldValue(d)) && this.form.getFieldValue(d).indexOf(v) > -1) {
+      if(typeof this.form.getFieldValue(d) === 'undefined') {
+        if(this.hxxt[d] && this.hxxt[d].indexOf(v) > -1) {
+          return true
+        } else {
+          return false
+        }
+      } else if(Array.isArray(this.form.getFieldValue(d)) && this.form.getFieldValue(d).indexOf(v) > -1) {
         return true
       } else {
         return false
       }
-    },
-    checkb4() {
-      var re = this.form.getFieldsValue()
-      console.log(re)
     }
   }
 }

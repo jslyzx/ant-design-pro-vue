@@ -96,108 +96,108 @@
                   <div v-if="controla4">
                     <a-form-item label="分离到微生物:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3">
                       <a-checkbox-group v-decorator="['a42', {...selectRequired, initialValue: initValue('a42', 'array')}]" class="control-m-line">
-                        <a-checkbox value="0" @change="showList($event, '铜绿假单胞菌', 'controla420', true)">铜绿假单胞菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[0]" v-if="controla420" :type1="type1" @listen="changeType1" :isFirst="true" :picSource="picList1[0]" @changePic1="changePic1($event, 0)"></add-table>
-                        <a-checkbox value="2" @change="showList($event, '肺炎克雷伯菌', 'controla422', true)">肺炎克雷伯菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[2]" v-if="controla422" :isFirst="true" :picSource="picList1[2]" @changePic1="changePic1($event, 2)"></add-table>
-                        <a-checkbox value="10" @change="showList($event, '大肠杆菌', 'controla4210', true)">大肠杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[10]" v-if="controla4210" :isFirst="true" :picSource="picList1[10]" @changePic1="changePic1($event, 10)"></add-table>
-                        <a-checkbox value="3" @change="showList($event, '阴沟肠杆菌', 'controla423', true)">阴沟肠杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[3]" v-if="controla423" :isFirst="true" :picSource="picList1[3]" @changePic1="changePic1($event, 3)"></add-table>
-                        <a-checkbox value="1" @change="showList($event, '肺炎链球菌', 'controla421', true)">肺炎链球菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[1]" v-if="controla421" :isFirst="true" :picSource="picList1[1]" @changePic1="changePic1($event, 1)"></add-table>
-                        <a-checkbox value="6" @change="showList($event, '金黄色葡萄球菌', 'controla426', true)">金黄色葡萄球菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[6]" v-if="controla426" :isFirst="true" :picSource="picList1[6]" @changePic1="changePic1($event, 6)"></add-table>
-                        <a-checkbox value="8" @change="showList($event, '流感嗜血杆菌', 'controla428', true)">流感嗜血杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[8]" v-if="controla428" :isFirst="true" :picSource="picList1[8]" @changePic1="changePic1($event, 8)"></add-table>
-                        <a-checkbox value="4" @change="showList($event, '副流感嗜血杆菌', 'controla424', true)">副流感嗜血杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[4]" v-if="controla424" :isFirst="true" :picSource="picList1[4]" @changePic1="changePic1($event, 4)"></add-table>
-                        <a-checkbox value="9" @change="showList($event, '卡他莫拉菌', 'controla429', true)">卡他莫拉菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[9]" v-if="controla429" :isFirst="true" :picSource="picList1[9]" @changePic1="changePic1($event, 9)"></add-table>
-                        <a-checkbox value="5" @change="showList($event, '鲍曼不动杆菌', 'controla425', true)">鲍曼不动杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[5]" v-if="controla425" :isFirst="true" :picSource="picList1[5]" @changePic1="changePic1($event, 5)"></add-table>
-                        <a-checkbox value="11" @change="showList($event, '洋葱霍尔德菌', 'controla4211', true)">洋葱霍尔德菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[11]" v-if="controla4211" :isFirst="true" :picSource="picList1[11]" @changePic1="changePic1($event, 11)"></add-table>
-                        <a-checkbox value="12" @change="showList($event, '嗜麦芽窄食单胞菌', 'controla4212', true)">嗜麦芽窄食单胞菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[12]" v-if="controla4212" :isFirst="true" :picSource="picList1[12]" @changePic1="changePic1($event, 12)"></add-table>
-                        <a-checkbox value="7" @change="showList($event, '其他', 'controla427', true)">其他</a-checkbox>
-                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla427" @change="otherChange($event, 7, true)" autocomplete="off" v-decorator="['otherName1', {...inputRequired, initialValue: otherName1}]"></a-input>
-                        <add-table :dataSource="optionDataSource[7]" v-if="controla427" :isFirst="true" :picSource="picList1[7]" @changePic1="changePic1($event, 7)"></add-table>
+                        <a-checkbox value="0" @change="showList($event, '铜绿假单胞菌', 'controla420', '1')">铜绿假单胞菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource1[0]" v-if="controla420" :type1="type1" @listen="changeType1" :isFirst="true" :picSource="picList1[0]" @changePic1="changePic1($event, 0)"></add-table>
+                        <a-checkbox value="2" @change="showList($event, '肺炎克雷伯菌', 'controla422', '1')">肺炎克雷伯菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource1[2]" v-if="controla422" :isFirst="true" :picSource="picList1[2]" @changePic1="changePic1($event, 2)"></add-table>
+                        <a-checkbox value="10" @change="showList($event, '大肠杆菌', 'controla4210', '1')">大肠杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource1[10]" v-if="controla4210" :isFirst="true" :picSource="picList1[10]" @changePic1="changePic1($event, 10)"></add-table>
+                        <a-checkbox value="3" @change="showList($event, '阴沟肠杆菌', 'controla423', '1')">阴沟肠杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource1[3]" v-if="controla423" :isFirst="true" :picSource="picList1[3]" @changePic1="changePic1($event, 3)"></add-table>
+                        <a-checkbox value="1" @change="showList($event, '肺炎链球菌', 'controla421', '1')">肺炎链球菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource1[1]" v-if="controla421" :isFirst="true" :picSource="picList1[1]" @changePic1="changePic1($event, 1)"></add-table>
+                        <a-checkbox value="6" @change="showList($event, '金黄色葡萄球菌', 'controla426', '1')">金黄色葡萄球菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource1[6]" v-if="controla426" :isFirst="true" :picSource="picList1[6]" @changePic1="changePic1($event, 6)"></add-table>
+                        <a-checkbox value="8" @change="showList($event, '流感嗜血杆菌', 'controla428', '1')">流感嗜血杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource1[8]" v-if="controla428" :isFirst="true" :picSource="picList1[8]" @changePic1="changePic1($event, 8)"></add-table>
+                        <a-checkbox value="4" @change="showList($event, '副流感嗜血杆菌', 'controla424', '1')">副流感嗜血杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource1[4]" v-if="controla424" :isFirst="true" :picSource="picList1[4]" @changePic1="changePic1($event, 4)"></add-table>
+                        <a-checkbox value="9" @change="showList($event, '卡他莫拉菌', 'controla429', '1')">卡他莫拉菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource1[9]" v-if="controla429" :isFirst="true" :picSource="picList1[9]" @changePic1="changePic1($event, 9)"></add-table>
+                        <a-checkbox value="5" @change="showList($event, '鲍曼不动杆菌', 'controla425', '1')">鲍曼不动杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource1[5]" v-if="controla425" :isFirst="true" :picSource="picList1[5]" @changePic1="changePic1($event, 5)"></add-table>
+                        <a-checkbox value="11" @change="showList($event, '洋葱霍尔德菌', 'controla4211', '1')">洋葱霍尔德菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource1[11]" v-if="controla4211" :isFirst="true" :picSource="picList1[11]" @changePic1="changePic1($event, 11)"></add-table>
+                        <a-checkbox value="12" @change="showList($event, '嗜麦芽窄食单胞菌', 'controla4212', '1')">嗜麦芽窄食单胞菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource1[12]" v-if="controla4212" :isFirst="true" :picSource="picList1[12]" @changePic1="changePic1($event, 12)"></add-table>
+                        <a-checkbox value="7" @change="showList($event, '其他', 'controla427', '1')">其他</a-checkbox>
+                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla427" @change="otherChange($event, 7, '1')" autocomplete="off" v-decorator="['otherName1', {...inputRequired, initialValue: otherName1}]"></a-input>
+                        <add-table :dataSource="optionDataSource1[7]" v-if="controla427" :isFirst="true" :picSource="picList1[7]" @changePic1="changePic1($event, 7)"></add-table>
                       </a-checkbox-group>
                     </a-form-item>
-                    <a-form-item label="铜绿假单胞菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla420">
+                    <a-form-item label="铜绿假单胞菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla420">
                       <a-radio-group v-decorator="['a421', {...require1, initialValue: initValue('a421')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="肺炎克雷伯菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla422">
+                    <a-form-item label="肺炎克雷伯菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla422">
                       <a-radio-group v-decorator="['a422', {...require1, initialValue: initValue('a422')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="大肠杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4210">
+                    <a-form-item label="大肠杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4210">
                       <a-radio-group v-decorator="['a423', {...require1, initialValue: initValue('a423')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="阴沟肠杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla423">
+                    <a-form-item label="阴沟肠杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla423">
                       <a-radio-group v-decorator="['a424', {...require1, initialValue: initValue('a424')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="肺炎链球菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla421">
+                    <a-form-item label="肺炎链球菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla421">
                       <a-radio-group v-decorator="['a425', {...require1, initialValue: initValue('a425')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="金黄色葡萄球菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla426">
+                    <a-form-item label="金黄色葡萄球菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla426">
                       <a-radio-group v-decorator="['a426', {...require1, initialValue: initValue('a426')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="流感嗜血杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla428">
+                    <a-form-item label="流感嗜血杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla428">
                       <a-radio-group v-decorator="['a427', {...require1, initialValue: initValue('a427')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="副流感嗜血杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla424">
+                    <a-form-item label="副流感嗜血杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla424">
                       <a-radio-group v-decorator="['a428', {...require1, initialValue: initValue('a428')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="卡他莫拉菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla429">
+                    <a-form-item label="卡他莫拉菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla429">
                       <a-radio-group v-decorator="['a429', {...require1, initialValue: initValue('a429')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="鲍曼不动杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla425">
+                    <a-form-item label="鲍曼不动杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla425">
                       <a-radio-group v-decorator="['a4210', {...require1, initialValue: initValue('a4210')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="洋葱霍尔德菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4211">
+                    <a-form-item label="洋葱霍尔德菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4211">
                       <a-radio-group v-decorator="['a4211', {...require1, initialValue: initValue('a4211')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="嗜麦芽窄食单胞菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4212">
+                    <a-form-item label="嗜麦芽窄食单胞菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4212">
                       <a-radio-group v-decorator="['a4212', {...require1, initialValue: initValue('a4212')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="其他检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla427">
+                    <a-form-item label="其他检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla427">
                       <a-radio-group v-decorator="['a4213', {...require1, initialValue: initValue('a4213')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
@@ -232,108 +232,108 @@
                   <div v-if="controla45">
                     <a-form-item label="分离到微生物:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3">
                       <a-checkbox-group v-decorator="['a452', {...selectRequired, initialValue: initValue('a452', 'array')}]" class="control-m-line">
-                        <a-checkbox value="0" @change="showList($event, '铜绿假单胞菌', 'controla4520', true)">铜绿假单胞菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[0]" v-if="controla4520" :type1="type1" @listen="changeType1" :isFirst="true" :picSource="picList1[0]" @changePic1="changePic1($event, 0)"></add-table>
-                        <a-checkbox value="2" @change="showList($event, '肺炎克雷伯菌', 'controla4522', true)">肺炎克雷伯菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[2]" v-if="controla4522" :isFirst="true" :picSource="picList1[2]" @changePic1="changePic1($event, 2)"></add-table>
-                        <a-checkbox value="10" @change="showList($event, '大肠杆菌', 'controla45210', true)">大肠杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[10]" v-if="controla45210" :isFirst="true" :picSource="picList1[10]" @changePic1="changePic1($event, 10)"></add-table>
-                        <a-checkbox value="3" @change="showList($event, '阴沟肠杆菌', 'controla4523', true)">阴沟肠杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[3]" v-if="controla4523" :isFirst="true" :picSource="picList1[3]" @changePic1="changePic1($event, 3)"></add-table>
-                        <a-checkbox value="1" @change="showList($event, '肺炎链球菌', 'controla4521', true)">肺炎链球菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[1]" v-if="controla4521" :isFirst="true" :picSource="picList1[1]" @changePic1="changePic1($event, 1)"></add-table>
-                        <a-checkbox value="6" @change="showList($event, '金黄色葡萄球菌', 'controla4526', true)">金黄色葡萄球菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[6]" v-if="controla4526" :isFirst="true" :picSource="picList1[6]" @changePic1="changePic1($event, 6)"></add-table>
-                        <a-checkbox value="8" @change="showList($event, '流感嗜血杆菌', 'controla4528', true)">流感嗜血杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[8]" v-if="controla4528" :isFirst="true" :picSource="picList1[8]" @changePic1="changePic1($event, 8)"></add-table>
-                        <a-checkbox value="4" @change="showList($event, '副流感嗜血杆菌', 'controla4524', true)">副流感嗜血杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[4]" v-if="controla4524" :isFirst="true" :picSource="picList1[4]" @changePic1="changePic1($event, 4)"></add-table>
-                        <a-checkbox value="9" @change="showList($event, '卡他莫拉菌', 'controla4529', true)">卡他莫拉菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[9]" v-if="controla4529" :isFirst="true" :picSource="picList1[9]" @changePic1="changePic1($event, 9)"></add-table>
-                        <a-checkbox value="5" @change="showList($event, '鲍曼不动杆菌', 'controla4525', true)">鲍曼不动杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[5]" v-if="controla4525" :isFirst="true" :picSource="picList1[5]" @changePic1="changePic1($event, 5)"></add-table>
-                        <a-checkbox value="11" @change="showList($event, '洋葱霍尔德菌', 'controla45211', true)">洋葱霍尔德菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[11]" v-if="controla45211" :isFirst="true" :picSource="picList1[11]" @changePic1="changePic1($event, 11)"></add-table>
-                        <a-checkbox value="12" @change="showList($event, '嗜麦芽窄食单胞菌', 'controla45212', true)">嗜麦芽窄食单胞菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[12]" v-if="controla45212" :isFirst="true" :picSource="picList1[12]" @changePic1="changePic1($event, 12)"></add-table>
-                        <a-checkbox value="7" @change="showList($event, '其他', 'controla4527', true)">其他</a-checkbox>
-                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla4527" @change="otherChange($event, 7, true)" autocomplete="off" v-decorator="['a453', {...inputRequired, initialValue: initValue('a453')}]"></a-input>
-                        <add-table :dataSource="optionDataSource[7]" v-if="controla4527" :isFirst="true" :picSource="picList1[7]" @changePic1="changePic1($event, 7)"></add-table>
+                        <a-checkbox value="0" @change="showList($event, '铜绿假单胞菌', 'controla4520', '2')">铜绿假单胞菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource2[0]" v-if="controla4520" :type1="type2" @listen="changeType2" :isFirst="true" :picSource="picList1[0]" @changePic1="changePic1($event, 0)"></add-table>
+                        <a-checkbox value="2" @change="showList($event, '肺炎克雷伯菌', 'controla4522', '2')">肺炎克雷伯菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource2[2]" v-if="controla4522" :isFirst="true" :picSource="picList1[2]" @changePic1="changePic1($event, 2)"></add-table>
+                        <a-checkbox value="10" @change="showList($event, '大肠杆菌', 'controla45210', '2')">大肠杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource2[10]" v-if="controla45210" :isFirst="true" :picSource="picList1[10]" @changePic1="changePic1($event, 10)"></add-table>
+                        <a-checkbox value="3" @change="showList($event, '阴沟肠杆菌', 'controla4523', '2')">阴沟肠杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource2[3]" v-if="controla4523" :isFirst="true" :picSource="picList1[3]" @changePic1="changePic1($event, 3)"></add-table>
+                        <a-checkbox value="1" @change="showList($event, '肺炎链球菌', 'controla4521', '2')">肺炎链球菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource2[1]" v-if="controla4521" :isFirst="true" :picSource="picList1[1]" @changePic1="changePic1($event, 1)"></add-table>
+                        <a-checkbox value="6" @change="showList($event, '金黄色葡萄球菌', 'controla4526', '2')">金黄色葡萄球菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource2[6]" v-if="controla4526" :isFirst="true" :picSource="picList1[6]" @changePic1="changePic1($event, 6)"></add-table>
+                        <a-checkbox value="8" @change="showList($event, '流感嗜血杆菌', 'controla4528', '2')">流感嗜血杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource2[8]" v-if="controla4528" :isFirst="true" :picSource="picList1[8]" @changePic1="changePic1($event, 8)"></add-table>
+                        <a-checkbox value="4" @change="showList($event, '副流感嗜血杆菌', 'controla4524', '2')">副流感嗜血杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource2[4]" v-if="controla4524" :isFirst="true" :picSource="picList1[4]" @changePic1="changePic1($event, 4)"></add-table>
+                        <a-checkbox value="9" @change="showList($event, '卡他莫拉菌', 'controla4529', '2')">卡他莫拉菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource2[9]" v-if="controla4529" :isFirst="true" :picSource="picList1[9]" @changePic1="changePic1($event, 9)"></add-table>
+                        <a-checkbox value="5" @change="showList($event, '鲍曼不动杆菌', 'controla4525', '2')">鲍曼不动杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource2[5]" v-if="controla4525" :isFirst="true" :picSource="picList1[5]" @changePic1="changePic1($event, 5)"></add-table>
+                        <a-checkbox value="11" @change="showList($event, '洋葱霍尔德菌', 'controla45211', '2')">洋葱霍尔德菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource2[11]" v-if="controla45211" :isFirst="true" :picSource="picList1[11]" @changePic1="changePic1($event, 11)"></add-table>
+                        <a-checkbox value="12" @change="showList($event, '嗜麦芽窄食单胞菌', 'controla45212', '2')">嗜麦芽窄食单胞菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource2[12]" v-if="controla45212" :isFirst="true" :picSource="picList1[12]" @changePic1="changePic1($event, 12)"></add-table>
+                        <a-checkbox value="7" @change="showList($event, '其他', 'controla4527', '2')">其他</a-checkbox>
+                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla4527" @change="otherChange($event, 7, '2')" autocomplete="off" v-decorator="['otherName2', {...inputRequired, initialValue: initValue('otherName2')}]"></a-input>
+                        <add-table :dataSource="optionDataSource2[7]" v-if="controla4527" :isFirst="true" :picSource="picList1[7]" @changePic1="changePic1($event, 7)"></add-table>
                       </a-checkbox-group>
                     </a-form-item>
-                    <a-form-item label="铜绿假单胞菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4520">
+                    <a-form-item label="铜绿假单胞菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4520">
                       <a-radio-group v-decorator="['a4521', {...require1, initialValue: initValue('a4521')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="肺炎克雷伯菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4522">
+                    <a-form-item label="肺炎克雷伯菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4522">
                       <a-radio-group v-decorator="['a4522', {...require1, initialValue: initValue('a4522')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="大肠杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla45210">
+                    <a-form-item label="大肠杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla45210">
                       <a-radio-group v-decorator="['a4523', {...require1, initialValue: initValue('a4523')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="阴沟肠杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4523">
+                    <a-form-item label="阴沟肠杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4523">
                       <a-radio-group v-decorator="['a5424', {...require1, initialValue: initValue('a4524')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="肺炎链球菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4521">
+                    <a-form-item label="肺炎链球菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4521">
                       <a-radio-group v-decorator="['a4525', {...require1, initialValue: initValue('a4525')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="金黄色葡萄球菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4526">
+                    <a-form-item label="金黄色葡萄球菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4526">
                       <a-radio-group v-decorator="['a4526', {...require1, initialValue: initValue('a4526')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="流感嗜血杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4528">
+                    <a-form-item label="流感嗜血杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4528">
                       <a-radio-group v-decorator="['a4527', {...require1, initialValue: initValue('a4527')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="副流感嗜血杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4524">
+                    <a-form-item label="副流感嗜血杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4524">
                       <a-radio-group v-decorator="['a4528', {...require1, initialValue: initValue('a4528')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="卡他莫拉菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4529">
+                    <a-form-item label="卡他莫拉菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4529">
                       <a-radio-group v-decorator="['a4529', {...require1, initialValue: initValue('a4529')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="鲍曼不动杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4525">
+                    <a-form-item label="鲍曼不动杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4525">
                       <a-radio-group v-decorator="['a45210', {...require1, initialValue: initValue('a45210')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="洋葱霍尔德菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla45211">
+                    <a-form-item label="洋葱霍尔德菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla45211">
                       <a-radio-group v-decorator="['a45211', {...require1, initialValue: initValue('a45211')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="嗜麦芽窄食单胞菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla45212">
+                    <a-form-item label="嗜麦芽窄食单胞菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla45212">
                       <a-radio-group v-decorator="['a45212', {...require1, initialValue: initValue('a45212')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="其他检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4527">
+                    <a-form-item label="其他检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4527">
                       <a-radio-group v-decorator="['a45213', {...require1, initialValue: initValue('a45213')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
@@ -368,108 +368,108 @@
                   <div v-if="controla46">
                     <a-form-item label="分离到微生物:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3">
                       <a-checkbox-group v-decorator="['a462', {...selectRequired, initialValue: initValue('a462', 'array')}]" class="control-m-line">
-                        <a-checkbox value="0" @change="showList($event, '铜绿假单胞菌', 'controla4620', true)">铜绿假单胞菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[0]" v-if="controla4620" :type1="type3" @listen="changeType1" :isFirst="true" :picSource="picList1[0]" @changePic1="changePic1($event, 0)"></add-table>
-                        <a-checkbox value="2" @change="showList($event, '肺炎克雷伯菌', 'controla4622', true)">肺炎克雷伯菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[2]" v-if="controla4622" :isFirst="true" :picSource="picList1[2]" @changePic1="changePic1($event, 2)"></add-table>
-                        <a-checkbox value="10" @change="showList($event, '大肠杆菌', 'controla46210', true)">大肠杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[10]" v-if="controla46210" :isFirst="true" :picSource="picList1[10]" @changePic1="changePic1($event, 10)"></add-table>
-                        <a-checkbox value="3" @change="showList($event, '阴沟肠杆菌', 'controla4623', true)">阴沟肠杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[3]" v-if="controla4623" :isFirst="true" :picSource="picList1[3]" @changePic1="changePic1($event, 3)"></add-table>
-                        <a-checkbox value="1" @change="showList($event, '肺炎链球菌', 'controla4621', true)">肺炎链球菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[1]" v-if="controla4621" :isFirst="true" :picSource="picList1[1]" @changePic1="changePic1($event, 1)"></add-table>
-                        <a-checkbox value="6" @change="showList($event, '金黄色葡萄球菌', 'controla4626', true)">金黄色葡萄球菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[6]" v-if="controla4626" :isFirst="true" :picSource="picList1[6]" @changePic1="changePic1($event, 6)"></add-table>
-                        <a-checkbox value="8" @change="showList($event, '流感嗜血杆菌', 'controla4528', true)">流感嗜血杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[8]" v-if="controla4628" :isFirst="true" :picSource="picList1[8]" @changePic1="changePic1($event, 8)"></add-table>
-                        <a-checkbox value="4" @change="showList($event, '副流感嗜血杆菌', 'controla4624', true)">副流感嗜血杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[4]" v-if="controla4624" :isFirst="true" :picSource="picList1[4]" @changePic1="changePic1($event, 4)"></add-table>
-                        <a-checkbox value="9" @change="showList($event, '卡他莫拉菌', 'controla4629', true)">卡他莫拉菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[9]" v-if="controla4629" :isFirst="true" :picSource="picList1[9]" @changePic1="changePic1($event, 9)"></add-table>
-                        <a-checkbox value="5" @change="showList($event, '鲍曼不动杆菌', 'controla4625', true)">鲍曼不动杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[5]" v-if="controla4625" :isFirst="true" :picSource="picList1[5]" @changePic1="changePic1($event, 5)"></add-table>
-                        <a-checkbox value="11" @change="showList($event, '洋葱霍尔德菌', 'controla46211', true)">洋葱霍尔德菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[11]" v-if="controla46211" :isFirst="true" :picSource="picList1[11]" @changePic1="changePic1($event, 11)"></add-table>
-                        <a-checkbox value="12" @change="showList($event, '嗜麦芽窄食单胞菌', 'controla46212', true)">嗜麦芽窄食单胞菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[12]" v-if="controla46212" :isFirst="true" :picSource="picList1[12]" @changePic1="changePic1($event, 12)"></add-table>
-                        <a-checkbox value="7" @change="showList($event, '其他', 'controla4627', true)">其他</a-checkbox>
-                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla4627" @change="otherChange($event, 7, true)" autocomplete="off" v-decorator="['a463', {...inputRequired, initialValue: initValue('a463')}]"></a-input>
-                        <add-table :dataSource="optionDataSource[7]" v-if="controla4627" :isFirst="true" :picSource="picList1[7]" @changePic1="changePic1($event, 7)"></add-table>
+                        <a-checkbox value="0" @change="showList($event, '铜绿假单胞菌', 'controla4620', '3')">铜绿假单胞菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource3[0]" v-if="controla4620" :type1="type3" @listen="changeType3" :isFirst="true" :picSource="picList1[0]" @changePic1="changePic1($event, 0)"></add-table>
+                        <a-checkbox value="2" @change="showList($event, '肺炎克雷伯菌', 'controla4622', '3')">肺炎克雷伯菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource3[2]" v-if="controla4622" :isFirst="true" :picSource="picList1[2]" @changePic1="changePic1($event, 2)"></add-table>
+                        <a-checkbox value="10" @change="showList($event, '大肠杆菌', 'controla46210', '3')">大肠杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource3[10]" v-if="controla46210" :isFirst="true" :picSource="picList1[10]" @changePic1="changePic1($event, 10)"></add-table>
+                        <a-checkbox value="3" @change="showList($event, '阴沟肠杆菌', 'controla4623', '3')">阴沟肠杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource3[3]" v-if="controla4623" :isFirst="true" :picSource="picList1[3]" @changePic1="changePic1($event, 3)"></add-table>
+                        <a-checkbox value="1" @change="showList($event, '肺炎链球菌', 'controla4621', '3')">肺炎链球菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource3[1]" v-if="controla4621" :isFirst="true" :picSource="picList1[1]" @changePic1="changePic1($event, 1)"></add-table>
+                        <a-checkbox value="6" @change="showList($event, '金黄色葡萄球菌', 'controla4626', '3')">金黄色葡萄球菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource3[6]" v-if="controla4626" :isFirst="true" :picSource="picList1[6]" @changePic1="changePic1($event, 6)"></add-table>
+                        <a-checkbox value="8" @change="showList($event, '流感嗜血杆菌', 'controla4628', '3')">流感嗜血杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource3[8]" v-if="controla4628" :isFirst="true" :picSource="picList1[8]" @changePic1="changePic1($event, 8)"></add-table>
+                        <a-checkbox value="4" @change="showList($event, '副流感嗜血杆菌', 'controla4624', '3')">副流感嗜血杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource3[4]" v-if="controla4624" :isFirst="true" :picSource="picList1[4]" @changePic1="changePic1($event, 4)"></add-table>
+                        <a-checkbox value="9" @change="showList($event, '卡他莫拉菌', 'controla4629', '3')">卡他莫拉菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource3[9]" v-if="controla4629" :isFirst="true" :picSource="picList1[9]" @changePic1="changePic1($event, 9)"></add-table>
+                        <a-checkbox value="5" @change="showList($event, '鲍曼不动杆菌', 'controla4625', '3')">鲍曼不动杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource3[5]" v-if="controla4625" :isFirst="true" :picSource="picList1[5]" @changePic1="changePic1($event, 5)"></add-table>
+                        <a-checkbox value="11" @change="showList($event, '洋葱霍尔德菌', 'controla46211', '3')">洋葱霍尔德菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource3[11]" v-if="controla46211" :isFirst="true" :picSource="picList1[11]" @changePic1="changePic1($event, 11)"></add-table>
+                        <a-checkbox value="12" @change="showList($event, '嗜麦芽窄食单胞菌', 'controla46212', '3')">嗜麦芽窄食单胞菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource3[12]" v-if="controla46212" :isFirst="true" :picSource="picList1[12]" @changePic1="changePic1($event, 12)"></add-table>
+                        <a-checkbox value="7" @change="showList($event, '其他', 'controla4627', '3')">其他</a-checkbox>
+                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla4627" @change="otherChange($event, 7, '3')" autocomplete="off" v-decorator="['otherName3', {...inputRequired, initialValue: initValue('otherName3')}]"></a-input>
+                        <add-table :dataSource="optionDataSource3[7]" v-if="controla4627" :isFirst="true" :picSource="picList1[7]" @changePic1="changePic1($event, 7)"></add-table>
                       </a-checkbox-group>
                     </a-form-item>
-                    <a-form-item label="铜绿假单胞菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4620">
+                    <a-form-item label="铜绿假单胞菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4620">
                       <a-radio-group v-decorator="['a4621', {...require1, initialValue: initValue('a4621')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="肺炎克雷伯菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4622">
+                    <a-form-item label="肺炎克雷伯菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4622">
                       <a-radio-group v-decorator="['a4622', {...require1, initialValue: initValue('a4622')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="大肠杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla46210">
+                    <a-form-item label="大肠杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla46210">
                       <a-radio-group v-decorator="['a4623', {...require1, initialValue: initValue('a4623')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="阴沟肠杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4623">
+                    <a-form-item label="阴沟肠杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4623">
                       <a-radio-group v-decorator="['a4624', {...require1, initialValue: initValue('a4624')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="肺炎链球菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4621">
+                    <a-form-item label="肺炎链球菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4621">
                       <a-radio-group v-decorator="['a4625', {...require1, initialValue: initValue('a4625')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="金黄色葡萄球菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4626">
+                    <a-form-item label="金黄色葡萄球菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4626">
                       <a-radio-group v-decorator="['a4626', {...require1, initialValue: initValue('a4626')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="流感嗜血杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4628">
+                    <a-form-item label="流感嗜血杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4628">
                       <a-radio-group v-decorator="['a4627', {...require1, initialValue: initValue('a4627')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="副流感嗜血杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4624">
+                    <a-form-item label="副流感嗜血杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4624">
                       <a-radio-group v-decorator="['a4628', {...require1, initialValue: initValue('a4628')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="卡他莫拉菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4629">
+                    <a-form-item label="卡他莫拉菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4629">
                       <a-radio-group v-decorator="['a4629', {...require1, initialValue: initValue('a4629')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="鲍曼不动杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4625">
+                    <a-form-item label="鲍曼不动杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4625">
                       <a-radio-group v-decorator="['a46210', {...require1, initialValue: initValue('a46210')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="洋葱霍尔德菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla46211">
+                    <a-form-item label="洋葱霍尔德菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla46211">
                       <a-radio-group v-decorator="['a46211', {...require1, initialValue: initValue('a46211')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="嗜麦芽窄食单胞菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla46212">
+                    <a-form-item label="嗜麦芽窄食单胞菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla46212">
                       <a-radio-group v-decorator="['a46212', {...require1, initialValue: initValue('a46212')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="其他检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4627">
+                    <a-form-item label="其他检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4627">
                       <a-radio-group v-decorator="['a46213', {...require1, initialValue: initValue('a46213')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
@@ -505,107 +505,107 @@
                     <a-form-item label="分离到微生物:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3">
                       <a-checkbox-group v-decorator="['a472', {...selectRequired, initialValue: initValue('a472', 'array')}]" class="control-m-line">
                         <a-checkbox value="0" @change="showList($event, '铜绿假单胞菌', 'controla4720', true)">铜绿假单胞菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[0]" v-if="controla4720" :type1="type3" @listen="changeType1" :isFirst="true" :picSource="picList1[0]" @changePic1="changePic1($event, 0)"></add-table>
-                        <a-checkbox value="2" @change="showList($event, '肺炎克雷伯菌', 'controla4722', true)">肺炎克雷伯菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[2]" v-if="controla4722" :isFirst="true" :picSource="picList1[2]" @changePic1="changePic1($event, 2)"></add-table>
-                        <a-checkbox value="10" @change="showList($event, '大肠杆菌', 'controla47210', true)">大肠杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[10]" v-if="controla47210" :isFirst="true" :picSource="picList1[10]" @changePic1="changePic1($event, 10)"></add-table>
-                        <a-checkbox value="3" @change="showList($event, '阴沟肠杆菌', 'controla4723', true)">阴沟肠杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[3]" v-if="controla4723" :isFirst="true" :picSource="picList1[3]" @changePic1="changePic1($event, 3)"></add-table>
-                        <a-checkbox value="1" @change="showList($event, '肺炎链球菌', 'controla4721', true)">肺炎链球菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[1]" v-if="controla4721" :isFirst="true" :picSource="picList1[1]" @changePic1="changePic1($event, 1)"></add-table>
-                        <a-checkbox value="6" @change="showList($event, '金黄色葡萄球菌', 'controla4726', true)">金黄色葡萄球菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[6]" v-if="controla4726" :isFirst="true" :picSource="picList1[6]" @changePic1="changePic1($event, 6)"></add-table>
-                        <a-checkbox value="8" @change="showList($event, '流感嗜血杆菌', 'controla4528', true)">流感嗜血杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[8]" v-if="controla4728" :isFirst="true" :picSource="picList1[8]" @changePic1="changePic1($event, 8)"></add-table>
-                        <a-checkbox value="4" @change="showList($event, '副流感嗜血杆菌', 'controla4724', true)">副流感嗜血杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[4]" v-if="controla4724" :isFirst="true" :picSource="picList1[4]" @changePic1="changePic1($event, 4)"></add-table>
-                        <a-checkbox value="9" @change="showList($event, '卡他莫拉菌', 'controla4729', true)">卡他莫拉菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[9]" v-if="controla4729" :isFirst="true" :picSource="picList1[9]" @changePic1="changePic1($event, 9)"></add-table>
-                        <a-checkbox value="5" @change="showList($event, '鲍曼不动杆菌', 'controla4725', true)">鲍曼不动杆菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[5]" v-if="controla4725" :isFirst="true" :picSource="picList1[5]" @changePic1="changePic1($event, 5)"></add-table>
-                        <a-checkbox value="11" @change="showList($event, '洋葱霍尔德菌', 'controla47211', true)">洋葱霍尔德菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[11]" v-if="controla47211" :isFirst="true" :picSource="picList1[11]" @changePic1="changePic1($event, 11)"></add-table>
-                        <a-checkbox value="12" @change="showList($event, '嗜麦芽窄食单胞菌', 'controla47212', true)">嗜麦芽窄食单胞菌</a-checkbox>
-                        <add-table :dataSource="optionDataSource[12]" v-if="controla47212" :isFirst="true" :picSource="picList1[12]" @changePic1="changePic1($event, 12)"></add-table>
-                        <a-checkbox value="7" @change="showList($event, '其他', 'controla4727', true)">其他</a-checkbox>
-                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla4727" @change="otherChange($event, 7, true)" autocomplete="off" v-decorator="['a473', {...inputRequired, initialValue: initValue('a473')}]"></a-input>
-                        <add-table :dataSource="optionDataSource[7]" v-if="controla4727" :isFirst="true" :picSource="picList1[7]" @changePic1="changePic1($event, 7)"></add-table>
+                        <add-table :dataSource="optionDataSource4[0]" v-if="controla4720" :type1="type4" @listen="changeType4" :isFirst="true" :picSource="picList1[0]" @changePic1="changePic1($event, 0)"></add-table>
+                        <a-checkbox value="2" @change="showList($event, '肺炎克雷伯菌', 'controla4722', '4')">肺炎克雷伯菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource4[2]" v-if="controla4722" :isFirst="true" :picSource="picList1[2]" @changePic1="changePic1($event, 2)"></add-table>
+                        <a-checkbox value="10" @change="showList($event, '大肠杆菌', 'controla47210', '4')">大肠杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource4[10]" v-if="controla47210" :isFirst="true" :picSource="picList1[10]" @changePic1="changePic1($event, 10)"></add-table>
+                        <a-checkbox value="3" @change="showList($event, '阴沟肠杆菌', 'controla4723', '4')">阴沟肠杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource4[3]" v-if="controla4723" :isFirst="true" :picSource="picList1[3]" @changePic1="changePic1($event, 3)"></add-table>
+                        <a-checkbox value="1" @change="showList($event, '肺炎链球菌', 'controla4721', '4')">肺炎链球菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource4[1]" v-if="controla4721" :isFirst="true" :picSource="picList1[1]" @changePic1="changePic1($event, 1)"></add-table>
+                        <a-checkbox value="6" @change="showList($event, '金黄色葡萄球菌', 'controla4726', '4')">金黄色葡萄球菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource4[6]" v-if="controla4726" :isFirst="true" :picSource="picList1[6]" @changePic1="changePic1($event, 6)"></add-table>
+                        <a-checkbox value="8" @change="showList($event, '流感嗜血杆菌', 'controla4728', '4')">流感嗜血杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource4[8]" v-if="controla4728" :isFirst="true" :picSource="picList1[8]" @changePic1="changePic1($event, 8)"></add-table>
+                        <a-checkbox value="4" @change="showList($event, '副流感嗜血杆菌', 'controla4724', '4')">副流感嗜血杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource4[4]" v-if="controla4724" :isFirst="true" :picSource="picList1[4]" @changePic1="changePic1($event, 4)"></add-table>
+                        <a-checkbox value="9" @change="showList($event, '卡他莫拉菌', 'controla4729', '4')">卡他莫拉菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource4[9]" v-if="controla4729" :isFirst="true" :picSource="picList1[9]" @changePic1="changePic1($event, 9)"></add-table>
+                        <a-checkbox value="5" @change="showList($event, '鲍曼不动杆菌', 'controla4725', '4')">鲍曼不动杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource4[5]" v-if="controla4725" :isFirst="true" :picSource="picList1[5]" @changePic1="changePic1($event, 5)"></add-table>
+                        <a-checkbox value="11" @change="showList($event, '洋葱霍尔德菌', 'controla47211', '4')">洋葱霍尔德菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource4[11]" v-if="controla47211" :isFirst="true" :picSource="picList1[11]" @changePic1="changePic1($event, 11)"></add-table>
+                        <a-checkbox value="12" @change="showList($event, '嗜麦芽窄食单胞菌', 'controla47212', '4')">嗜麦芽窄食单胞菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource4[12]" v-if="controla47212" :isFirst="true" :picSource="picList1[12]" @changePic1="changePic1($event, 12)"></add-table>
+                        <a-checkbox value="7" @change="showList($event, '其他', 'controla4727', '4')">其他</a-checkbox>
+                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla4727" @change="otherChange($event, 7, '4')" autocomplete="off" v-decorator="['otherName4', {...inputRequired, initialValue: initValue('otherName4')}]"></a-input>
+                        <add-table :dataSource="optionDataSource4[7]" v-if="controla4727" :isFirst="true" :picSource="picList1[7]" @changePic1="changePic1($event, 7)"></add-table>
                       </a-checkbox-group>
                     </a-form-item>
-                    <a-form-item label="铜绿假单胞菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4720">
+                    <a-form-item label="铜绿假单胞菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4720">
                       <a-radio-group v-decorator="['a4721', {...require1, initialValue: initValue('a4721')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="肺炎克雷伯菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4722">
+                    <a-form-item label="肺炎克雷伯菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4722">
                       <a-radio-group v-decorator="['a4722', {...require1, initialValue: initValue('a4722')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="大肠杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla47210">
+                    <a-form-item label="大肠杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla47210">
                       <a-radio-group v-decorator="['a4723', {...require1, initialValue: initValue('a4723')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="阴沟肠杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4723">
+                    <a-form-item label="阴沟肠杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4723">
                       <a-radio-group v-decorator="['a4724', {...require1, initialValue: initValue('a4724')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="肺炎链球菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4721">
+                    <a-form-item label="肺炎链球菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4721">
                       <a-radio-group v-decorator="['a4725', {...require1, initialValue: initValue('a4725')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="金黄色葡萄球菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4726">
+                    <a-form-item label="金黄色葡萄球菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4726">
                       <a-radio-group v-decorator="['a4726', {...require1, initialValue: initValue('a4726')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="流感嗜血杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4728">
+                    <a-form-item label="流感嗜血杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4728">
                       <a-radio-group v-decorator="['a4727', {...require1, initialValue: initValue('a4727')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="副流感嗜血杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4724">
+                    <a-form-item label="副流感嗜血杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4724">
                       <a-radio-group v-decorator="['a4728', {...require1, initialValue: initValue('a4728')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="卡他莫拉菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4729">
+                    <a-form-item label="卡他莫拉菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4729">
                       <a-radio-group v-decorator="['a4729', {...require1, initialValue: initValue('a4729')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="鲍曼不动杆菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4725">
+                    <a-form-item label="鲍曼不动杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4725">
                       <a-radio-group v-decorator="['a47210', {...require1, initialValue: initValue('a47210')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="洋葱霍尔德菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla47211">
+                    <a-form-item label="洋葱霍尔德菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla47211">
                       <a-radio-group v-decorator="['a47211', {...require1, initialValue: initValue('a47211')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="嗜麦芽窄食单胞菌检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla47212">
+                    <a-form-item label="嗜麦芽窄食单胞菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla47212">
                       <a-radio-group v-decorator="['a47212', {...require1, initialValue: initValue('a47212')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
                       </a-radio-group>
                     </a-form-item>
-                    <a-form-item label="其他检测方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla4727">
+                    <a-form-item label="其他检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4727">
                       <a-radio-group v-decorator="['a47213', {...require1, initialValue: initValue('a47213')}]">
                         <a-radio value="1">MIC</a-radio>
                         <a-radio value="2">纸片法</a-radio>
@@ -615,6 +615,9 @@
                 </div>
                 <div v-if="controla35">
                   <div class="sub-t">其他标本</div>
+                  <a-form-item label="其他标本名称:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
+                    <a-input style="width: 240px;" v-decorator="['aa31', {...inputRequired, initialValue: initValue('aa31')}]" autocomplete="off"></a-input>
+                  </a-form-item>
                   <a-form-item label="其他标本培养结果:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
                     <a-radio-group v-decorator="['a35', {...selectRequired, initialValue: initValue('a35')}]">
                       <a-radio value="1">阳性</a-radio>
@@ -631,6 +634,123 @@
                   <a-form-item label="其他检测方法:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" v-if="controla3513">
                     <a-input style="width: 240px;" v-decorator="['a3511', {...inputRequired, initialValue: initValue('a3511')}]" autocomplete="off"></a-input>
                   </a-form-item>
+                  <a-form-item label="其他标本是否分离到微生物:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3">
+                    <a-radio-group v-decorator="['a48', {...require1, initialValue: initValue('a48')}]" @change="changeRadio($event, 'controla48')">
+                      <a-radio value="1">是</a-radio>
+                      <a-radio value="-1">否</a-radio>
+                    </a-radio-group>
+                  </a-form-item>
+                  <div v-if="controla48">
+                    <a-form-item label="分离到微生物:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3">
+                      <a-checkbox-group v-decorator="['a482', {...selectRequired, initialValue: initValue('a482', 'array')}]" class="control-m-line">
+                        <a-checkbox value="0" @change="showList($event, '铜绿假单胞菌', 'controla4820', '5')">铜绿假单胞菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource5[0]" v-if="controla4820" :type1="type5" @listen="changeType5" :isFirst="true" :picSource="picList1[0]" @changePic1="changePic1($event, 0)"></add-table>
+                        <a-checkbox value="2" @change="showList($event, '肺炎克雷伯菌', 'controla4822', '5')">肺炎克雷伯菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource5[2]" v-if="controla4822" :isFirst="true" :picSource="picList1[2]" @changePic1="changePic1($event, 2)"></add-table>
+                        <a-checkbox value="10" @change="showList($event, '大肠杆菌', 'controla48210', '5')">大肠杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource5[10]" v-if="controla48210" :isFirst="true" :picSource="picList1[10]" @changePic1="changePic1($event, 10)"></add-table>
+                        <a-checkbox value="3" @change="showList($event, '阴沟肠杆菌', 'controla4823', '5')">阴沟肠杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource5[3]" v-if="controla4823" :isFirst="true" :picSource="picList1[3]" @changePic1="changePic1($event, 3)"></add-table>
+                        <a-checkbox value="1" @change="showList($event, '肺炎链球菌', 'controla4821', '5')">肺炎链球菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource5[1]" v-if="controla4821" :isFirst="true" :picSource="picList1[1]" @changePic1="changePic1($event, 1)"></add-table>
+                        <a-checkbox value="6" @change="showList($event, '金黄色葡萄球菌', 'controla4826', '5')">金黄色葡萄球菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource5[6]" v-if="controla4826" :isFirst="true" :picSource="picList1[6]" @changePic1="changePic1($event, 6)"></add-table>
+                        <a-checkbox value="8" @change="showList($event, '流感嗜血杆菌', 'controla4828', '5')">流感嗜血杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource5[8]" v-if="controla4828" :isFirst="true" :picSource="picList1[8]" @changePic1="changePic1($event, 8)"></add-table>
+                        <a-checkbox value="4" @change="showList($event, '副流感嗜血杆菌', 'controla4824', '5')">副流感嗜血杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource5[4]" v-if="controla4824" :isFirst="true" :picSource="picList1[4]" @changePic1="changePic1($event, 4)"></add-table>
+                        <a-checkbox value="9" @change="showList($event, '卡他莫拉菌', 'controla4829', '5')">卡他莫拉菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource5[9]" v-if="controla4829" :isFirst="true" :picSource="picList1[9]" @changePic1="changePic1($event, 9)"></add-table>
+                        <a-checkbox value="5" @change="showList($event, '鲍曼不动杆菌', 'controla4825', '5')">鲍曼不动杆菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource5[5]" v-if="controla4825" :isFirst="true" :picSource="picList1[5]" @changePic1="changePic1($event, 5)"></add-table>
+                        <a-checkbox value="11" @change="showList($event, '洋葱霍尔德菌', 'controla48211', '5')">洋葱霍尔德菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource5[11]" v-if="controla48211" :isFirst="true" :picSource="picList1[11]" @changePic1="changePic1($event, 11)"></add-table>
+                        <a-checkbox value="12" @change="showList($event, '嗜麦芽窄食单胞菌', 'controla48212', '5')">嗜麦芽窄食单胞菌</a-checkbox>
+                        <add-table :dataSource="optionDataSource5[12]" v-if="controla48212" :isFirst="true" :picSource="picList1[12]" @changePic1="changePic1($event, 12)"></add-table>
+                        <a-checkbox value="7" @change="showList($event, '其他', 'controla4827', '5')">其他</a-checkbox>
+                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla4827" @change="otherChange($event, 7, '5')" autocomplete="off" v-decorator="['otherName5', {...inputRequired, initialValue: initValue('otherName5')}]"></a-input>
+                        <add-table :dataSource="optionDataSource5[7]" v-if="controla4827" :isFirst="true" :picSource="picList1[7]" @changePic1="changePic1($event, 7)"></add-table>
+                      </a-checkbox-group>
+                    </a-form-item>
+                    <a-form-item label="铜绿假单胞菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4820">
+                      <a-radio-group v-decorator="['a4821', {...require1, initialValue: initValue('a4821')}]">
+                        <a-radio value="1">MIC</a-radio>
+                        <a-radio value="2">纸片法</a-radio>
+                      </a-radio-group>
+                    </a-form-item>
+                    <a-form-item label="肺炎克雷伯菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4822">
+                      <a-radio-group v-decorator="['a4822', {...require1, initialValue: initValue('a4822')}]">
+                        <a-radio value="1">MIC</a-radio>
+                        <a-radio value="2">纸片法</a-radio>
+                      </a-radio-group>
+                    </a-form-item>
+                    <a-form-item label="大肠杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla48210">
+                      <a-radio-group v-decorator="['a4823', {...require1, initialValue: initValue('a4823')}]">
+                        <a-radio value="1">MIC</a-radio>
+                        <a-radio value="2">纸片法</a-radio>
+                      </a-radio-group>
+                    </a-form-item>
+                    <a-form-item label="阴沟肠杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4823">
+                      <a-radio-group v-decorator="['a4824', {...require1, initialValue: initValue('a4824')}]">
+                        <a-radio value="1">MIC</a-radio>
+                        <a-radio value="2">纸片法</a-radio>
+                      </a-radio-group>
+                    </a-form-item>
+                    <a-form-item label="肺炎链球菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4821">
+                      <a-radio-group v-decorator="['a4825', {...require1, initialValue: initValue('a4825')}]">
+                        <a-radio value="1">MIC</a-radio>
+                        <a-radio value="2">纸片法</a-radio>
+                      </a-radio-group>
+                    </a-form-item>
+                    <a-form-item label="金黄色葡萄球菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4826">
+                      <a-radio-group v-decorator="['a4826', {...require1, initialValue: initValue('a4826')}]">
+                        <a-radio value="1">MIC</a-radio>
+                        <a-radio value="2">纸片法</a-radio>
+                      </a-radio-group>
+                    </a-form-item>
+                    <a-form-item label="流感嗜血杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4828">
+                      <a-radio-group v-decorator="['a4827', {...require1, initialValue: initValue('a4827')}]">
+                        <a-radio value="1">MIC</a-radio>
+                        <a-radio value="2">纸片法</a-radio>
+                      </a-radio-group>
+                    </a-form-item>
+                    <a-form-item label="副流感嗜血杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4824">
+                      <a-radio-group v-decorator="['a4828', {...require1, initialValue: initValue('a4828')}]">
+                        <a-radio value="1">MIC</a-radio>
+                        <a-radio value="2">纸片法</a-radio>
+                      </a-radio-group>
+                    </a-form-item>
+                    <a-form-item label="卡他莫拉菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4829">
+                      <a-radio-group v-decorator="['a4829', {...require1, initialValue: initValue('a4829')}]">
+                        <a-radio value="1">MIC</a-radio>
+                        <a-radio value="2">纸片法</a-radio>
+                      </a-radio-group>
+                    </a-form-item>
+                    <a-form-item label="鲍曼不动杆菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4825">
+                      <a-radio-group v-decorator="['a48210', {...require1, initialValue: initValue('a48210')}]">
+                        <a-radio value="1">MIC</a-radio>
+                        <a-radio value="2">纸片法</a-radio>
+                      </a-radio-group>
+                    </a-form-item>
+                    <a-form-item label="洋葱霍尔德菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla48211">
+                      <a-radio-group v-decorator="['a48211', {...require1, initialValue: initValue('a48211')}]">
+                        <a-radio value="1">MIC</a-radio>
+                        <a-radio value="2">纸片法</a-radio>
+                      </a-radio-group>
+                    </a-form-item>
+                    <a-form-item label="嗜麦芽窄食单胞菌检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla48212">
+                      <a-radio-group v-decorator="['a48212', {...require1, initialValue: initValue('a48212')}]">
+                        <a-radio value="1">MIC</a-radio>
+                        <a-radio value="2">纸片法</a-radio>
+                      </a-radio-group>
+                    </a-form-item>
+                    <a-form-item label="其他检测方式:" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset2" class="border-dotted" v-if="controla4827">
+                      <a-radio-group v-decorator="['a48213', {...require1, initialValue: initValue('a48213')}]">
+                        <a-radio value="1">MIC</a-radio>
+                        <a-radio value="2">纸片法</a-radio>
+                      </a-radio-group>
+                    </a-form-item>
+                  </div>
                 </div>
               </div>
               <div v-if="control2">
@@ -798,6 +918,9 @@
                 </div>
                 <div v-if="controlb35">
                   <div class="sub-t">其他标本</div>
+                  <a-form-item label="其他标本名称:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
+                    <a-input style="width: 240px;" v-decorator="['bb31', {...inputRequired, initialValue: initValue('bb31')}]" autocomplete="off"></a-input>
+                  </a-form-item>
                   <a-form-item label="其他标本培养结果:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
                     <a-radio-group v-decorator="['b35', {...selectRequired, initialValue: initValue('b35')}]">
                       <a-radio value="1">阳性</a-radio>
@@ -1025,6 +1148,9 @@
                 </div>
                 <div v-if="controlc35">
                   <div class="sub-t">其他标本</div>
+                  <a-form-item label="其他标本名称:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
+                    <a-input style="width: 240px;" v-decorator="['cc31', {...inputRequired, initialValue: initValue('cc31')}]" autocomplete="off"></a-input>
+                  </a-form-item>
                   <a-form-item label="其他标本培养结果:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
                     <a-radio-group v-decorator="['c35', {...selectRequired, initialValue: initValue('c35')}]">
                       <a-radio value="1">阳性</a-radio>
@@ -1081,35 +1207,110 @@
                 <a-form-item label="(3) 标本类型:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                   <a-checkbox-group v-decorator="['d3', {...selectRequired, initialValue: initValue('d3', 'array')}]">
                     <a-checkbox value="1" @change="changeSelect($event, 'controld31')">痰液</a-checkbox>
-                    <a-checkbox value="2" @change="changeSelect($event, 'controld31')">诱导痰</a-checkbox>
-                    <a-checkbox value="3" @change="changeSelect($event, 'controld31')">支气管肺泡灌洗液</a-checkbox>
-                    <a-checkbox value="4" @change="changeSelect($event, 'controld31')">血标本</a-checkbox>
+                    <a-checkbox value="2" @change="changeSelect($event, 'controld32')">诱导痰</a-checkbox>
+                    <a-checkbox value="3" @change="changeSelect($event, 'controld33')">支气管肺泡灌洗液</a-checkbox>
+                    <a-checkbox value="4" @change="changeSelect($event, 'controld34')">血标本</a-checkbox>
+                    <a-checkbox value="5" @change="changeSelect($event, 'controld35')">其他</a-checkbox>
                   </a-checkbox-group>
                 </a-form-item>
-                <a-form-item label="痰液培养结果:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controld31">
-                  <a-radio-group v-decorator="['d31', {...selectRequired, initialValue: initValue('d31')}]">
-                    <a-radio value="1">阳性</a-radio>
-                    <a-radio value="0">阴性</a-radio>
-                  </a-radio-group>
-                </a-form-item>
-                <a-form-item label="诱导痰培养结果:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controld32">
-                  <a-radio-group v-decorator="['d32', {...selectRequired, initialValue: initValue('d32')}]">
-                    <a-radio value="1">阳性</a-radio>
-                    <a-radio value="0">阴性</a-radio>
-                  </a-radio-group>
-                </a-form-item>
-                <a-form-item label=" 支气管肺泡灌洗液培养结果:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controld33">
-                  <a-radio-group v-decorator="['d33', {...selectRequired, initialValue: initValue('d33')}]">
-                    <a-radio value="1">阳性</a-radio>
-                    <a-radio value="0">阴性</a-radio>
-                  </a-radio-group>
-                </a-form-item>
-                <a-form-item label="血标本培养结果:" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controld34">
-                  <a-radio-group v-decorator="['d34', {...selectRequired, initialValue: initValue('d34')}]">
-                    <a-radio value="1">阳性</a-radio>
-                    <a-radio value="0">阴性</a-radio>
-                  </a-radio-group>
-                </a-form-item>
+                <div v-if="controld31">
+                  <div class="sub-t">痰液</div>
+                  <a-form-item label="痰液培养结果:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
+                    <a-radio-group v-decorator="['d31', {...selectRequired, initialValue: initValue('d31')}]">
+                      <a-radio value="1">阳性</a-radio>
+                      <a-radio value="0">阴性</a-radio>
+                    </a-radio-group>
+                  </a-form-item>
+                  <a-form-item label="痰液检测方法:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
+                    <a-radio-group v-decorator="['d311', {...selectRequired, initialValue: initValue('d311')}]" @change="changeRadio($event, 'controld3113')">
+                      <a-radio value="1">普通培养</a-radio>
+                      <a-radio value="2">NGS</a-radio>
+                      <a-radio value="3">其他</a-radio>
+                    </a-radio-group>
+                  </a-form-item>
+                  <a-form-item label="其他痰液检测方法:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" v-if="controld3113">
+                    <a-input style="width: 240px;" v-decorator="['d3111', {...inputRequired, initialValue: initValue('d3111')}]" autocomplete="off"></a-input>
+                  </a-form-item>
+                </div>
+                <div v-if="controld32">
+                  <div class="sub-t">诱导痰</div>
+                  <a-form-item label="诱导痰培养结果:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
+                    <a-radio-group v-decorator="['d32', {...selectRequired, initialValue: initValue('d32')}]">
+                      <a-radio value="1">阳性</a-radio>
+                      <a-radio value="0">阴性</a-radio>
+                    </a-radio-group>
+                  </a-form-item>
+                  <a-form-item label="诱导痰检测方法:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
+                    <a-radio-group v-decorator="['d321', {...selectRequired, initialValue: initValue('d321')}]" @change="changeRadio($event, 'controld3213')">
+                      <a-radio value="1">普通培养</a-radio>
+                      <a-radio value="2">NGS</a-radio>
+                      <a-radio value="3">其他</a-radio>
+                    </a-radio-group>
+                  </a-form-item>
+                  <a-form-item label="其他诱导痰检测方法:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" v-if="controld3213">
+                    <a-input style="width: 240px;" v-decorator="['d3211', {...inputRequired, initialValue: initValue('d3211')}]" autocomplete="off"></a-input>
+                  </a-form-item>
+                </div>
+                <div v-if="controld33">
+                  <div class="sub-t">支气管肺泡灌洗液</div>
+                  <a-form-item label="支气管肺泡灌洗液培养结果:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
+                    <a-radio-group v-decorator="['d33', {...selectRequired, initialValue: initValue('d33')}]">
+                      <a-radio value="1">阳性</a-radio>
+                      <a-radio value="0">阴性</a-radio>
+                    </a-radio-group>
+                  </a-form-item>
+                  <a-form-item label="支气管肺泡灌洗液检测方法:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
+                    <a-radio-group v-decorator="['d331', {...selectRequired, initialValue: initValue('d331')}]" @change="changeRadio($event, 'controld3313')">
+                      <a-radio value="1">普通培养</a-radio>
+                      <a-radio value="2">NGS</a-radio>
+                      <a-radio value="3">其他</a-radio>
+                    </a-radio-group>
+                  </a-form-item>
+                  <a-form-item label="其他支气管肺泡灌洗液检测方法:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" v-if="controld3313">
+                    <a-input style="width: 240px;" v-decorator="['d3311', {...inputRequired, initialValue: initValue('d3311')}]" autocomplete="off"></a-input>
+                  </a-form-item>
+                </div>
+                <div v-if="controld34">
+                  <div class="sub-t">血标本</div>
+                  <a-form-item label="血标本培养结果:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
+                    <a-radio-group v-decorator="['d34', {...selectRequired, initialValue: initValue('d34')}]">
+                      <a-radio value="1">阳性</a-radio>
+                      <a-radio value="0">阴性</a-radio>
+                    </a-radio-group>
+                  </a-form-item>
+                  <a-form-item label="血标本检测方法:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
+                    <a-radio-group v-decorator="['d341', {...selectRequired, initialValue: initValue('d341')}]" @change="changeRadio($event, 'controld3413')">
+                      <a-radio value="1">普通培养</a-radio>
+                      <a-radio value="2">NGS</a-radio>
+                      <a-radio value="3">其他</a-radio>
+                    </a-radio-group>
+                  </a-form-item>
+                  <a-form-item label="其他血标本检测方法:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" v-if="controld3413">
+                    <a-input style="width: 240px;" v-decorator="['d3411', {...inputRequired, initialValue: initValue('d3411')}]" autocomplete="off"></a-input>
+                  </a-form-item>
+                </div>
+                <div v-if="controld35">
+                  <div class="sub-t">其他标本</div>
+                  <a-form-item label="其他标本名称:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
+                    <a-input style="width: 240px;" v-decorator="['dd31', {...inputRequired, initialValue: initValue('dd31')}]" autocomplete="off"></a-input>
+                  </a-form-item>
+                  <a-form-item label="其他标本培养结果:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
+                    <a-radio-group v-decorator="['d35', {...selectRequired, initialValue: initValue('d35')}]">
+                      <a-radio value="1">阳性</a-radio>
+                      <a-radio value="0">阴性</a-radio>
+                    </a-radio-group>
+                  </a-form-item>
+                  <a-form-item label="其他标本检测方法:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" class="no-border">
+                    <a-radio-group v-decorator="['d351', {...selectRequired, initialValue: initValue('d351')}]" @change="changeRadio($event, 'controld3513')">
+                      <a-radio value="1">普通培养</a-radio>
+                      <a-radio value="2">NGS</a-radio>
+                      <a-radio value="3">其他</a-radio>
+                    </a-radio-group>
+                  </a-form-item>
+                  <a-form-item label="其他检测方法:" :labelCol="labelColOffset3" :wrapperCol="wrapperOffset3" v-if="controld3513">
+                    <a-input style="width: 240px;" v-decorator="['d3511', {...inputRequired, initialValue: initValue('d3511')}]" autocomplete="off"></a-input>
+                  </a-form-item>
+                </div>
               </div>
             </div>
           </a-form>
@@ -1140,8 +1341,11 @@ export default {
   },
   data() {
     return {
-      optionDataSource: [],
+      optionDataSource1: [],
       optionDataSource2: [],
+      optionDataSource3: [],
+      optionDataSource4: [],
+      optionDataSource5: [],
       markName: 'bywsw',
       title: '基线',
       openKeys: [],
@@ -1254,6 +1458,7 @@ export default {
       controld32: false,
       controld33: false,
       controld34: false,
+      controld35: false,
       spinning: false,
       executeStatus: false,
       control1: false,
@@ -1265,6 +1470,7 @@ export default {
       type2: '',
       type3: '',
       type4: '',
+      type5: '',
       otherName1: '',
       otherName2: '',
       picList1: [],
@@ -1368,7 +1574,13 @@ export default {
       controlc715: false,
       controlc81: false,
       controlc815: false,
-      controlc3513: false
+      controlc3513: false,
+      controld3113: false,
+      controld3213: false,
+      controld3313: false,
+      controld3413: false,
+      controld3513: false,
+      controla48: false
     }
   },
   created() {
@@ -1456,7 +1668,7 @@ export default {
         this[t] = true
       } else if((t === 'controla3113' || t === 'controla3213' || t === 'controla3313' || t === 'controla3413' ||
         t === 'controlb3113' || t === 'controlb3213' || t === 'controlb3313' || t === 'controlb3413' ||
-        t === 'controlc3113' || t === 'controlc3213' || t === 'controlc3313' || t === 'controlc3413' || t === 'controla3513' || t === 'controlb3513' || t === 'controlc3513') && e.target.value === '3') {
+        t === 'controlc3113' || t === 'controlc3213' || t === 'controlc3313' || t === 'controlc3413' || t === 'controla3513' || t === 'controlb3513' || t === 'controlc3513' || t === 'controld3113' || t === 'controld3213' || t === 'controld3313' || t === 'controld3413' || t === 'controld3513') && e.target.value === '3') {
         this[t] = true
       } else {
         this[t] = false
@@ -1523,7 +1735,26 @@ export default {
             'a42': typeof re['a42'] !== 'undefined' ? re['a42'].join(',') : '',
             'b42': typeof re['b42'] !== 'undefined' ? re['b42'].join(',') : '',
             'c4': typeof re['c4'] !== 'undefined' ? re['c4'].join(',') : '',
-            'c41': typeof re['c41'] !== 'undefined' ? re['c41'].join(',') : ''
+            'c41': typeof re['c41'] !== 'undefined' ? re['c41'].join(',') : '',
+            'a452': typeof re['a452'] !== 'undefined' ? re['a452'].join(',') : '',
+            'a462': typeof re['a462'] !== 'undefined' ? re['a462'].join(',') : '',
+            'a472': typeof re['a472'] !== 'undefined' ? re['a472'].join(',') : '',
+            'a52': typeof re['a52'] !== 'undefined' ? re['a52'].join(',') : '',
+            'a62': typeof re['a62'] !== 'undefined' ? re['a62'].join(',') : '',
+            'a72': typeof re['a72'] !== 'undefined' ? re['a72'].join(',') : '',
+            'c51': typeof re['c51'] !== 'undefined' ? re['c51'].join(',') : '',
+            'c52': typeof re['ca52'] !== 'undefined' ? re['c52'].join(',') : '',
+            'c6': typeof re['c6'] !== 'undefined' ? re['c6'].join(',') : '',
+            'c61': typeof re['c61'] !== 'undefined' ? re['c61'].join(',') : '',
+            'c7': typeof re['c7'] !== 'undefined' ? re['c7'].join(',') : '',
+            'c71': typeof re['c71'] !== 'undefined' ? re['c71'].join(',') : '',
+            'c8': typeof re['c8'] !== 'undefined' ? re['c8'].join(',') : '',
+            'c81': typeof re['c81'] !== 'undefined' ? re['c81'].join(',') : '',
+            'a36': that.type1,
+            'a37': that.type2,
+            'a38': that.type3,
+            'a39': that.type4,
+            'a310': that.type5
           }
           console.log(re)
           this.patientBasis.status = 2
@@ -1567,8 +1798,8 @@ export default {
     },
     save() {
       const allergy = []
-      for (var key in this.optionDataSource) {
-        _.each(this.optionDataSource[key], function(item) {
+      for (var key in this.optionDataSource1) {
+        _.each(this.optionDataSource1[key], function(item) {
           allergy.push({
             markId: 1,
             microbeName: item.microbeName,
@@ -1582,6 +1813,39 @@ export default {
         _.each(this.optionDataSource2[key], function(item) {
           allergy.push({
             markId: 2,
+            microbeName: item.microbeName,
+            antibiotic: item.antibiotic,
+            antibioticResult: item.antibioticResult,
+            allergyValue: item.allergyValue
+          })
+        })
+      }
+      for (var key in this.optionDataSource3) {
+        _.each(this.optionDataSource3[key], function(item) {
+          allergy.push({
+            markId: 3,
+            microbeName: item.microbeName,
+            antibiotic: item.antibiotic,
+            antibioticResult: item.antibioticResult,
+            allergyValue: item.allergyValue
+          })
+        })
+      }
+      for (var key in this.optionDataSource4) {
+        _.each(this.optionDataSource4[key], function(item) {
+          allergy.push({
+            markId: 4,
+            microbeName: item.microbeName,
+            antibiotic: item.antibiotic,
+            antibioticResult: item.antibioticResult,
+            allergyValue: item.allergyValue
+          })
+        })
+      }
+      for (var key in this.optionDataSource5) {
+        _.each(this.optionDataSource5[key], function(item) {
+          allergy.push({
+            markId: 5,
             microbeName: item.microbeName,
             antibiotic: item.antibiotic,
             antibioticResult: item.antibioticResult,
@@ -1613,7 +1877,26 @@ export default {
         'a42': typeof re['a42'] !== 'undefined' ? re['a42'].join(',') : '',
         'b42': typeof re['b42'] !== 'undefined' ? re['b42'].join(',') : '',
         'c4': typeof re['c4'] !== 'undefined' ? re['c4'].join(',') : '',
-        'c41': typeof re['c41'] !== 'undefined' ? re['c41'].join(',') : ''
+        'c41': typeof re['c41'] !== 'undefined' ? re['c41'].join(',') : '',
+        'a452': typeof re['a452'] !== 'undefined' ? re['a452'].join(',') : '',
+        'a462': typeof re['a462'] !== 'undefined' ? re['a462'].join(',') : '',
+        'a472': typeof re['a472'] !== 'undefined' ? re['a472'].join(',') : '',
+        'a52': typeof re['a52'] !== 'undefined' ? re['a52'].join(',') : '',
+        'a62': typeof re['a62'] !== 'undefined' ? re['a62'].join(',') : '',
+        'a72': typeof re['a72'] !== 'undefined' ? re['a72'].join(',') : '',
+        'c51': typeof re['c51'] !== 'undefined' ? re['c51'].join(',') : '',
+        'c52': typeof re['ca52'] !== 'undefined' ? re['c52'].join(',') : '',
+        'c6': typeof re['c6'] !== 'undefined' ? re['c6'].join(',') : '',
+        'c61': typeof re['c61'] !== 'undefined' ? re['c61'].join(',') : '',
+        'c7': typeof re['c7'] !== 'undefined' ? re['c7'].join(',') : '',
+        'c71': typeof re['c71'] !== 'undefined' ? re['c71'].join(',') : '',
+        'c8': typeof re['c8'] !== 'undefined' ? re['c8'].join(',') : '',
+        'c81': typeof re['c81'] !== 'undefined' ? re['c81'].join(',') : '',
+        'a36': that.type1,
+        'a37': that.type2,
+        'a38': that.type3,
+        'a39': that.type4,
+        'a310': that.type5
       }
       console.log(re)
       this.patientBasis.status = 1
@@ -1766,6 +2049,24 @@ export default {
         if(answer.c341 === 3) {
           this.controlc3413 = true
         }
+        if(answer.c351 === 3) {
+          this.controlc3513 = true
+        }
+        if(answer.d311 === 3) {
+          this.controld3113 = true
+        }
+        if(answer.d321 === 3) {
+          this.controld3213 = true
+        }
+        if(answer.d331 === 3) {
+          this.controld3313 = true
+        }
+        if(answer.d341 === 3) {
+          this.controld3413 = true
+        }
+        if(answer.d351 === 3) {
+          this.controld3513 = true
+        }
         if (answer.b3) {
           splitArr = answer.b3.split(',')
           if (splitArr.indexOf('1') > -1) {
@@ -1853,10 +2154,200 @@ export default {
             this.controla4212 = true
           }
         }
+        if (answer.a45 && answer.a45 === 1) {
+          this.controla45 = true
+        }
+        if (answer.a46 && answer.a46 === 1) {
+          this.controla46 = true
+        }
+        if (answer.a47 && answer.a47 === 1) {
+          this.controla47 = true
+        }
+        if (answer.a48 && answer.a48 === 1) {
+          this.controla48 = true
+        }
+        if (answer.a452) {
+          splitArr = answer.a452.split(',')
+          if (splitArr.indexOf('0') > -1) {
+            this.controla4520 = true
+          }
+          if (splitArr.indexOf('1') > -1) {
+            this.controla4521 = true
+          }
+          if (splitArr.indexOf('2') > -1) {
+            this.controla4522 = true
+          }
+          if (splitArr.indexOf('3') > -1) {
+            this.controla4523 = true
+          }
+          if (splitArr.indexOf('4') > -1) {
+            this.controla4524 = true
+          }
+          if (splitArr.indexOf('5') > -1) {
+            this.controla4525 = true
+          }
+          if (splitArr.indexOf('6') > -1) {
+            this.controla4526 = true
+          }
+          if (splitArr.indexOf('7') > -1) {
+            this.controla4527 = true
+          }
+          if (splitArr.indexOf('8') > -1) {
+            this.controla4528 = true
+          }
+          if (splitArr.indexOf('9') > -1) {
+            this.controla4529 = true
+          }
+          if (splitArr.indexOf('10') > -1) {
+            this.controla45210 = true
+          }
+          if (splitArr.indexOf('11') > -1) {
+            this.controla45211 = true
+          }
+          if (splitArr.indexOf('12') > -1) {
+            this.controla45212 = true
+          }
+        }
+
+        if (answer.a462) {
+          splitArr = answer.a462.split(',')
+          if (splitArr.indexOf('0') > -1) {
+            this.controla4620 = true
+          }
+          if (splitArr.indexOf('1') > -1) {
+            this.controla4621 = true
+          }
+          if (splitArr.indexOf('2') > -1) {
+            this.controla4622 = true
+          }
+          if (splitArr.indexOf('3') > -1) {
+            this.controla4623 = true
+          }
+          if (splitArr.indexOf('4') > -1) {
+            this.controla4624 = true
+          }
+          if (splitArr.indexOf('5') > -1) {
+            this.controla4625 = true
+          }
+          if (splitArr.indexOf('6') > -1) {
+            this.controla4626 = true
+          }
+          if (splitArr.indexOf('7') > -1) {
+            this.controla4627 = true
+          }
+          if (splitArr.indexOf('8') > -1) {
+            this.controla4628 = true
+          }
+          if (splitArr.indexOf('9') > -1) {
+            this.controla4629 = true
+          }
+          if (splitArr.indexOf('10') > -1) {
+            this.controla46210 = true
+          }
+          if (splitArr.indexOf('11') > -1) {
+            this.controla46211 = true
+          }
+          if (splitArr.indexOf('12') > -1) {
+            this.controla46212 = true
+          }
+        }
+
+        if (answer.a472) {
+          splitArr = answer.a472.split(',')
+          if (splitArr.indexOf('0') > -1) {
+            this.controla4720 = true
+          }
+          if (splitArr.indexOf('1') > -1) {
+            this.controla4721 = true
+          }
+          if (splitArr.indexOf('2') > -1) {
+            this.controla4722 = true
+          }
+          if (splitArr.indexOf('3') > -1) {
+            this.controla4723 = true
+          }
+          if (splitArr.indexOf('4') > -1) {
+            this.controla4724 = true
+          }
+          if (splitArr.indexOf('5') > -1) {
+            this.controla4725 = true
+          }
+          if (splitArr.indexOf('6') > -1) {
+            this.controla4726 = true
+          }
+          if (splitArr.indexOf('7') > -1) {
+            this.controla4727 = true
+          }
+          if (splitArr.indexOf('8') > -1) {
+            this.controla4728 = true
+          }
+          if (splitArr.indexOf('9') > -1) {
+            this.controla4729 = true
+          }
+          if (splitArr.indexOf('10') > -1) {
+            this.controla47210 = true
+          }
+          if (splitArr.indexOf('11') > -1) {
+            this.controla47211 = true
+          }
+          if (splitArr.indexOf('12') > -1) {
+            this.controla47212 = true
+          }
+        }
+
+        if (answer.a482) {
+          splitArr = answer.a482.split(',')
+          if (splitArr.indexOf('0') > -1) {
+            this.controla4820 = true
+          }
+          if (splitArr.indexOf('1') > -1) {
+            this.controla4821 = true
+          }
+          if (splitArr.indexOf('2') > -1) {
+            this.controla4822 = true
+          }
+          if (splitArr.indexOf('3') > -1) {
+            this.controla4823 = true
+          }
+          if (splitArr.indexOf('4') > -1) {
+            this.controla4824 = true
+          }
+          if (splitArr.indexOf('5') > -1) {
+            this.controla4825 = true
+          }
+          if (splitArr.indexOf('6') > -1) {
+            this.controla4826 = true
+          }
+          if (splitArr.indexOf('7') > -1) {
+            this.controla4827 = true
+          }
+          if (splitArr.indexOf('8') > -1) {
+            this.controla4828 = true
+          }
+          if (splitArr.indexOf('9') > -1) {
+            this.controla4829 = true
+          }
+          if (splitArr.indexOf('10') > -1) {
+            this.controla48210 = true
+          }
+          if (splitArr.indexOf('11') > -1) {
+            this.controla48211 = true
+          }
+          if (splitArr.indexOf('12') > -1) {
+            this.controla48212 = true
+          }
+        }
+
+
+        this.type1 = answer.a36 ? answer.a36 + '' : ''
+        this.type2 = answer.a37 ? answer.a37 + '' : ''
+        this.type3 = answer.a38 ? answer.a38 + '' : ''
+        this.type4 = answer.a39 ? answer.a39 + '' : ''
+        this.type5 = answer.a310 ? answer.a310 + '' : ''
         if (data[1]) {
           _.each(alList, function(v, i) {
             if (data[1][v]) {
-              that.optionDataSource[i] = _.map(data[1][v], function(v, i) {
+              that.optionDataSource1[i] = _.map(data[1][v], function(v, i) {
                 return {
                   keyW: i,
                   microbeName: v.microbeName,
@@ -1869,7 +2360,7 @@ export default {
           })
           var other = _.filter(data[1], function(v, k) { return alList.indexOf(k) === -1 })
           if (other && other.length) {
-            that.optionDataSource[7] = _.map(other[0], function(v, i) {
+            that.optionDataSource1[7] = _.map(other[0], function(v, i) {
               return {
                 keyW: i,
                 microbeName: v.microbeName,
@@ -1939,21 +2430,17 @@ export default {
       let date = this.getBirthdayByIdNO(this.patient.card)
       return current && current > moment().endOf('day') || moment(date).endOf('day') > current;
     },
-    showList(e, name, controlNode, isSimple) {
+    showList(e, name, controlNode, _index) {
       if (e.target.checked) {
         this[controlNode] = true
         if (name == "其他") return
-        this.getMedicineAllergyList(name, e.target.value, isSimple)
+        this.getMedicineAllergyList(name, e.target.value, _index)
       } else {
         this[controlNode] = false
-        if (isSimple) {
-          this.$set(this.optionDataSource, e.target.value, [])
-        } else {
-          this.$set(this.optionDataSource2, e.target.value, [])
-        }
+        this.$set(this[`optionDataSource${_index}`], e.target.value, [])
       }
     },
-    getMedicineAllergyList(value, index, isSimple) {
+    getMedicineAllergyList(value, index, _index) {
       const that = this
       const params = new URLSearchParams()
       params.append('microbeName', value)
@@ -1967,15 +2454,11 @@ export default {
             allergyValue: v.allergyValue
           };
         })
-        if (isSimple) {
-          that.$set(that.optionDataSource, index, optionDataSource)
-        } else {
-          that.$set(that.optionDataSource2, index, optionDataSource)
-        }
+        that.$set(that[`optionDataSource${_index}`], index, optionDataSource)
       })
     },
-    otherChange(e, index, isSimple) {
-      this.getMedicineAllergyList(e.target.value, index, isSimple)
+    otherChange(e, index, _index) {
+      this.getMedicineAllergyList(e.target.value, index, _index)
     },
     changeType1(v) {
       this.type1 = v
@@ -1988,6 +2471,9 @@ export default {
     },
     changeType4(v) {
       this.type4 = v
+    },
+    changeType5(v) {
+      this.type5 = v
     },
     changePic1(e, index) {
       this.picList1[index] = e
