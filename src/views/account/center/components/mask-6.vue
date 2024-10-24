@@ -1688,8 +1688,8 @@ export default {
       validateFieldsAndScroll((errors, values) => {
         if (!errors) {
           const allergy = []
-          for (var key in this.optionDataSource) {
-            _.each(this.optionDataSource[key], function(item) {
+          for (var key in this.optionDataSource1) {
+            _.each(this.optionDataSource1[key], function(item) {
               allergy.push({
                 markId: 1,
                 microbeName: item.microbeName,
@@ -1703,6 +1703,39 @@ export default {
             _.each(this.optionDataSource2[key], function(item) {
               allergy.push({
                 markId: 2,
+                microbeName: item.microbeName,
+                antibiotic: item.antibiotic,
+                antibioticResult: item.antibioticResult,
+                allergyValue: item.allergyValue
+              })
+            })
+          }
+          for (var key in this.optionDataSource3) {
+            _.each(this.optionDataSource3[key], function(item) {
+              allergy.push({
+                markId: 3,
+                microbeName: item.microbeName,
+                antibiotic: item.antibiotic,
+                antibioticResult: item.antibioticResult,
+                allergyValue: item.allergyValue
+              })
+            })
+          }
+          for (var key in this.optionDataSource4) {
+            _.each(this.optionDataSource4[key], function(item) {
+              allergy.push({
+                markId: 4,
+                microbeName: item.microbeName,
+                antibiotic: item.antibiotic,
+                antibioticResult: item.antibioticResult,
+                allergyValue: item.allergyValue
+              })
+            })
+          }
+          for (var key in this.optionDataSource5) {
+            _.each(this.optionDataSource5[key], function(item) {
+              allergy.push({
+                markId: 5,
                 microbeName: item.microbeName,
                 antibiotic: item.antibiotic,
                 antibioticResult: item.antibioticResult,
@@ -1739,6 +1772,7 @@ export default {
             'a452': typeof re['a452'] !== 'undefined' ? re['a452'].join(',') : '',
             'a462': typeof re['a462'] !== 'undefined' ? re['a462'].join(',') : '',
             'a472': typeof re['a472'] !== 'undefined' ? re['a472'].join(',') : '',
+            'a482': typeof re['a482'] !== 'undefined' ? re['a482'].join(',') : '',
             'a52': typeof re['a52'] !== 'undefined' ? re['a52'].join(',') : '',
             'a62': typeof re['a62'] !== 'undefined' ? re['a62'].join(',') : '',
             'a72': typeof re['a72'] !== 'undefined' ? re['a72'].join(',') : '',
@@ -1881,6 +1915,7 @@ export default {
         'a452': typeof re['a452'] !== 'undefined' ? re['a452'].join(',') : '',
         'a462': typeof re['a462'] !== 'undefined' ? re['a462'].join(',') : '',
         'a472': typeof re['a472'] !== 'undefined' ? re['a472'].join(',') : '',
+        'a482': typeof re['a482'] !== 'undefined' ? re['a482'].join(',') : '',
         'a52': typeof re['a52'] !== 'undefined' ? re['a52'].join(',') : '',
         'a62': typeof re['a62'] !== 'undefined' ? re['a62'].join(',') : '',
         'a72': typeof re['a72'] !== 'undefined' ? re['a72'].join(',') : '',
@@ -1950,7 +1985,7 @@ export default {
     dealAnswers(data) {
       var that = this
       var answer = data.bywsw
-      var alList = ['铜绿假单胞菌', '阴沟肠杆菌', '肺炎克雷伯菌', '肺炎链球菌', '副流感嗜血杆菌', '鲍曼不动杆菌', '金黄色葡萄球菌']
+      var alList = ['铜绿假单胞菌','肺炎链球菌','肺炎克雷伯菌','阴沟肠杆菌','副流感嗜血杆菌','鲍曼不动杆菌','金黄色葡萄球菌','其他','流感嗜血杆菌','卡他莫拉菌','大肠杆菌','洋葱霍尔德菌','嗜麦芽窄食单胞菌']
       if (answer && !_.isEmpty(answer)) {
         var splitArr = []
         if (answer.a) {
@@ -2011,6 +2046,9 @@ export default {
           }
           if (splitArr.indexOf('4') > -1) {
             this.controla34 = true
+          }
+          if (splitArr.indexOf('5') > -1) {
+            this.controla35 = true
           }
         }
         if(answer.a311 === 3) {
@@ -2338,7 +2376,6 @@ export default {
           }
         }
 
-
         this.type1 = answer.a36 ? answer.a36 + '' : ''
         this.type2 = answer.a37 ? answer.a37 + '' : ''
         this.type3 = answer.a38 ? answer.a38 + '' : ''
@@ -2403,6 +2440,91 @@ export default {
               };
             })
             that.otherName2 = other[0][0].microbeName
+          }
+        }
+        if (data[3]) {
+          _.each(alList, function(v, i) {
+            if (data[3][v]) {
+              that.optionDataSource3[i] = _.map(data[3][v], function(v, i) {
+                return {
+                  keyW: i,
+                  microbeName: v.microbeName,
+                  antibiotic: v.antibiotic,
+                  antibioticResult: v.antibioticResult,
+                  allergyValue: v.allergyValue
+                };
+              })
+            }
+          })
+          var other = _.filter(data[3], function(v, k) { return alList.indexOf(k) === -1 })
+          if (other && other.length) {
+            that.optionDataSource3[7] = _.map(other[0], function(v, i) {
+              return {
+                keyW: i,
+                microbeName: v.microbeName,
+                antibiotic: v.antibiotic,
+                antibioticResult: v.antibioticResult,
+                allergyValue: v.allergyValue
+              };
+            })
+            that.otherName3 = other[0][0].microbeName
+          }
+        }
+        if (data[4]) {
+          debugger
+          _.each(alList, function(v, i) {
+            if (data[4][v]) {
+              that.optionDataSource4[i] = _.map(data[4][v], function(v, i) {
+                return {
+                  keyW: i,
+                  microbeName: v.microbeName,
+                  antibiotic: v.antibiotic,
+                  antibioticResult: v.antibioticResult,
+                  allergyValue: v.allergyValue
+                };
+              })
+            }
+          })
+          var other = _.filter(data[4], function(v, k) { return alList.indexOf(k) === -1 })
+          if (other && other.length) {
+            that.optionDataSource4[7] = _.map(other[0], function(v, i) {
+              return {
+                keyW: i,
+                microbeName: v.microbeName,
+                antibiotic: v.antibiotic,
+                antibioticResult: v.antibioticResult,
+                allergyValue: v.allergyValue
+              };
+            })
+            that.otherName4 = other[0][0].microbeName
+          }
+        }
+        if (data[5]) {
+          _.each(alList, function(v, i) {
+            if (data[5][v]) {
+              that.optionDataSource5[i] = _.map(data[5][v], function(v, i) {
+                return {
+                  keyW: i,
+                  microbeName: v.microbeName,
+                  antibiotic: v.antibiotic,
+                  antibioticResult: v.antibioticResult,
+                  allergyValue: v.allergyValue
+                };
+              })
+            }
+          })
+          var other = _.filter(data[5], function(v, k) { return alList.indexOf(k) === -1 })
+          if (other && other.length) {
+            that.optionDataSource5[7] = _.map(other[0], function(v, i) {
+              return {
+                keyW: i,
+                microbeName: v.microbeName,
+                antibiotic: v.antibiotic,
+                antibioticResult: v.antibioticResult,
+                allergyValue: v.allergyValue
+              };
+            })
+            that.otherName5 = other[0][0].microbeName
           }
         }
         if (answer.c41) {

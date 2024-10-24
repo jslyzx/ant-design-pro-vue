@@ -80,23 +80,25 @@
                   <a-radio value="4">极重度咳嗽</a-radio>
                 </a-radio-group>
               </a-form-item>
-              <a-form-item label="痰量" v-if="controla41" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                <a-input addonAfter="ml/日" style="width: 240px;" v-decorator="['a41', {...inputRequired, initialValue: initValue('a41')}]" autocomplete="off"></a-input>
-              </a-form-item>
-              <a-form-item label="痰颜色评分（单选）" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controla41">
-                <a-popover>
-                  <template slot="content">
-                    <img src="../../../../assets/murry.png" style="height: 260px;" />
-                  </template>
-                  <a-icon type="exclamation-circle" style="position: relative;left: -20px;color: #0399ec;cursor: pointer;" />
-                </a-popover>
-                <a-radio-group v-decorator="['a43', {...selectRequired, initialValue: initValue('a43')}]">
-                  <a-radio value="1">白色或清亮</a-radio>
-                  <a-radio value="2">黄白色</a-radio>
-                  <a-radio value="3">黄绿色</a-radio>
-                  <a-radio value="4">浅至深褐色</a-radio>
-                </a-radio-group>
-              </a-form-item>
+              <div v-if="controla41">
+                <a-form-item label="痰量" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                  <a-input addonAfter="ml/日" style="width: 240px;" v-decorator="['a41', {...inputRequired, initialValue: initValue('a41')}]" autocomplete="off"></a-input>
+                </a-form-item>
+                <a-form-item label="痰颜色评分（单选）" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
+                  <a-popover>
+                    <template slot="content">
+                      <img src="../../../../assets/murry.png" style="height: 260px;" />
+                    </template>
+                    <a-icon type="exclamation-circle" style="position: relative;left: -20px;color: #0399ec;cursor: pointer;" />
+                  </a-popover>
+                  <a-radio-group v-decorator="['a43', {...selectRequired, initialValue: initValue('a43')}]">
+                    <a-radio value="1">白色或清亮</a-radio>
+                    <a-radio value="2">黄白色</a-radio>
+                    <a-radio value="3">黄绿色</a-radio>
+                    <a-radio value="4">浅至深褐色</a-radio>
+                  </a-radio-group>
+                </a-form-item>
+              </div>
               <a-form-item label="痰血量" v-if="controla43" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-input addonAfter="ml/日" style="width: 240px;" v-decorator="['a44', {...inputRequired, initialValue: initValue('a44')}]" autocomplete="off"></a-input>
               </a-form-item>
@@ -488,7 +490,7 @@
                   <a-checkbox value="5" :checked="controlb202" @change="changeSelect($event, 'controlb202')">其他</a-checkbox>
                 </a-checkbox-group>
               </a-form-item>
-              <a-form-item label="其他手术名称" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset" class="border-dotted" v-if="controlb20 && controlb202">
+              <a-form-item label="其他手术名称" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset" class="border-dotted" v-if="controlb202">
                 <a-input style="width: 240px;" v-decorator="['b202', {initialValue: initValue('b202')}]" autocomplete="off"></a-input>
               </a-form-item>
               <a-form-item label="(13) 支气管动脉栓塞病史" :labelCol="labelColHor" :wrapperCol="wrapperHor">
