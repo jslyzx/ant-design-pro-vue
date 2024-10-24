@@ -450,9 +450,11 @@
                   <a-radio value="-1">否</a-radio>
                 </a-radio-group>
               </a-form-item>
-              <a-form-item label="具体疾病名称" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controlb1831">
-                <a-input style="width: 240px;" v-decorator="['b1831', {...inputRequired, initialValue: initValue('b1831')}]" autocomplete="off"></a-input>
-              </a-form-item>
+              <div v-if="controlb1831">
+                <a-form-item label="具体疾病名称" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" >
+                  <a-input style="width: 240px;" v-decorator="['b1831', {...inputRequired, initialValue: initValue('b1831')}]" autocomplete="off"></a-input>
+                </a-form-item>
+              </div>
               <a-form-item label="(10) 吸烟史(单选)" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-radio-group v-decorator="['b19', {...selectRequired, initialValue: initValue('b19')}]" @change="changeRadio($event, 'controlb191')">
                   <a-radio value="1">目前吸烟</a-radio>
