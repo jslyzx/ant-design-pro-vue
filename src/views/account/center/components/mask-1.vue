@@ -481,18 +481,20 @@
                   <a-radio value="-1">无</a-radio>
                 </a-radio-group>
               </a-form-item>
-              <a-form-item label="手术类型(多选)" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" v-if="controlb20">
-                <a-checkbox-group v-decorator="['b201', {...selectRequired, initialValue: initValue('b201', 'array')}]">
-                  <a-checkbox value="1">肺叶切除术</a-checkbox>
-                  <a-checkbox value="2">胸膜剥脱术</a-checkbox>
-                  <a-checkbox value="3">肺减容术</a-checkbox>
-                  <a-checkbox value="4">冠脉搭桥术</a-checkbox>
-                  <a-checkbox value="5" :checked="controlb202" @change="changeSelect($event, 'controlb202')">其他</a-checkbox>
-                </a-checkbox-group>
-              </a-form-item>
-              <a-form-item label="其他手术名称" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset" class="border-dotted" v-if="controlb202">
-                <a-input style="width: 240px;" v-decorator="['b202', {initialValue: initValue('b202')}]" autocomplete="off"></a-input>
-              </a-form-item>
+              <div v-if="controlb20">
+                <a-form-item label="手术类型(多选)" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted" >
+                  <a-checkbox-group v-decorator="['b201', {...selectRequired, initialValue: initValue('b201', 'array')}]">
+                    <a-checkbox value="1">肺叶切除术</a-checkbox>
+                    <a-checkbox value="2">胸膜剥脱术</a-checkbox>
+                    <a-checkbox value="3">肺减容术</a-checkbox>
+                    <a-checkbox value="4">冠脉搭桥术</a-checkbox>
+                    <a-checkbox value="5" :checked="controlb202" @change="changeSelect($event, 'controlb202')">其他</a-checkbox>
+                  </a-checkbox-group>
+                </a-form-item>
+                <a-form-item label="其他手术名称" :labelCol="labelColOffset2" :wrapperCol="wrapperOffset" class="border-dotted" v-if="controlb202">
+                  <a-input style="width: 240px;" v-decorator="['b202', {initialValue: initValue('b202')}]" autocomplete="off"></a-input>
+                </a-form-item>
+              </div>
               <a-form-item label="(13) 支气管动脉栓塞病史" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-radio-group v-decorator="['b21', {...require2, initialValue: initValue('b21')}]" @change="changeRadio($event, 'controlb21')">
                   <a-radio value="1">有</a-radio>
