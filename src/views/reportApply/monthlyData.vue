@@ -89,6 +89,22 @@ export default {
         dataIndex: 'type1Num',
         width: '110px'
       },{
+        title: '基线提交总数量',
+        dataIndex: 'type9Num',
+        width: '170px'
+      },{
+        title: '上月新增基线数量',
+        dataIndex: 'type4Num',
+        width: '160px'
+      },{
+        title: '上月新增基线提交数',
+        dataIndex: 'type10Num',
+        width: '160px'
+      },{
+        title: '上月新增随访数量',
+        dataIndex: 'type7Num',
+        width: '160px'
+      },{
         title: '近6个月新增基线数量',
         dataIndex: 'type2Num',
         width: '170px'
@@ -97,10 +113,6 @@ export default {
         dataIndex: 'type3Num',
         width: '170px'
       },{
-        title: '上月新增基线数据量',
-        dataIndex: 'type4Num',
-        width: '160px'
-      },{
         title: '近6个月新增随访数量',
         dataIndex: 'type5Num',
         width: '170px'
@@ -108,10 +120,6 @@ export default {
         title: '近3个月新增随访数量',
         dataIndex: 'type6Num',
         width: '170px'
-      },{
-        title: '上月新增随访数据量',
-        dataIndex: 'type7Num',
-        width: '160px'
       },{
         title: '截止查询时间基线数量',
         dataIndex: 'type8Num'
