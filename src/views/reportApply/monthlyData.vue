@@ -122,7 +122,8 @@ export default {
         width: '170px'
       },{
         title: '截止查询时间基线数量',
-        dataIndex: 'type8Num'
+        dataIndex: 'type8Num',
+        width: '170px'
       }],
       createArr: [],
       submitArr: [],
@@ -162,7 +163,7 @@ export default {
     _export() {
       const h = this.$createElement
       if(this.queryParam.dateStr) {
-        window.open(this.baseUrl + 'patientReport/exportCenterDate')
+        window.open(this.baseUrl + 'patientReport/exportCenterDate?dateStr=' + this.queryParam.dateStr)
       } else {
         this.visible = true
       }
