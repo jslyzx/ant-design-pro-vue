@@ -56,19 +56,21 @@
                   <a-radio value="-1">否</a-radio>
                 </a-radio-group>
               </a-form-item>
-              <a-form-item label="治疗方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor" v-if="controlb3">
-                <a-checkbox-group v-decorator="['b31', {...selectRequired, initialValue: initValue('b31', 'array')}]">
-                  <a-checkbox value="1">手动拍击背部排痰</a-checkbox>
-                  <a-checkbox value="2">体位引流</a-checkbox>
-                  <a-checkbox value="3">规律锻炼身体</a-checkbox>
-                  <a-checkbox value="4">借助排痰仪器</a-checkbox>
-                  <a-checkbox value="6">主动循环呼吸</a-checkbox>
-                  <a-checkbox value="5" @change="changeSelect($event, 'controlb31')">其他</a-checkbox>
-                </a-checkbox-group>
-              </a-form-item>
-              <a-form-item label="其他治疗方式:" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" v-if="controlb3 && controlb31">
-                <a-input style="width: 240px;" v-decorator="['b311', {...inputRequired, initialValue: initValue('b311')}]" autocomplete="off"></a-input>
-              </a-form-item>
+              <div v-if="controlb3">
+                <a-form-item label="治疗方式:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
+                  <a-checkbox-group v-decorator="['b31', {...selectRequired, initialValue: initValue('b31', 'array')}]">
+                    <a-checkbox value="1">手动拍击背部排痰</a-checkbox>
+                    <a-checkbox value="2">体位引流</a-checkbox>
+                    <a-checkbox value="3">规律锻炼身体</a-checkbox>
+                    <a-checkbox value="4">借助排痰仪器</a-checkbox>
+                    <a-checkbox value="6">主动循环呼吸</a-checkbox>
+                    <a-checkbox value="5" @change="changeSelect($event, 'controlb31')">其他</a-checkbox>
+                  </a-checkbox-group>
+                </a-form-item>
+                <a-form-item label="其他治疗方式:" :labelCol="labelColOffset" :wrapperCol="wrapperOffset" v-if="controlb31">
+                  <a-input style="width: 240px;" v-decorator="['b311', {...inputRequired, initialValue: initValue('b311')}]" autocomplete="off"></a-input>
+                </a-form-item>
+              </div>
               <a-form-item label="(4) 有规律的呼吸疾病药物治疗:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                 <a-radio-group v-decorator="['b4', {...require1, initialValue: initValue('b4')}]" @change="changeRadio($event, 'controlb4')">
                   <a-radio value="1">是</a-radio>
@@ -831,7 +833,7 @@ export default {
     },
     detect(d, v) {
       if(typeof this.form.getFieldValue(d) === 'undefined') {
-        if(this.hxxt[d] && this.hxxt[d].indexOf(v) > -1) {
+        if(this.hxxt && this.hxxt[d] && this.hxxt[d].split(',').indexOf(v) > -1) {
           return true
         } else {
           return false

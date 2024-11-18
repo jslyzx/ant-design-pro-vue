@@ -257,7 +257,7 @@
                         <a-checkbox value="12" @change="showList($event, '嗜麦芽窄食单胞菌', 'controla45212', '2')">嗜麦芽窄食单胞菌</a-checkbox>
                         <add-table :dataSource="optionDataSource2[12]" v-if="controla45212" :isFirst="true" :picSource="picList1[12]" @changePic1="changePic1($event, 12)"></add-table>
                         <a-checkbox value="7" @change="showList($event, '其他', 'controla4527', '2')">其他</a-checkbox>
-                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla4527" @change="otherChange($event, 7, '2')" autocomplete="off" v-decorator="['otherName2', {...inputRequired, initialValue: initValue('otherName2')}]"></a-input>
+                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla4527" @change="otherChange($event, 7, '2')" autocomplete="off" v-decorator="['otherName2', {...inputRequired, initialValue: otherName2 }]"></a-input>
                         <add-table :dataSource="optionDataSource2[7]" v-if="controla4527" :isFirst="true" :picSource="picList1[7]" @changePic1="changePic1($event, 7)"></add-table>
                       </a-checkbox-group>
                     </a-form-item>
@@ -393,7 +393,7 @@
                         <a-checkbox value="12" @change="showList($event, '嗜麦芽窄食单胞菌', 'controla46212', '3')">嗜麦芽窄食单胞菌</a-checkbox>
                         <add-table :dataSource="optionDataSource3[12]" v-if="controla46212" :isFirst="true" :picSource="picList1[12]" @changePic1="changePic1($event, 12)"></add-table>
                         <a-checkbox value="7" @change="showList($event, '其他', 'controla4627', '3')">其他</a-checkbox>
-                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla4627" @change="otherChange($event, 7, '3')" autocomplete="off" v-decorator="['otherName3', {...inputRequired, initialValue: initValue('otherName3')}]"></a-input>
+                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla4627" @change="otherChange($event, 7, '3')" autocomplete="off" v-decorator="['otherName3', {...inputRequired, initialValue: otherName3 }]"></a-input>
                         <add-table :dataSource="optionDataSource3[7]" v-if="controla4627" :isFirst="true" :picSource="picList1[7]" @changePic1="changePic1($event, 7)"></add-table>
                       </a-checkbox-group>
                     </a-form-item>
@@ -529,7 +529,7 @@
                         <a-checkbox value="12" @change="showList($event, '嗜麦芽窄食单胞菌', 'controla47212', '4')">嗜麦芽窄食单胞菌</a-checkbox>
                         <add-table :dataSource="optionDataSource4[12]" v-if="controla47212" :isFirst="true" :picSource="picList1[12]" @changePic1="changePic1($event, 12)"></add-table>
                         <a-checkbox value="7" @change="showList($event, '其他', 'controla4727', '4')">其他</a-checkbox>
-                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla4727" @change="otherChange($event, 7, '4')" autocomplete="off" v-decorator="['otherName4', {...inputRequired, initialValue: initValue('otherName4')}]"></a-input>
+                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla4727" @change="otherChange($event, 7, '4')" autocomplete="off" v-decorator="['otherName4', {...inputRequired, initialValue: otherName4 }]"></a-input>
                         <add-table :dataSource="optionDataSource4[7]" v-if="controla4727" :isFirst="true" :picSource="picList1[7]" @changePic1="changePic1($event, 7)"></add-table>
                       </a-checkbox-group>
                     </a-form-item>
@@ -668,7 +668,7 @@
                         <a-checkbox value="12" @change="showList($event, '嗜麦芽窄食单胞菌', 'controla48212', '5')">嗜麦芽窄食单胞菌</a-checkbox>
                         <add-table :dataSource="optionDataSource5[12]" v-if="controla48212" :isFirst="true" :picSource="picList1[12]" @changePic1="changePic1($event, 12)"></add-table>
                         <a-checkbox value="7" @change="showList($event, '其他', 'controla4827', '5')">其他</a-checkbox>
-                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla4827" @change="otherChange($event, 7, '5')" autocomplete="off" v-decorator="['otherName5', {...inputRequired, initialValue: initValue('otherName5')}]"></a-input>
+                        <a-input style="width: 240px;margin-right: 10px;" v-if="controla4827" @change="otherChange($event, 7, '5')" autocomplete="off" v-decorator="['otherName5', {...inputRequired, initialValue: otherName5}]"></a-input>
                         <add-table :dataSource="optionDataSource5[7]" v-if="controla4827" :isFirst="true" :picSource="picList1[7]" @changePic1="changePic1($event, 7)"></add-table>
                       </a-checkbox-group>
                     </a-form-item>
@@ -1473,6 +1473,9 @@ export default {
       type5: '',
       otherName1: '',
       otherName2: '',
+      otherName3: '',
+      otherName4: '',
+      otherName5: '',
       picList1: [],
       isGroup: this.$ls.get(ACCESS_TOKEN).roleId === 1 || false,
       canEdit: false,
@@ -2021,6 +2024,15 @@ export default {
         if (answer.b4 && answer.b4 === 1) {
           this.controlb4 = true
         }
+        if (answer.b5 && answer.b5 === 1) {
+          this.controlb5 = true
+        }
+        if (answer.b6 && answer.b6 === 1) {
+          this.controlb6 = true
+        }
+        if (answer.b7 && answer.b7 === 1) {
+          this.controlb7 = true
+        }
         if (answer.c2 && answer.c2 === -1) {
           this.controlc2 = true
         }
@@ -2376,6 +2388,19 @@ export default {
           }
         }
 
+        if(answer.c52 && answer.c52.indexOf('1') > -1) {
+          this.controlc521 = true
+        }
+        if(answer.c6 && answer.c6.indexOf('1') > -1) {
+          this.controlc61 = true
+        }
+        if(answer.c7 && answer.c7.indexOf('1') > -1) {
+          this.controlc71 = true
+        }
+        if(answer.c8 && answer.c8.indexOf('1') > -1) {
+          this.controlc81 = true
+        }
+
         this.type1 = answer.a36 ? answer.a36 + '' : ''
         this.type2 = answer.a37 ? answer.a37 + '' : ''
         this.type3 = answer.a38 ? answer.a38 + '' : ''
@@ -2412,6 +2437,21 @@ export default {
         if (answer.b42) {
           if (splitArr.indexOf('2') > -1) {
             this.controlb422 = true
+          }
+        }
+        if (answer.b52) {
+          if (splitArr.indexOf('2') > -1) {
+            this.controlb522 = true
+          }
+        }
+        if (answer.b62) {
+          if (splitArr.indexOf('2') > -1) {
+            this.controlb622 = true
+          }
+        }
+        if (answer.b72) {
+          if (splitArr.indexOf('2') > -1) {
+            this.controlb722 = true
           }
         }
         if (data[2]) {
@@ -2471,7 +2511,6 @@ export default {
           }
         }
         if (data[4]) {
-          debugger
           _.each(alList, function(v, i) {
             if (data[4][v]) {
               that.optionDataSource4[i] = _.map(data[4][v], function(v, i) {
@@ -2531,6 +2570,30 @@ export default {
           splitArr = answer.c41.split(',')
           if (splitArr.indexOf('5') > -1) {
             this.controlc415 = true
+          }
+        }
+        if (answer.c51) {
+          splitArr = answer.c51.split(',')
+          if (splitArr.indexOf('5') > -1) {
+            this.controlc515 = true
+          }
+        }
+        if (answer.c61) {
+          splitArr = answer.c61.split(',')
+          if (splitArr.indexOf('5') > -1) {
+            this.controlc615 = true
+          }
+        }
+        if (answer.c71) {
+          splitArr = answer.c71.split(',')
+          if (splitArr.indexOf('5') > -1) {
+            this.controlc715 = true
+          }
+        }
+        if (answer.c81) {
+          splitArr = answer.c81.split(',')
+          if (splitArr.indexOf('5') > -1) {
+            this.controlc815 = true
           }
         }
       }

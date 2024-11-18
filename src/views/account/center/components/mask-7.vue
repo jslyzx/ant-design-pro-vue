@@ -699,7 +699,7 @@ export default {
         if (answer.a7 === 1) {
           this.controla7 = true
         }
-        if (answer.a9 === 20) {
+        if (answer.a9 == 20) {
           this.controla920 = true
         }
         if (answer.a52 === 3) {

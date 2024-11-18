@@ -50,13 +50,13 @@
         </chart-card>
       </a-col>
       <a-col :span="4" :style="{ marginBottom: '10px' }">
-        <chart-card :loading="loading" title="本月访视提交数" :total="indexData.currMonthBasis">
+        <chart-card :loading="loading" title="本月访视提交数" :total="indexData.currMonthFsSubmits">
           <a-tooltip title="指标说明" slot="action">
             <a-icon type="info-circle-o" />
           </a-tooltip>
           <template slot="footer">
             上月访视提交数
-            <span>{{ indexData.lastMonthBasis }}</span>
+            <span>{{ indexData.lastMonthFsSubmits }}</span>
           </template>
           <div class="page-header-index-img">
             <img style="width: 64px; height: 64px" src="../../assets/home3.png">

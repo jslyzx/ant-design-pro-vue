@@ -56,7 +56,7 @@
                 </a-checkbox-group>
               </a-form-item>
               <a-form-item label="(4) 气道分泌物微生物培养" :labelCol="labelColHor" :wrapperCol="wrapperHor" class="border-dotted">
-                <a-radio-group v-decorator="['t2', {nitialValue: initValue('t2')}]" @change="changeRadio($event, 'controlt2')">
+                <a-radio-group v-decorator="['t2', { initialValue: initValue('t2')}]" @change="changeRadio($event, 'controlt2')">
                   <a-radio value="1">有</a-radio>
                   <a-radio value="-1">无</a-radio>
                 </a-radio-group>
@@ -353,7 +353,7 @@
               </div>
               <div v-if="controlb318">
                 <a-form-item label="其他抗生素种类" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                  <a-input style="width: 240px;margin-right: 10px;" autocomplete="off" v-decorator="['b201', { initialValue: initValue('b201')}]"></a-input>
+                  <a-input style="width: 240px;margin-right: 10px;" autocomplete="off" v-decorator="['b201', {...inputRequired, initialValue: initValue('b201')}]"></a-input>
                 </a-form-item>
                 <a-form-item label="其他抗生素起始日期:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                   <a-date-picker placeholder="请选择" style="width: 240px;" v-decorator="['b202', {initialValue: initValue('b202', 'time')}]" :disabledDate="disabledDate"></a-date-picker>
@@ -362,7 +362,7 @@
                   <a-date-picker placeholder="请选择" style="width: 240px;" v-decorator="['b203', {initialValue: initValue('b203', 'time')}]" :disabledDate="disabledDate"></a-date-picker>
                 </a-form-item>
                 <a-form-item label="其他抗生素种类" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                  <a-input style="width: 240px;margin-right: 10px;" autocomplete="off" v-decorator="['b211', {...inputRequired, initialValue: initValue('b211')}]"></a-input>
+                  <a-input style="width: 240px;margin-right: 10px;" autocomplete="off" v-decorator="['b211', {initialValue: initValue('b211')}]"></a-input>
                 </a-form-item>
                 <a-form-item label="其他抗生素起始日期:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                   <a-date-picker placeholder="请选择" style="width: 240px;" v-decorator="['b212', {initialValue: initValue('b212', 'time')}]" :disabledDate="disabledDate"></a-date-picker>
@@ -371,7 +371,7 @@
                   <a-date-picker placeholder="请选择" style="width: 240px;" v-decorator="['b213', {initialValue: initValue('b213', 'time')}]" :disabledDate="disabledDate"></a-date-picker>
                 </a-form-item>
                 <a-form-item label="其他抗生素种类" :labelCol="labelColHor" :wrapperCol="wrapperHor">
-                  <a-input style="width: 240px;margin-right: 10px;" autocomplete="off" v-decorator="['b221', {...inputRequired, initialValue: initValue('b221')}]"></a-input>
+                  <a-input style="width: 240px;margin-right: 10px;" autocomplete="off" v-decorator="['b221', { initialValue: initValue('b221')}]"></a-input>
                 </a-form-item>
                 <a-form-item label="其他抗生素起始日期:" :labelCol="labelColHor" :wrapperCol="wrapperHor">
                   <a-date-picker placeholder="请选择" style="width: 240px;" v-decorator="['b222', {initialValue: initValue('b222', 'time')}]" :disabledDate="disabledDate"></a-date-picker>
