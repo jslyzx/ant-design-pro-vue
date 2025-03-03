@@ -128,12 +128,7 @@
           { src: '', remake: '' },
           { src: '', remake: '' }
         ],
-        blogData: [
-          { url: '', link: '' },
-          { url: '', link: '' },
-          { url: '', link: '' },
-          { url: '', link: '' }
-        ],
+        blogData: [],
         activeIndex: 0,
         action: process.env.VUE_APP_API_UPLOAD_URL,
         attachsPrefix: process.env.VUE_APP_API_VIEW_PIC_URL,
@@ -159,9 +154,11 @@
           this.lunboData[2].remake = res.data.textGwLb.url3Remake
           this.text = res.data.textGwLb.text
 
-          res.data.textGwLbDetailList.forEach((item, index) => {
-            this.blogData[index].url = item.url
-            this.blogData[index].link = item.link
+          this.blogData = res.data.textGwLbDetailList.map(v => {
+            return {
+              url: v.url,
+              link: v.link
+            }
           })
         })
       },

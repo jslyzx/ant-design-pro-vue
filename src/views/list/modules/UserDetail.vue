@@ -51,7 +51,7 @@
               <a-col :sm="8">
                 <p class="userInfoItem">
                   <span>创建时间：</span>
-                  {{ patient.ceateDate | formDate }}
+                  {{ patient.createDate | formDate }}
                 </p>
               </a-col>
               <a-col :sm="8">
@@ -60,7 +60,7 @@
                   {{ patient.creatorName }}
                 </p>
               </a-col>
-              <a-col :sm="16">
+              <a-col :sm="16" v-if="patient.coughDate">
                 <p class="userInfoItem">
                   <span>出现咳嗽咳痰等呼吸相关症状时间：</span>
                   {{ patient.coughDate | formDate }}

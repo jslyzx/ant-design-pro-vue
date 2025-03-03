@@ -62,7 +62,7 @@
               <a-col :sm="8">
                 <p class="userInfoItem">
                   <span>创建时间：</span>
-                  {{ patient.ceateDate | formDate }}
+                  {{ patient.createDate | formDate }}
                 </p>
               </a-col>
               <a-col :sm="8">
