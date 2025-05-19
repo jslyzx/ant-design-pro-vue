@@ -1583,7 +1583,8 @@ export default {
       controld3313: false,
       controld3413: false,
       controld3513: false,
-      controla48: false
+      controla48: false,
+      controlc521: false
     }
   },
   created() {
@@ -1780,7 +1781,7 @@ export default {
             'a62': typeof re['a62'] !== 'undefined' ? re['a62'].join(',') : '',
             'a72': typeof re['a72'] !== 'undefined' ? re['a72'].join(',') : '',
             'c51': typeof re['c51'] !== 'undefined' ? re['c51'].join(',') : '',
-            'c52': typeof re['ca52'] !== 'undefined' ? re['c52'].join(',') : '',
+            'c52': typeof re['c52'] !== 'undefined' ? re['c52'].join(',') : '',
             'c6': typeof re['c6'] !== 'undefined' ? re['c6'].join(',') : '',
             'c61': typeof re['c61'] !== 'undefined' ? re['c61'].join(',') : '',
             'c7': typeof re['c7'] !== 'undefined' ? re['c7'].join(',') : '',
@@ -1791,7 +1792,10 @@ export default {
             'a37': that.type2,
             'a38': that.type3,
             'a39': that.type4,
-            'a310': that.type5
+            'a310': that.type5,
+            'b62': typeof re['b62'] !== 'undefined' ? re['b62'].join(',') : '',
+            'b72': typeof re['b72'] !== 'undefined' ? re['b72'].join(',') : '',
+            'b52': typeof re['b52'] !== 'undefined' ? re['b52'].join(',') : ''
           }
           console.log(re)
           this.patientBasis.status = 2
@@ -1901,6 +1905,7 @@ export default {
       }
       var re = this.form.getFieldsValue()
       var that = this
+      debugger
       re = {
         ...re,
         'a': typeof re['a'] !== 'undefined' ? re['a'].join(',') : '',
@@ -1923,7 +1928,7 @@ export default {
         'a62': typeof re['a62'] !== 'undefined' ? re['a62'].join(',') : '',
         'a72': typeof re['a72'] !== 'undefined' ? re['a72'].join(',') : '',
         'c51': typeof re['c51'] !== 'undefined' ? re['c51'].join(',') : '',
-        'c52': typeof re['ca52'] !== 'undefined' ? re['c52'].join(',') : '',
+        'c52': typeof re['c52'] !== 'undefined' ? re['c52'].join(',') : '',
         'c6': typeof re['c6'] !== 'undefined' ? re['c6'].join(',') : '',
         'c61': typeof re['c61'] !== 'undefined' ? re['c61'].join(',') : '',
         'c7': typeof re['c7'] !== 'undefined' ? re['c7'].join(',') : '',
@@ -1934,7 +1939,10 @@ export default {
         'a37': that.type2,
         'a38': that.type3,
         'a39': that.type4,
-        'a310': that.type5
+        'a310': that.type5,
+        'b62': typeof re['b62'] !== 'undefined' ? re['b62'].join(',') : '',
+        'b72': typeof re['b72'] !== 'undefined' ? re['b72'].join(',') : '',
+        'b52': typeof re['b52'] !== 'undefined' ? re['b52'].join(',') : ''
       }
       console.log(re)
       this.patientBasis.status = 1
@@ -2435,21 +2443,25 @@ export default {
           }
         }
         if (answer.b42) {
+          splitArr = answer.b42.split(',')
           if (splitArr.indexOf('2') > -1) {
             this.controlb422 = true
           }
         }
         if (answer.b52) {
+          splitArr = answer.b52.split(',')
           if (splitArr.indexOf('2') > -1) {
             this.controlb522 = true
           }
         }
         if (answer.b62) {
+          splitArr = answer.b62.split(',')
           if (splitArr.indexOf('2') > -1) {
             this.controlb622 = true
           }
         }
         if (answer.b72) {
+          splitArr = answer.b72.split(',')
           if (splitArr.indexOf('2') > -1) {
             this.controlb722 = true
           }
